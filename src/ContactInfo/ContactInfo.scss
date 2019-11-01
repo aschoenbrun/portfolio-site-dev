@@ -1,7 +1,18 @@
 #contact-info {
+  display: flex;
+  justify-content: center;
   padding: 20px;
   p {
-    font-size: 20px;
-    margin: 0 0 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid rgba(white, 0.25);
+    line-height: 1em;
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
   }
 }

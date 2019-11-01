@@ -1,18 +1,22 @@
 // COLORS
 
 $color--blue: rgb(15, 27, 35);
-$color--yellow: rgb(198, 164, 44);
+$color--yellow: rgb(240, 203, 71);
+$color--yellow-lt: rgb(255, 226, 123);
 $color--tan: rgb(91, 88, 75);
+$color--tan-dk: rgb(66, 65, 59);
 
 $colors: (
   blue: (
     base: $color--blue
   ),
   yellow: (
-    base: $color--yellow
+    base: $color--yellow,
+    lt: $color--yellow-lt
   ),
   tan: (
-    base: $color--tan
+    base: $color--tan,
+    dk: $color--tan-dk
   )
 );
 

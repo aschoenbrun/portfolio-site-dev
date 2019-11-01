@@ -41,8 +41,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header roles={this.state.roles} />
-        <Content contactInfo={this.state.contactInfo} />
+        <Header roles={this.state.roles} contactInfo={this.state.contactInfo} />
+        <Content />
       </div>
     );
   }

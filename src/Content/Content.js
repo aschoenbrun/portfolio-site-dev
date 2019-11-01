@@ -1,21 +1,13 @@
 import React from "react";
 import "./Content.scss";
-import ContactInfo from "../ContactInfo/ContactInfo";
+import CoverLetter from "../Resume/CoverLetter";
 
 const content = props => {
-  let contactList = props.contactInfo.map(info => {
-    return (
-      <ContactInfo
-        contactInfo={info.info}
-        contactLink={info.link}
-        key={info.key}
-      />
-    );
-  });
-
-  let contactInfo = <section id="contact-info">{contactList}</section>;
-
-  return <main id="site__content">{contactInfo}</main>;
+  return (
+    <main id="site__content">
+      <CoverLetter />
+    </main>
+  );
 };
 
 export default content;
