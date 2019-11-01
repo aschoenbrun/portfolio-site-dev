@@ -1,0 +1,23 @@
+// COLORS
+
+$color--blue: rgb(15, 27, 35);
+$color--yellow: rgb(198, 164, 44);
+$color--tan: rgb(91, 88, 75);
+
+$colors: (
+  blue: (
+    base: $color--blue
+  ),
+  yellow: (
+    base: $color--yellow
+  ),
+  tan: (
+    base: $color--tan
+  )
+);
+
+@function color($color, $transform: base) {
+  @return map-get(map-get($colors, $color), $transform);
+}
+
+// VARS
