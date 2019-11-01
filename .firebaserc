@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "aysportfolio",
+    "production": "aysportfolio"
+  }
+}

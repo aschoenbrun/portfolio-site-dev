@@ -3,6 +3,11 @@ import "./App.scss";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 
+// TODO
+// 1. Style contact info
+// 2. Site meta
+// 3. Add "made with" section
+
 class App extends Component {
   state = {
     roles: [
@@ -23,11 +28,12 @@ class App extends Component {
       },
       {
         info: "aviy.sch@gmail.com",
-        link: "hmailto:aviy.sch@gmail.com",
+        link: "mailto:aviy.sch@gmail.com",
         key: "email"
       },
       {
         info: "(732) 372-5102",
+        link: "tel:732-372-5102",
         key: "phone"
       }
     ]
@@ -36,8 +42,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header roles={this.state.roles} />
-        <Content contactInfo={this.state.contactInfo} />
+        <Header roles={this.state.roles} contactInfo={this.state.contactInfo} />
+        <Content />
       </div>
     );
   }
