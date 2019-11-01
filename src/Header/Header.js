@@ -19,12 +19,14 @@ const header = props => {
   });
 
   let contactInfo = <section id="contact-info">{contactList}</section>;
-
   return (
     <header id="site__header">
       <div id="header__top">
-        <h1>Avi Schoenbrun</h1>
-        <h2>{roles}</h2>
+        <div id="header-portrait"></div>
+        <div>
+          <h1>Avi Schoenbrun</h1>
+          <h2>{roles}</h2>
+        </div>
       </div>
       <div id="header__bottom">{contactInfo}</div>
     </header>

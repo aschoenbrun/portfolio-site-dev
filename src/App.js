@@ -33,6 +33,7 @@ class App extends Component {
       },
       {
         info: "(732) 372-5102",
+        link: "tel:732-372-5102",
         key: "phone"
       }
     ]
