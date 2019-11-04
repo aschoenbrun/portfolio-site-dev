@@ -1,20 +1,22 @@
 @import "../styles-global/global.scss";
 
 #site__header {
-  background-color: color(blue);
   color: white;
   padding: 0;
   margin-bottom: 50px;
   #header__top {
+    position: relative;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     text-align: left;
+    background-color: color(blue);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
     #header-portrait {
       height: 110px;
       width: 110px;
       margin-right: 20px;
       background: {
-        image: url("../images/LinkedIn-Global-Headshots-Portrait.jpg");
         color: color(tan);
         size: contain;
         blend-mode: luminosity;
@@ -43,6 +45,39 @@
   }
   #header__bottom {
     background-color: color(tan, dk);
-    border-top: 2px solid #fff;
+    position: relative;
+    z-index: 900;
+    //border-top: 2px solid #fff;
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+  }
+  #main-nav {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    li {
+      display: block;
+      text-transform: uppercase;
+      background-color: color(yellow);
+      color: color(tan, dk);
+      font-size: 12px;
+      line-height: 1em;
+      font-weight: 900;
+      padding: 13px 15px 10px;
+      margin: 0 6px 4px 0;
+      box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+      transition: 0.25s ease-out;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover,
+      &:focus {
+        padding: 17px 15px 10px;
+        margin-bottom: 0;
+        background-color: color(yellow, lt);
+        box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
+      }
+    }
   }
 }

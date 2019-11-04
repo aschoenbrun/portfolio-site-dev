@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.scss";
 import Role from "../Role/Role";
 import ContactInfo from "../ContactInfo/ContactInfo";
+import MainNav from "../Header/MainNav";
 
 const header = props => {
   let roles = props.roles.map(role => {
@@ -19,16 +20,35 @@ const header = props => {
   });
 
   let contactInfo = <section id="contact-info">{contactList}</section>;
+
+  let changePage = props.changePage;
+  let mainNav = props.mainNav.map((info, index) => {
+    return (
+      <MainNav
+        name={info.name}
+        key={info.key}
+        index={index}
+        changePage={() => {
+          changePage(info.name);
+        }}
+      />
+    );
+  });
+
   return (
     <header id="site__header">
       <div id="header__top">
-        <div id="header-portrait"></div>
+        <div
+          id="header-portrait"
+          style={{ backgroundImage: `url(${props.portrait})` }}
+        ></div>
         <div>
           <h1>Avi Schoenbrun</h1>
           <h2>{roles}</h2>
         </div>
       </div>
       <div id="header__bottom">{contactInfo}</div>
+      <ul id="main-nav">{mainNav}</ul>
     </header>
   );
 };

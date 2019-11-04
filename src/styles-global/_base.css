@@ -1,3 +1,19 @@
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+}
+#site__content {
+  flex: 1 0 auto;
+}
+#site__footer {
+  flex-shrink: 0;
+}
 a {
   color: color(yellow);
   text-decoration: none;
@@ -6,4 +22,39 @@ a {
 a:hover,
 a:focus {
   color: color(yellow, lt);
+}
+.page__title {
+  color: color(blue);
+  margin: 0 0 40px;
+  font-size: 40px;
+  font-weight: 100;
+}
+.page__title:after {
+  content: "";
+  display: block;
+  margin: 40px auto 0;
+  width: 150px;
+  border-bottom: 1px solid color(tan, lt);
+}
+.page__title span {
+  display: block;
+}
+.section__intro {
+  width: 760px;
+  margin: 0 auto;
+}
+.section__intro p {
+  font-size: 18px;
+  line-height: 1.8em;
+  letter-spacing: 0.07em;
+}
+.show,
+.hide {
+  transition: opacity 0.25s ease-out;
+}
+.show {
+  opacity: 1;
+}
+.hide {
+  opacity: 0;
 }
