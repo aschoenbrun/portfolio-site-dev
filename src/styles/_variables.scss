@@ -5,6 +5,7 @@ $color--yellow: rgb(240, 203, 71);
 $color--yellow-lt: rgb(255, 226, 123);
 $color--tan: rgb(91, 88, 75);
 $color--tan-lt: rgb(151, 145, 126);
+$color--tan-xlt: rgb(236, 234, 223);
 $color--tan-dk: rgb(66, 65, 59);
 
 $colors: (
@@ -17,6 +18,7 @@ $colors: (
   ),
   tan: (
     base: $color--tan,
+    xlt: $color--tan-xlt,
     lt: $color--tan-lt,
     dk: $color--tan-dk
   )

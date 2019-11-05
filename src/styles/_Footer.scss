@@ -1,0 +1,32 @@
+#site__footer {
+  background-color: color(tan, dk);
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  p {
+    @include header-footer-txt;
+  }
+  #built-with {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    strong {
+      display: block;
+      margin-right: 20px;
+    }
+    span {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    img {
+      height: 20px;
+      width: auto;
+      margin-right: 5px;
+    }
+  }
+}

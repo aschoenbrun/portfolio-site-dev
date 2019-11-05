@@ -1,9 +1,0 @@
-a {
-  color: color(yellow);
-  text-decoration: none;
-  transition: color 0.5s ease;
-}
-a:hover,
-a:focus {
-  color: color(yellow, lt);
-}

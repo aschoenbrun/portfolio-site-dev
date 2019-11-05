@@ -1,13 +1,14 @@
 import React from "react";
-import "./Content.scss";
 import CoverLetter from "../Resume/CoverLetter";
+import Resume from "../Resume/Resume";
 
 const content = props => {
-  return (
-    <main id="site__content">
-      <CoverLetter />
-    </main>
-  );
+  if (props.currentPage === "Cover Letter") {
+    return <CoverLetter />;
+  } else if (props.currentPage === "Resume") {
+    return <Resume />;
+  }
+  return { content };
 };
 
 export default content;
