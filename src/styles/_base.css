@@ -28,6 +28,7 @@ a:focus {
   margin: 0 0 40px;
   font-size: 40px;
   font-weight: 100;
+  text-align: center;
 }
 .page__title:after {
   content: "";
@@ -50,7 +51,7 @@ a:focus {
 }
 .show,
 .hide {
-  transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease;
 }
 .show {
   opacity: 1;

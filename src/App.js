@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import "./App.scss";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
 import Portrait from "./images/Headshots-Portrai---300x300t.jpg";
+import iconHTML5 from "./images/Icon - Programming - HTML.png";
+import iconCSS3 from "./images/Icon - Programming - CSS.png";
+import iconSASS from "./images/Sass-Logo---Seal-(Color).png";
+import iconJavascript from "./images/Icon---Programming---JavaScript-CROPPED.png";
+import iconReact from "./images/Icon - Programming - React.png";
 
 // TODO
 // 1. Style contact info
@@ -50,7 +54,34 @@ class App extends Component {
         key: "resume"
       }
     ],
-    currentPage: "Cover Letter"
+    currentPage: "Cover Letter",
+    builtWith: [
+      {
+        name: "HTML5",
+        image: iconHTML5,
+        key: "html5"
+      },
+      {
+        name: "CSS3",
+        image: iconCSS3,
+        key: "css3"
+      },
+      {
+        name: "SASS",
+        image: iconSASS,
+        key: "sass"
+      },
+      {
+        name: "Javascript",
+        image: iconJavascript,
+        key: "javascript"
+      },
+      {
+        name: "React",
+        image: iconReact,
+        key: "react"
+      }
+    ]
   };
 
   render() {
@@ -81,7 +112,7 @@ class App extends Component {
         <main id="site__content" className="show">
           <Content currentPage={this.state.currentPage} />
         </main>
-        <Footer />
+        <Footer builtWith={this.state.builtWith} />
       </div>
     );
   }

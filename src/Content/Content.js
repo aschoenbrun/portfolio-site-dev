@@ -1,5 +1,4 @@
 import React from "react";
-import "./Content.scss";
 import CoverLetter from "../Resume/CoverLetter";
 import Resume from "../Resume/Resume";
 

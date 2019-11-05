@@ -1,5 +1,4 @@
 import React from "react";
-import "./Header.scss";
 import Role from "../Role/Role";
 import ContactInfo from "../ContactInfo/ContactInfo";
 import MainNav from "../Header/MainNav";
