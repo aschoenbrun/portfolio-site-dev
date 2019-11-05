@@ -1,7 +1,10 @@
 @mixin page-margin {
   width: 95%;
   margin: 0 auto;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1024px) {
+    width: 960px;
+  }
+  @media screen and (min-width: 1350px) {
     width: 1150px;
   }
 }
@@ -26,4 +29,14 @@
       border-right: none;
     }
   }
+}
+
+@mixin section-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 23px;
+  padding: 0 0 5px;
+  margin: 0 0 20px;
+  color: color(blue);
+  border-bottom: 1px solid color(tan, lt);
 }

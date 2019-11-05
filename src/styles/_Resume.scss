@@ -1,4 +1,38 @@
 #resume {
+  h3 {
+    @include section-title;
+  }
+  #employment-summary {
+    li {
+      margin: 0 0 15px;
+    }
+    h4 {
+      font-size: 20px;
+      margin: 0;
+    }
+    p {
+      font-size: 13px;
+      margin: 0;
+      color: color(tan);
+    }
+  }
+  #professional-experience {
+    h4 {
+      font-size: 20px;
+      margin: 0;
+    }
+    .position__meta {
+      font-size: 13px;
+      margin: 0 0 15px;
+      color: color(tan);
+    }
+    ul {
+      margin-bottom: 15px;
+    }
+    h5 {
+      margin: 0 0 3px;
+    }
+  }
   .grid-list {
     margin: 0;
     padding: 0;

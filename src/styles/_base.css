@@ -42,12 +42,17 @@ a:focus {
 }
 .section__intro {
   width: 95%;
-  margin: 0 auto;
+  margin: 0 auto 75px;
 }
 @media screen and (min-width: 760px) {
   .section__intro {
     width: 750px;
   }
+}
+.section__intro h3 {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
 }
 .section__intro p {
   font-size: 18px;

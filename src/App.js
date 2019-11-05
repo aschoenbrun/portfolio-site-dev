@@ -95,6 +95,12 @@ class App extends Component {
 
       doVis();
 
+      // 1. copy mainNav arr & mutate COPY to selected: false for all elems
+      // 2. mutate elem with current index in COPY to selected:true
+      // 3. setStaet oldArr: newArr
+      // 4. add selected class to current elem
+      // 5. call funct
+
       setTimeout(() => {
         this.setState({ currentPage: newPage });
         doVis();
