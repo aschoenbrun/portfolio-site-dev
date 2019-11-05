@@ -19,7 +19,12 @@ const footer = props => {
         <p id="built-with">
           <strong>Built with:</strong> {builtWith}
         </p>
-        <a className="btn" href={props.repo} target="_blank">
+        <a
+          className="btn"
+          href={props.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={gitHubMark} alt={githubButtonText} /> {githubButtonText}
         </a>
       </div>
