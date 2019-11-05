@@ -12,10 +12,14 @@ const footer = props => {
 
   return (
     <footer id="site__footer">
-      <p id="built-with">
-        <strong>Built with:</strong> {builtWith}
-      </p>
-      <p>&copy; Copyright {new Date().getFullYear()} Avi Schoenbrun</p>
+      <div id="footer__top">
+        <p id="built-with">
+          <strong>Built with:</strong> {builtWith}
+        </p>
+      </div>
+      <div id="footer__bottom">
+        <p>&copy; Copyright {new Date().getFullYear()} Avi Schoenbrun</p>
+      </div>
     </footer>
   );
 };

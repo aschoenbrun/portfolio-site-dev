@@ -12,12 +12,18 @@
   line-height: 1em;
   letter-spacing: 0.15em;
   color: rgba(white, 0.75);
-  margin: 0 10px 0 0;
-  padding-right: 10px;
-  border-right: 1px solid color(blue);
+  margin: 0 5px 10px 5px;
   &:last-child {
     margin-right: 0;
-    padding-right: 0;
-    border-right: none;
+  }
+  @media screen and (min-width: 760px) {
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid color(blue);
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
   }
 }

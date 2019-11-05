@@ -21,14 +21,25 @@ const header = props => {
   let contactInfo = <section id="contact-info">{contactList}</section>;
 
   let changePage = props.changePage;
+
+  let mobileNavDrawerToggle = () => {
+    document.getElementById("main-nav").classList.toggle("nav--open");
+  };
+
+  let mobileNavDrawerStow = () => {
+    document.getElementById("main-nav").classList.remove("nav--open");
+  };
+
   let mainNav = props.mainNav.map((info, index) => {
     return (
       <MainNav
         name={info.name}
         key={info.key}
         index={index}
+        selected={info.selected}
         changePage={() => {
           changePage(info.name);
+          mobileNavDrawerStow();
         }}
       />
     );
@@ -47,7 +58,23 @@ const header = props => {
         </div>
       </div>
       <div id="header__bottom">{contactInfo}</div>
-      <ul id="main-nav">{mainNav}</ul>
+      <ul id="main-nav">
+        {mainNav}
+        <li id="mobile-nav__toggle" onClick={() => mobileNavDrawerToggle()}>
+          <div id="bar-1" className="menu-toggle__icon-bar">
+            <div id="left-bar" className="bar--half"></div>
+            <div id="right-bar" className="bar--half"></div>
+          </div>
+          <div id="bar-2" className="menu-toggle__icon-bar">
+            <div id="left-bar" className="bar--half"></div>
+            <div id="right-bar" className="bar--half"></div>
+          </div>
+          <div id="bar-3" className="menu-toggle__icon-bar">
+            <div id="left-bar" className="bar--half"></div>
+            <div id="right-bar" className="bar--half"></div>
+          </div>
+        </li>
+      </ul>
     </header>
   );
 };

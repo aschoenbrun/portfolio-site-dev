@@ -41,8 +41,13 @@ a:focus {
   display: block;
 }
 .section__intro {
-  width: 760px;
+  width: 95%;
   margin: 0 auto;
+}
+@media screen and (min-width: 760px) {
+  .section__intro {
+    width: 750px;
+  }
 }
 .section__intro p {
   font-size: 18px;
