@@ -81,7 +81,8 @@ class App extends Component {
         image: iconReact,
         key: "react"
       }
-    ]
+    ],
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
   };
 
   render() {
@@ -119,7 +120,7 @@ class App extends Component {
         <main id="site__content">
           <Content currentPage={this.state.currentPage} />
         </main>
-        <Footer builtWith={this.state.builtWith} />
+        <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
       </div>
     );
   }
