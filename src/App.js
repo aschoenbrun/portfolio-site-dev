@@ -86,16 +86,15 @@ class App extends Component {
 
   render() {
     const navClickChange = newPage => {
-      const contentVis = document.getElementById("site__content").classList;
-      const footerVis = document.getElementById("site__footer").classList;
-      const visElems = [contentVis, footerVis];
+      const visElems = ["site__content", "site__footer"];
       const doVis = () => {
         visElems.forEach(el => {
-          el.toggle("hide");
+          document.getElementById(el).classList.toggle("hide");
         });
       };
 
       doVis();
+
       setTimeout(() => {
         this.setState({ currentPage: newPage });
         doVis();
