@@ -86,18 +86,19 @@ class App extends Component {
 
   render() {
     const navClickChange = newPage => {
-      document.getElementById("site__content").classList.remove("show");
-      document.getElementById("site__content").classList.add("hide");
-      document.getElementById("site__footer").classList.remove("show");
-      document.getElementById("site__footer").classList.add("hide");
+      const contentVis = document.getElementById("site__content").classList;
+      const footerVis = document.getElementById("site__footer").classList;
+      const visElems = [contentVis, footerVis];
+      const doVis = () => {
+        visElems.forEach(el => {
+          el.toggle("hide");
+        });
+      };
+
+      doVis();
       setTimeout(() => {
         this.setState({ currentPage: newPage });
-      }, 250);
-      setTimeout(() => {
-        document.getElementById("site__content").classList.add("show");
-        document.getElementById("site__content").classList.remove("hide");
-        document.getElementById("site__footer").classList.add("show");
-        document.getElementById("site__footer").classList.remove("hide");
+        doVis();
       }, 250);
     };
     return (
