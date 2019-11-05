@@ -1,0 +1,21 @@
+[debug] [2019-11-05T01:59:31.752Z] ----------------------------------------------------------------------
+[debug] [2019-11-05T01:59:31.756Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Avi.AVI-PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-11-05T01:59:31.756Z] CLI Version:   7.6.2
+[debug] [2019-11-05T01:59:31.756Z] Platform:      win32
+[debug] [2019-11-05T01:59:31.756Z] Node Version:  v13.0.1
+[debug] [2019-11-05T01:59:31.759Z] Time:          Mon Nov 04 2019 20:59:31 GMT-0500 (Eastern Standard Time)
+[debug] [2019-11-05T01:59:31.759Z] ----------------------------------------------------------------------
+[debug] [2019-11-05T01:59:31.759Z] 
+[debug] [2019-11-05T01:59:31.794Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-05T01:59:31.795Z] > authorizing via signed-in user
+[debug] [2019-11-05T01:59:31.795Z] [iam] checking project aysportfolio for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-11-05T01:59:31.798Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-05T01:59:31.798Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-05T01:59:35.932Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-05T01:59:36.034Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/aysportfolio:testIamPermissions  
+
+[debug] [2019-11-05T01:59:47.094Z] Error: getaddrinfo ENOTFOUND cloudresourcemanager.googleapis.com
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:60:26)
+[error] 
+[error] Error: Server Error. getaddrinfo ENOTFOUND cloudresourcemanager.googleapis.com

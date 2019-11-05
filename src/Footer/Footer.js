@@ -11,7 +11,7 @@ const footer = props => {
   });
 
   return (
-    <footer id="site__footer" className="show">
+    <footer id="site__footer">
       <p id="built-with">
         <strong>Built with:</strong> {builtWith}
       </p>

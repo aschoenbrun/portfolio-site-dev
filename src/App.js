@@ -100,6 +100,7 @@ class App extends Component {
         doVis();
       }, 250);
     };
+
     return (
       <div className="App">
         <Header
@@ -109,7 +110,7 @@ class App extends Component {
           mainNav={this.state.mainNav}
           changePage={newPage => navClickChange(newPage)}
         />
-        <main id="site__content" className="show">
+        <main id="site__content">
           <Content currentPage={this.state.currentPage} />
         </main>
         <Footer builtWith={this.state.builtWith} />
