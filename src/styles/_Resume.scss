@@ -18,7 +18,8 @@
     }
   }
   #professional-experience,
-  #education {
+  #education,
+  #references {
     h4 {
       font-size: 20px;
       margin: 0;
@@ -36,6 +37,9 @@
           line-height: 1.5em;
           margin-bottom: $standard-li-margin;
         }
+      }
+      .ref-contact-info {
+        margin: 0 0 10px;
       }
       &.has-nested-ul li {
         margin-bottom: 30px;

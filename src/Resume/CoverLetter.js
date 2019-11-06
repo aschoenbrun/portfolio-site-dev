@@ -21,7 +21,7 @@ const coverLetter = props => {
       <p>
         I&#39;ve continued pushing the envelope to learn new languages and hone
         those under my belt. I&#39;m sometimes taken by my desire to understand
-        deeply a language&#39;s rules, as well as what makes them tick behind
+        a language&#39;s rules deeply, as well as what makes them tick behind
         the scenes.
       </p>
       <p>

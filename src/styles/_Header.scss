@@ -138,7 +138,7 @@
     box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
   }
   #main-nav {
-    $chevron--deg: 20;
+    $chevron--deg: 15;
     position: absolute;
     bottom: -38px;
     transform: translateY(0);
@@ -219,10 +219,10 @@
           background-color: color(tan, dk);
           transition: transform 0.25s;
           &#left-bar {
-            transform: rotate(#{$chevron--deg}deg);
+            transform: rotate(#{$chevron--deg}deg) translateX(0.5px);
           }
           &#right-bar {
-            transform: rotate(-#{$chevron--deg}deg);
+            transform: rotate(-#{$chevron--deg}deg) translateX(-0.5px);
           }
         }
       }
@@ -231,10 +231,10 @@
       transform: translate(-50%, calc(100% - 36px));
       li#mobile-nav__toggle .bar--half {
         &#left-bar {
-          transform: rotate(-#{$chevron--deg}deg);
+          transform: rotate(-#{$chevron--deg}deg) translateX(0.5px);
         }
         &#right-bar {
-          transform: rotate(#{$chevron--deg}deg);
+          transform: rotate(#{$chevron--deg}deg) translateX(-0.5px);
         }
       }
     }

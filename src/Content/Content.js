@@ -9,7 +9,6 @@ const content = props => {
       <CoverLetter
         pageLinkCoverLetter={() => {
           changePage("Resume");
-          // Scroll to top!!!
         }}
       />
     );

@@ -12,6 +12,14 @@ const resume = props => {
           effective structure &amp; good design eye to build compelling web
           applications.
         </p>
+        <a
+          className="btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
+        >
+          Download Resume
+        </a>
       </section>
       <section
         id="highly-effective-in"
@@ -20,8 +28,7 @@ const resume = props => {
         <h3>Highly effective in</h3>
         <ul className="grid-list">
           <li>Solutions-driven code</li>
-          <li>Compelling UI/UX</li>
-          <li>Client Relations</li>
+          <li>Effective &amp; compelling UI/UX</li>
         </ul>
       </section>
       <section id="technologies" className="resume__section page__section">
@@ -140,9 +147,13 @@ const resume = props => {
                 </h5>
                 <ul>
                   <li>
-                    Added a homepage banner section to the Genesis framework
-                    featuring an autoplaying Youtube video and overlaying
-                    elements using PHP, HTML5, CSS3 and Javascript.
+                    Designed &amp; developed a fully custom theme and page
+                    structure from Wordpres &amp; Genesis framework using PHP,
+                    HTML5, CSS3 and Javascript.
+                  </li>
+                  <li>
+                    Developed a banner on the homepage featuring an autoplaying
+                    Youtube video and overlaying elements.
                   </li>
                 </ul>
               </li>
@@ -315,6 +326,29 @@ const resume = props => {
           <li>Google API</li>
           <li>PCI Compliance</li>
           <li>Color Theory</li>
+        </ul>
+      </section>
+      <section id="references" className="resume__section page__section">
+        <h3>References</h3>
+        <ul className="title-list">
+          <li>
+            <h4 id="daniel-soloff">Daniel Soloff</h4>
+            <p className="ref-contact-info">(732) 905-9700 x 604</p>
+          </li>
+          <li>
+            <h4 id="eli-davidson">Eli Davidson</h4>
+            <p className="ref-contact-info">
+              <a href="mailto:mail@e-davidson.com">mail@e-davidson.com</a>
+            </p>
+          </li>
+          <li>
+            <h4 id="avi-rosenthal">Avi Rosenthal</h4>
+            <p className="ref-contact-info">(732) 228-8888 x 201</p>
+          </li>
+          <li>
+            <h4 id="mimi-frankel">Mimi Frankel</h4>
+            <p className="ref-contact-info">(732) 298-3746</p>
+          </li>
         </ul>
       </section>
     </div>

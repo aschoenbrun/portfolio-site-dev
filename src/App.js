@@ -82,7 +82,9 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
+    resumeFile:
+      "https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
   };
 
   render() {
@@ -122,6 +124,7 @@ class App extends Component {
           <Content
             currentPage={this.state.currentPage}
             changePage={newPage => navClickChange(newPage)}
+            resumeFile={this.state.resumeFile}
           />
         </main>
         <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
