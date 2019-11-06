@@ -46,6 +46,17 @@ const header = props => {
     );
   });
 
+  document.addEventListener("scroll", () => {
+    const bodyElem = document.querySelector(".App");
+    if (window.scrollY > 250) {
+      bodyElem.classList.remove("header--static");
+      bodyElem.classList.add("header--fixed");
+    } else {
+      bodyElem.classList.remove("header--fixed");
+      bodyElem.classList.add("header--static");
+    }
+  });
+
   return (
     <header id="site__header">
       <div id="header__top">

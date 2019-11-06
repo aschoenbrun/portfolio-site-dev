@@ -20,7 +20,7 @@ const footer = props => {
           <strong>Built with</strong> {builtWith}
         </p>
         <a
-          className="btn"
+          className="btn btn-img"
           href={props.repo}
           target="_blank"
           rel="noopener noreferrer"

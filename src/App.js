@@ -104,6 +104,7 @@ class App extends Component {
 
       setTimeout(() => {
         this.setState({ currentPage: newPage });
+        window.scrollTo(0, 0);
         doVis();
       }, 250);
     };
@@ -118,7 +119,10 @@ class App extends Component {
           changePage={newPage => navClickChange(newPage)}
         />
         <main id="site__content">
-          <Content currentPage={this.state.currentPage} />
+          <Content
+            currentPage={this.state.currentPage}
+            changePage={newPage => navClickChange(newPage)}
+          />
         </main>
         <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
       </div>

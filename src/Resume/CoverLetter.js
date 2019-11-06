@@ -36,6 +36,7 @@ const coverLetter = props => {
         what time and venue works for you. Thank you for your time, &amp; I look
         forward to hearing from you.
       </p>
+      <button onClick={props.pageLinkCoverLetter}>View Resume</button>
     </section>
   );
 };

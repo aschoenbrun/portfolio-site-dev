@@ -282,12 +282,18 @@ const resume = props => {
       </section>
       <section id="education" className="resume__section page__section">
         <h3>Education</h3>
-        <ul>
+        <ul className="title-list">
           <li>
-            <strong>New York Interactive Media Training</strong>: HTML, CSS
+            <h4 id="nyim">New York Interactive Media Training</h4>
+            <p className="position__meta">
+              <em>HTML, CSS</em>
+            </p>
           </li>
           <li>
-            <strong>Udemy</strong>: Bootstrap, HTML5, Javascript, jQuery, React
+            <h4 id="udemy">Udemy</h4>
+            <p className="position__meta">
+              <em>Bootstrap, HTML5, Javascript, jQuery, React</em>
+            </p>
           </li>
         </ul>
       </section>
