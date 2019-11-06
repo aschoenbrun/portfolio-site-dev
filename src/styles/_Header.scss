@@ -106,28 +106,12 @@
   }
   .header--fixed.fadeIn & {
     @media screen and (min-width: 760px) {
-      animation: headerFadeIn 0.5s ease-out;
-      @keyframes headerFadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
+      animation: headerFadeIn 0.5s ease-out forwards;
     }
   }
   .header--fixed.fadeOut & {
     @media screen and (min-width: 760px) {
-      animation: headerFadeOut 0.5s ease-out;
-      @keyframes headerFadeOut {
-        0% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
+      animation: headerFadeOut 0.5s ease-out forwards;
     }
   }
   #header__bottom {
@@ -238,5 +222,23 @@
         }
       }
     }
+  }
+}
+
+@keyframes headerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes headerFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

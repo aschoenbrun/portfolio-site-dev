@@ -53,7 +53,7 @@ const header = props => {
       bodyElem.classList.add("header--fixed");
       bodyElem.classList.remove("fadeOut");
       bodyElem.classList.add("fadeIn");
-    } else if (window.scrollY > 250) {
+    } else if (window.scrollY <= 500 && window.scrollY > 250) {
       bodyElem.classList.remove("fadeIn");
       bodyElem.classList.add("fadeOut");
     } else {
