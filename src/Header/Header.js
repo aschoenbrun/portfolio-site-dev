@@ -48,7 +48,8 @@ const header = props => {
 
   document.addEventListener("scroll", () => {
     const bodyElem = document.querySelector(".App");
-    if (window.scrollY > 250) {
+    if (window.scrollY > 200 && window.scrollY <= 250) {
+    } else if (window.scrollY > 250) {
       bodyElem.classList.remove("header--static");
       bodyElem.classList.add("header--fixed");
     } else {
