@@ -2,10 +2,11 @@
   color: white;
   padding: 0;
   margin-bottom: 80px;
+  position: relative;
+  z-index: 3000;
   @media screen and (min-width: 960px) {
     margin-bottom: 50px;
   }
-  position: relative;
   #header__top {
     position: relative;
     z-index: 1000;

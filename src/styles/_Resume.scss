@@ -1,4 +1,5 @@
 #resume {
+  $standard-li-margin: 7px;
   h3 {
     @include section-title;
   }
@@ -27,11 +28,40 @@
       margin: 0 0 15px;
       color: color(tan);
     }
-    ul {
-      margin-bottom: 15px;
+    .title-list {
+      .title-list {
+        margin-bottom: 15px;
+        li {
+          line-height: 1.5em;
+          margin-bottom: $standard-li-margin;
+        }
+      }
+      &.has-nested-ul li {
+        margin-bottom: 30px;
+        ul {
+          margin-bottom: 15px;
+          li {
+            margin-bottom: $standard-li-margin;
+          }
+        }
+      }
     }
     h5 {
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 300;
+      text-transform: uppercase;
       margin: 0 0 3px;
+      color: color(tan);
+      strong {
+        font-style: normal;
+        color: color(blue);
+      }
+    }
+  }
+  #education {
+    li {
+      margin-bottom: $standard-li-margin;
     }
   }
   .grid-list {

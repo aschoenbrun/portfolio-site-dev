@@ -91,7 +91,7 @@ const resume = props => {
         className="resume__section page__section"
       >
         <h3>Professional Experience</h3>
-        <ul className="title-list">
+        <ul className="title-list has-nested-ul">
           <li>
             <h4 id="effective-media-llc">Effective Media, LLC</h4>
             <p className="position__meta">

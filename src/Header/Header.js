@@ -22,15 +22,16 @@ const header = props => {
 
   let changePage = props.changePage;
 
-  let mobileNavDrawerToggle = () => {
+  const mobileNavDrawerToggle = () => {
     document.getElementById("main-nav").classList.toggle("nav--open");
+    document.getElementById("site__content").classList.toggle("fade");
   };
 
-  let mobileNavDrawerStow = () => {
+  const mobileNavDrawerStow = () => {
     document.getElementById("main-nav").classList.remove("nav--open");
   };
 
-  let mainNav = props.mainNav.map((info, index) => {
+  const mainNav = props.mainNav.map((info, index) => {
     return (
       <MainNav
         name={info.name}

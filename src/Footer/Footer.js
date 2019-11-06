@@ -17,7 +17,7 @@ const footer = props => {
     <footer id="site__footer">
       <div id="footer__top">
         <p id="built-with">
-          <strong>Built with:</strong> {builtWith}
+          <strong>Built with</strong> {builtWith}
         </p>
         <a
           className="btn"
