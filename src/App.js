@@ -108,6 +108,7 @@ class App extends Component {
         this.setState({ currentPage: newPage });
         window.scrollTo(0, 0);
         doVis();
+        document.getElementById("site__content").classList.remove("fade");
       }, 250);
     };
 
