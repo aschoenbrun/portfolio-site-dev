@@ -84,12 +84,27 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
-    resumeFile:
-      "https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
   };
 
   render() {
+    document.addEventListener("scroll", () => {
+      const bodyElem = document.querySelector(".App");
+      if (window.scrollY > 500) {
+        bodyElem.classList.remove("header--static");
+        bodyElem.classList.add("header--fixed");
+        bodyElem.classList.remove("fadeOut");
+        bodyElem.classList.add("fadeIn");
+      } else if (window.scrollY <= 500 && window.scrollY > 250) {
+        bodyElem.classList.remove("fadeIn");
+        bodyElem.classList.add("fadeOut");
+      } else {
+        bodyElem.classList.remove("fadeOut");
+        bodyElem.classList.remove("header--fixed");
+        bodyElem.classList.add("header--static");
+      }
+    });
+
     const navClickChange = newPage => {
       const visElems = ["site__content", "site__footer"];
       const doVis = () => {
