@@ -84,27 +84,39 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
+    headerState: "header--static"
   };
 
-  render() {
-    document.addEventListener("scroll", () => {
-      const bodyElem = document.querySelector(".App");
-      if (window.scrollY > 500) {
-        bodyElem.classList.remove("header--static");
-        bodyElem.classList.add("header--fixed");
-        bodyElem.classList.remove("fadeOut");
-        bodyElem.classList.add("fadeIn");
-      } else if (window.scrollY <= 500 && window.scrollY > 250) {
-        bodyElem.classList.remove("fadeIn");
-        bodyElem.classList.add("fadeOut");
-      } else {
-        bodyElem.classList.remove("fadeOut");
-        bodyElem.classList.remove("header--fixed");
-        bodyElem.classList.add("header--static");
-      }
-    });
+  headerStateToggle = () => {
+    let headerStateVar = "header--static";
+    if (
+      window.scrollY >= 500 &&
+      (headerStateVar === "header--fixed fadeOut" ||
+        headerStateVar === "header--static")
+    ) {
+      headerStateVar = "header--fixed fadeIn";
+    } else if (
+      window.scrollY < 500 &&
+      window.scrollY >= 250 &&
+      headerStateVar === "header--fixed fadeIn"
+    ) {
+      headerStateVar = "header--fixed fadeOut";
+    } else {
+      headerStateVar = "header--static";
+    }
+    this.setState({ headerState: headerStateVar });
+  };
 
+  componentDidMount() {
+    document.addEventListener("scroll", this.headerStateToggle);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.headerStateToggle);
+  }
+
+  render() {
     const navClickChange = newPage => {
       const visElems = ["site__content", "site__footer"];
       const doVis = () => {
@@ -130,7 +142,7 @@ class App extends Component {
     };
 
     return (
-      <div className="App">
+      <div className={`App ${this.state.headerState}`}>
         <Header
           portrait={this.state.portrait}
           roles={this.state.roles}
