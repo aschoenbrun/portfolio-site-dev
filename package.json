@@ -30,6 +30,8 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.13.0"
+    "babel-plugin-styled-components": "^1.10.6",
+    "node-sass": "^4.13.0",
+    "styled-components": "^5.0.0-rc.1"
   }
 }

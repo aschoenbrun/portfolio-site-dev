@@ -1,4 +1,5 @@
 import React from "react";
+import "./Resume.scss";
 
 const coverLetter = props => {
   return (

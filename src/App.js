@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { PageMargin } from "./globalStyles";
+import "./App.scss";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
@@ -121,13 +123,13 @@ class App extends Component {
           mainNav={this.state.mainNav}
           changePage={newPage => navClickChange(newPage)}
         />
-        <main id="site__content">
+        <PageMargin id="site__content">
           <Content
             currentPage={this.state.currentPage}
             changePage={newPage => navClickChange(newPage)}
             resumeFile={this.state.resumeFile}
           />
-        </main>
+        </PageMargin>
         <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
       </div>
     );

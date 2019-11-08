@@ -1,4 +1,5 @@
 import React from "react";
+import "./Footer.scss";
 import gitHubMark from "../images/GitHub-Mark-120px-plus.png";
 
 const footer = props => {
