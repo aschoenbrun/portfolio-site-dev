@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { PageMargin } from "./globalStyles";
+import "./App.scss";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
@@ -82,8 +84,37 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
+    headerState: "header--static"
   };
+
+  headerStateToggle = () => {
+    let headerStateVar = "header--static";
+    if (
+      window.scrollY >= 500 &&
+      (headerStateVar === "header--fixed fadeOut" ||
+        headerStateVar === "header--static")
+    ) {
+      headerStateVar = "header--fixed fadeIn";
+    } else if (
+      window.scrollY < 500 &&
+      window.scrollY >= 250 &&
+      headerStateVar === "header--fixed fadeIn"
+    ) {
+      headerStateVar = "header--fixed fadeOut";
+    } else {
+      headerStateVar = "header--static";
+    }
+    this.setState({ headerState: headerStateVar });
+  };
+
+  componentDidMount() {
+    document.addEventListener("scroll", this.headerStateToggle);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.headerStateToggle);
+  }
 
   render() {
     const navClickChange = newPage => {
@@ -104,12 +135,14 @@ class App extends Component {
 
       setTimeout(() => {
         this.setState({ currentPage: newPage });
+        window.scrollTo(0, 0);
         doVis();
+        document.getElementById("site__content").classList.remove("fade");
       }, 250);
     };
 
     return (
-      <div className="App">
+      <div className={`App ${this.state.headerState}`}>
         <Header
           portrait={this.state.portrait}
           roles={this.state.roles}
@@ -117,9 +150,13 @@ class App extends Component {
           mainNav={this.state.mainNav}
           changePage={newPage => navClickChange(newPage)}
         />
-        <main id="site__content">
-          <Content currentPage={this.state.currentPage} />
-        </main>
+        <PageMargin id="site__content">
+          <Content
+            currentPage={this.state.currentPage}
+            changePage={newPage => navClickChange(newPage)}
+            resumeFile={this.state.resumeFile}
+          />
+        </PageMargin>
         <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
       </div>
     );

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0"
@@ -30,6 +31,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.13.0"
+    "babel-plugin-styled-components": "^1.10.6",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.0",
+    "styled-components": "^5.0.0-rc.1"
   }
 }

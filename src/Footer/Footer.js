@@ -1,4 +1,5 @@
 import React from "react";
+import "./Footer.scss";
 import gitHubMark from "../images/GitHub-Mark-120px-plus.png";
 
 const footer = props => {
@@ -17,10 +18,10 @@ const footer = props => {
     <footer id="site__footer">
       <div id="footer__top">
         <p id="built-with">
-          <strong>Built with:</strong> {builtWith}
+          <strong>Built with</strong> {builtWith}
         </p>
         <a
-          className="btn"
+          className="btn btn-img"
           href={props.repo}
           target="_blank"
           rel="noopener noreferrer"

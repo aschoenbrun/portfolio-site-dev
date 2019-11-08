@@ -1,0 +1,87 @@
+@import "../global/global.scss";
+
+#resume {
+  $standard-li-margin: 7px;
+  h3 {
+    @include section-title;
+  }
+  #employment-summary {
+    li {
+      margin: 0 0 15px;
+    }
+    h4 {
+      font-size: 20px;
+      margin: 0;
+    }
+    p {
+      font-size: 13px;
+      margin: 0;
+      color: color(tan);
+    }
+  }
+  #professional-experience,
+  #education,
+  #references {
+    h4 {
+      font-size: 20px;
+      margin: 0;
+      color: color(blue);
+    }
+    .position__meta {
+      font-size: 13px;
+      margin: 0 0 15px;
+      color: color(tan);
+    }
+    .title-list {
+      .title-list {
+        margin-bottom: 15px;
+        li {
+          line-height: 1.5em;
+          margin-bottom: $standard-li-margin;
+        }
+      }
+      .ref-contact-info {
+        margin: 5px 0 15px;
+        color: color(tan);
+      }
+      &.has-nested-ul li {
+        margin-bottom: 30px;
+        ul {
+          margin-bottom: 15px;
+          li {
+            margin-bottom: $standard-li-margin;
+          }
+        }
+      }
+    }
+    h5 {
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin: 0 0 3px;
+      color: color(tan);
+      strong {
+        font-style: normal;
+        color: color(blue);
+      }
+    }
+  }
+  #education {
+    li {
+      margin-bottom: $standard-li-margin;
+    }
+  }
+  .grid-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 2px;
+    li {
+      background-color: color(tan, xlt);
+      padding: 13px 15px;
+    }
+  }
+}
