@@ -1,12 +1,13 @@
 import React from "react";
-import "./Resume.scss";
+import ResumeStyles from "./ResumeStyles";
+import { SectionTitleH3 } from "../globalStyles";
 
 const resume = props => {
   return (
-    <div id="resume">
+    <ResumeStyles id="resume">
       <h2 className="page__title">Resume</h2>
       <section id="summary" className="section__intro">
-        <h3>Summary</h3>
+        <SectionTitleH3>Summary</SectionTitleH3>
         <p>
           Creative, technically-minded, solutions-driven front end developer /
           UI/UX Designer utilizing his problem-solving skills, affinity for
@@ -26,14 +27,14 @@ const resume = props => {
         id="highly-effective-in"
         className="resume__section page__section"
       >
-        <h3>Highly effective in</h3>
+        <SectionTitleH3>Highly effective in</SectionTitleH3>
         <ul className="grid-list">
           <li>Solutions-driven code</li>
           <li>Effective &amp; compelling UI/UX</li>
         </ul>
       </section>
       <section id="technologies" className="resume__section page__section">
-        <h3>Technologies</h3>
+        <SectionTitleH3>Technologies</SectionTitleH3>
         <ul className="grid-list">
           <li>HTML5</li>
           <li>CSS3</li>
@@ -66,7 +67,7 @@ const resume = props => {
         id="employment-summary"
         className="resume__section page__section"
       >
-        <h3>Employment Summary</h3>
+        <SectionTitleH3>Employment Summary</SectionTitleH3>
         <ul className="title-list">
           <li>
             <h4>Effective Media</h4>
@@ -98,7 +99,7 @@ const resume = props => {
         id="professional-experience"
         className="resume__section page__section"
       >
-        <h3>Professional Experience</h3>
+        <SectionTitleH3>Professional Experience</SectionTitleH3>
         <ul className="title-list has-nested-ul">
           <li>
             <h4 id="effective-media-llc">Effective Media, LLC</h4>
@@ -293,7 +294,7 @@ const resume = props => {
         </ul>
       </section>
       <section id="education" className="resume__section page__section">
-        <h3>Education</h3>
+        <SectionTitleH3>Education</SectionTitleH3>
         <ul className="title-list">
           <li>
             <h4 id="nyim">New York Interactive Media Training</h4>
@@ -313,7 +314,7 @@ const resume = props => {
         id="industry-knowledge"
         className="resume__section page__section"
       >
-        <h3>Industry Knowledge</h3>
+        <SectionTitleH3>Industry Knowledge</SectionTitleH3>
         <ul className="grid-list">
           <li>MVC</li>
           <li>UI/UX</li>
@@ -330,7 +331,7 @@ const resume = props => {
         </ul>
       </section>
       <section id="references" className="resume__section page__section">
-        <h3>References</h3>
+        <SectionTitleH3>References</SectionTitleH3>
         <ul className="title-list">
           <li>
             <h4 id="daniel-soloff">Daniel Soloff</h4>
@@ -352,7 +353,7 @@ const resume = props => {
           </li>
         </ul>
       </section>
-    </div>
+    </ResumeStyles>
   );
 };
 

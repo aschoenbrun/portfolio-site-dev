@@ -21,4 +21,14 @@ const PageMargin = styled.main`
   }
 `;
 
-export { globalColors, PageMargin };
+const SectionTitleH3 = styled.h3`
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 23px;
+  padding: 0 0 5px;
+  margin: 0 0 20px;
+  color: color(blue);
+  border-bottom: 1px solid globalColors.tanLT;
+`;
+
+export { globalColors, PageMargin, SectionTitleH3 };

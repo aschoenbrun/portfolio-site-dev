@@ -1,9 +1,9 @@
 import React from "react";
-import "./Resume.scss";
+import ResumeStyles from "./ResumeStyles";
 
 const coverLetter = props => {
   return (
-    <section id="cover-letter" className="section__intro">
+    <ResumeStyles id="cover-letter" className="section__intro">
       <h2 className="page__title">
         <span>Enthusiastic for the</span>
         <span>efficient, current, effective & structured</span>
@@ -38,7 +38,7 @@ const coverLetter = props => {
         forward to hearing from you.
       </p>
       <button onClick={props.pageLinkCoverLetter}>View Resume</button>
-    </section>
+    </ResumeStyles>
   );
 };
 

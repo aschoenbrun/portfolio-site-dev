@@ -84,37 +84,8 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
-    headerState: "header--static"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
   };
-
-  headerStateToggle = () => {
-    let headerStateVar = "header--static";
-    if (
-      window.scrollY >= 500 &&
-      (headerStateVar === "header--fixed fadeOut" ||
-        headerStateVar === "header--static")
-    ) {
-      headerStateVar = "header--fixed fadeIn";
-    } else if (
-      window.scrollY < 500 &&
-      window.scrollY >= 250 &&
-      headerStateVar === "header--fixed fadeIn"
-    ) {
-      headerStateVar = "header--fixed fadeOut";
-    } else {
-      headerStateVar = "header--static";
-    }
-    this.setState({ headerState: headerStateVar });
-  };
-
-  componentDidMount() {
-    document.addEventListener("scroll", this.headerStateToggle);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("scroll", this.headerStateToggle);
-  }
 
   render() {
     const navClickChange = newPage => {
@@ -142,7 +113,7 @@ class App extends Component {
     };
 
     return (
-      <div className={`App ${this.state.headerState}`}>
+      <div className="App">
         <Header
           portrait={this.state.portrait}
           roles={this.state.roles}
