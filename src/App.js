@@ -216,6 +216,11 @@ class App extends Component {
     headerClass: "App"
   };
 
+  // TODO: Switch to React Transition Group
+  // https://reactcommunity.org/react-transition-group/
+  // https://github.com/reactjs/react-transition-group
+  // https://blog.bitsrc.io/how-to-implement-smooth-transitions-in-react-bd0497b06b8
+  //  https://css-tricks.com/animating-between-views-in-react/
   navClickChange = newPage => {
     const visElems = ["site__content", "site__footer"];
     const doVis = () => {
