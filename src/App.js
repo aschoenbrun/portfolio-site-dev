@@ -84,47 +84,65 @@ class App extends Component {
         key: "react"
       }
     ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src"
+    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
+    headerClass: "App"
   };
 
-  render() {
-    const navClickChange = newPage => {
-      const visElems = ["site__content", "site__footer"];
-      const doVis = () => {
-        visElems.forEach(el => {
-          document.getElementById(el).classList.toggle("hide");
-        });
-      };
-
-      doVis();
-
-      // 1. copy mainNav arr & mutate COPY to selected: false for all elems
-      // 2. mutate elem with current index in COPY to selected:true
-      // 3. setStaet oldArr: newArr
-      // 4. add selected class to current elem
-      // 5. call funct
-
-      setTimeout(() => {
-        this.setState({ currentPage: newPage });
-        window.scrollTo(0, 0);
-        doVis();
-        document.getElementById("site__content").classList.remove("fade");
-      }, 250);
+  headerClassToggleHandler = event => {
+    let headerClass = "App header--static";
+    if (window.scrollY > 500 && headerClass !== "App header--fixed fadeIn") {
+      headerClass = "App header--fixed fadeIn";
+    } else if (
+      window.scrollY <= 500 &&
+      window.scrollY > 250 &&
+      headerClass !== "App header--fixed fadeOut"
+    ) {
+      headerClass = "App header--fixed fadeOut";
+    } else if (headerClass !== "App header--static") {
+      headerClass = "App header--static";
+    }
+    this.setState({ headerClass: headerClass });
+  };
+  navClickChange = newPage => {
+    const visElems = ["site__content", "site__footer"];
+    const doVis = () => {
+      visElems.forEach(el => {
+        document.getElementById(el).classList.toggle("hide");
+      });
     };
 
+    doVis();
+
+    setTimeout(() => {
+      this.setState({ currentPage: newPage });
+      window.scrollTo(0, 0);
+      doVis();
+      document.getElementById("site__content").classList.remove("fade");
+    }, 250);
+  };
+
+  componentDidMount() {
+    document.addEventListener("scroll", this.headerClassToggleHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.headerClassToggleHandler);
+  }
+
+  render() {
     return (
-      <div className="App">
+      <div className={this.state.headerClass}>
         <Header
           portrait={this.state.portrait}
           roles={this.state.roles}
           contactInfo={this.state.contactInfo}
           mainNav={this.state.mainNav}
-          changePage={newPage => navClickChange(newPage)}
+          changePage={newPage => this.navClickChange(newPage)}
         />
         <PageMargin id="site__content">
           <Content
             currentPage={this.state.currentPage}
-            changePage={newPage => navClickChange(newPage)}
+            changePage={newPage => this.navClickChange(newPage)}
             resumeFile={this.state.resumeFile}
           />
         </PageMargin>

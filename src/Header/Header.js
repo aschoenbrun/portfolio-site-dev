@@ -253,23 +253,6 @@ const header = props => {
 
   // LOGIC
 
-  document.addEventListener("scroll", () => {
-    const bodyElem = document.querySelector(".App");
-    if (window.scrollY > 500) {
-      bodyElem.classList.remove("header--static");
-      bodyElem.classList.add("header--fixed");
-      bodyElem.classList.remove("fadeOut");
-      bodyElem.classList.add("fadeIn");
-    } else if (window.scrollY <= 500 && window.scrollY > 250) {
-      bodyElem.classList.remove("fadeIn");
-      bodyElem.classList.add("fadeOut");
-    } else {
-      bodyElem.classList.remove("fadeOut");
-      bodyElem.classList.remove("header--fixed");
-      bodyElem.classList.add("header--static");
-    }
-  });
-
   let roles = props.roles.map(role => {
     return <Role role={role.role} key={role.key} />;
   });
