@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Headroom from "react-headroom";
-import { globalColors } from "../globalStyles";
-import Role from "../Role/Role";
-import ContactInfo from "../ContactInfo/ContactInfo";
-import MainNav from "../Header/MainNav";
+import { globalColors } from "../../globalStyles";
+import Role from "./Role";
+import ContactInfo from "./ContactInfo";
+import MainNav from "./MainNav";
 
 const header = props => {
   // STYLES
@@ -220,6 +220,16 @@ const header = props => {
             transform: rotate(${chevronDeg}deg) translateX(-0.5px);
           }
         }
+      }
+    }
+    #contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      @media screen and (min-width: 760px) {
+        flex-direction: row;
       }
     }
   `;

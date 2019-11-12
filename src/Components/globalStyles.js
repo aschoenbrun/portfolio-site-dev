@@ -21,7 +21,7 @@ const PageMargin = styled.main`
   }
 `;
 
-const SectionTitleH3 = styled.h3`
+const SectionTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 700;
   font-size: 23px;
@@ -31,4 +31,26 @@ const SectionTitleH3 = styled.h3`
   border-bottom: 1px solid globalColors.tanLT;
 `;
 
-export { globalColors, PageMargin, SectionTitleH3 };
+const HeaderFooterText = styled.span`
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 1em;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 5px 10px 5px;
+  &:last-child {
+    margin-right: 0;
+  }
+  @media screen and (min-width: 760px) {
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid ${globalColors.blue};
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+`;
+
+export { globalColors, PageMargin, SectionTitle, HeaderFooterText };

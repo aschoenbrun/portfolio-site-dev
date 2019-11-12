@@ -1,7 +1,6 @@
 import React from "react";
-import "./Content.scss";
-import CoverLetter from "../Resume/CoverLetter";
-import Resume from "../Resume/Resume";
+import CoverLetter from "../../Resume/CoverLetter";
+import Resume from "../../Resume/Resume";
 
 const content = props => {
   const changePage = props.changePage;
