@@ -30,15 +30,14 @@ const FooterStyles = styled.footer`
       display: block;
       width: 100%;
       font-size: 17px;
-      margin: 0 20px 0 0;
+      margin: 0 0 20px 0;
       padding-right: 0;
     }
-    span {
+    & span {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      &:last-child {
-        margin-right: 0;
-      }
     }
     img {
       height: 20px;
