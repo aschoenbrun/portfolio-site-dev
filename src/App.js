@@ -88,18 +88,12 @@ class App extends Component {
     headerClass: "App"
   };
 
+  // TODO: APPLY HEADROOM
+  // https://kyleamathews.github.io/react-headroom/
   headerClassToggleHandler = event => {
     let headerClass = "App header--static";
-    if (window.scrollY > 500 && headerClass !== "App header--fixed fadeIn") {
-      headerClass = "App header--fixed fadeIn";
-    } else if (
-      window.scrollY <= 500 &&
-      window.scrollY > 250 &&
-      headerClass !== "App header--fixed fadeOut"
-    ) {
-      headerClass = "App header--fixed fadeOut";
-    } else if (headerClass !== "App header--static") {
-      headerClass = "App header--static";
+    if (window.scrollY > 500) {
+      headerClass = "App header--fixed";
     }
     this.setState({ headerClass: headerClass });
   };
@@ -122,11 +116,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener("scroll", this.headerClassToggleHandler);
+    //document.addEventListener("scroll", this.headerClassToggleHandler);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.headerClassToggleHandler);
+    //window.removeEventListener("scroll", this.headerClassToggleHandler);
   }
 
   render() {

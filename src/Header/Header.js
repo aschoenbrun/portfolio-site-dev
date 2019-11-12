@@ -1,5 +1,6 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import Headroom from "react-headroom";
 import { globalColors } from "../globalStyles";
 import Role from "../Role/Role";
 import ContactInfo from "../ContactInfo/ContactInfo";
@@ -12,32 +13,49 @@ const header = props => {
   const fxdHeaderImgDims = "50px";
   const chevronDeg = 15;
 
-  const headerFadeIn = keyframes`
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  `;
-
-  const headerFadeOut = keyframes`
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  `;
-
   const SiteHeader = styled.header`
     color: white;
     padding: 0;
-    margin-bottom: 80px;
     position: relative;
     z-index: 3000;
-    @media screen and (min-width: 960px) {
-      margin-bottom: 50px;
+    .headroom-wrapper {
+      margin-bottom: 80px;
+      @media screen and (min-width: 960px) {
+        margin-bottom: 50px;
+      }
+      .headroom--scrolled {
+        @media screen and (min-width: 760px) {
+          width: 100%;
+          #header__top {
+            #header-portrait {
+              height: ${fxdHeaderImgDims};
+              width: ${fxdHeaderImgDims};
+              margin-bottom: -5px;
+              margin-right: 15px;
+              box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+            }
+            h1,
+            h2 {
+              display: inline;
+            }
+            h1 {
+              font-size: 20px;
+              margin-right: 25px;
+            }
+            h2 {
+              font-size: 12px;
+            }
+          }
+          #header__bottom {
+            #contact-info {
+              padding: 13px;
+              p {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
     }
     #header__top {
       position: relative;
@@ -97,55 +115,10 @@ const header = props => {
         }
       }
     }
-    .header--fixed & {
-      @media screen and (min-width: 760px) {
-        position: fixed;
-        width: 100%;
-        #header__top {
-          #header-portrait {
-            height: ${fxdHeaderImgDims};
-            width: ${fxdHeaderImgDims};
-            margin-bottom: -5px;
-            margin-right: 15px;
-            box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
-          }
-          h1,
-          h2 {
-            display: inline;
-          }
-          h1 {
-            font-size: 20px;
-            margin-right: 25px;
-          }
-          h2 {
-            font-size: 12px;
-          }
-        }
-        #header__bottom {
-          #contact-info {
-            padding: 13px;
-            p {
-              font-size: 10px;
-            }
-          }
-        }
-      }
-    }
-    .header--fixed.fadeIn & {
-      @media screen and (min-width: 760px) {
-        animation: ${headerFadeIn} 0.5s ease-out forwards;
-      }
-    }
-    .header--fixed.fadeOut & {
-      @media screen and (min-width: 760px) {
-        animation: ${headerFadeOut} 0.5s ease-out forwards;
-      }
-    }
     #header__bottom {
       background-color: ${globalColors.tanDK};
       position: relative;
       z-index: 900;
-      //border-top: 2px solid #fff;
       box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
     }
     #main-nav {
@@ -297,34 +270,36 @@ const header = props => {
 
   return (
     <SiteHeader id="site__header">
-      <div id="header__top">
-        <div
-          id="header-portrait"
-          style={{ backgroundImage: `url(${props.portrait})` }}
-        ></div>
-        <div>
-          <h1>Avi Schoenbrun</h1>
-          <h2>{roles}</h2>
+      <Headroom pinStart={500}>
+        <div id="header__top">
+          <div
+            id="header-portrait"
+            style={{ backgroundImage: `url(${props.portrait})` }}
+          ></div>
+          <div>
+            <h1>Avi Schoenbrun</h1>
+            <h2>{roles}</h2>
+          </div>
         </div>
-      </div>
-      <div id="header__bottom">{contactInfo}</div>
-      <ul id="main-nav">
-        {mainNav}
-        <li id="mobile-nav__toggle" onClick={() => mobileNavDrawerToggle()}>
-          <div id="bar-1" className="menu-toggle__icon-bar">
-            <div id="left-bar" className="bar--half"></div>
-            <div id="right-bar" className="bar--half"></div>
-          </div>
-          <div id="bar-2" className="menu-toggle__icon-bar">
-            <div id="left-bar" className="bar--half"></div>
-            <div id="right-bar" className="bar--half"></div>
-          </div>
-          <div id="bar-3" className="menu-toggle__icon-bar">
-            <div id="left-bar" className="bar--half"></div>
-            <div id="right-bar" className="bar--half"></div>
-          </div>
-        </li>
-      </ul>
+        <div id="header__bottom">{contactInfo}</div>
+        <ul id="main-nav">
+          {mainNav}
+          <li id="mobile-nav__toggle" onClick={() => mobileNavDrawerToggle()}>
+            <div id="bar-1" className="menu-toggle__icon-bar">
+              <div id="left-bar" className="bar--half"></div>
+              <div id="right-bar" className="bar--half"></div>
+            </div>
+            <div id="bar-2" className="menu-toggle__icon-bar">
+              <div id="left-bar" className="bar--half"></div>
+              <div id="right-bar" className="bar--half"></div>
+            </div>
+            <div id="bar-3" className="menu-toggle__icon-bar">
+              <div id="left-bar" className="bar--half"></div>
+              <div id="right-bar" className="bar--half"></div>
+            </div>
+          </li>
+        </ul>
+      </Headroom>
     </SiteHeader>
   );
 };
