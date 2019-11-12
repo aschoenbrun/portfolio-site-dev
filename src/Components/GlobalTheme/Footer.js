@@ -17,7 +17,6 @@ const FooterStyles = styled.footer`
     background-color: ${globalColors.blue};
     padding: 20px;
     p {
-      @include header-footer-txt;
       margin: 0;
     }
   }
@@ -79,11 +78,9 @@ const footer = props => {
         </a>
       </div>
       <div id="footer__bottom">
-        <p>
-          <HeaderFooterText>
-            &copy; Copyright {new Date().getFullYear()} Avi Schoenbrun
-          </HeaderFooterText>
-        </p>
+        <HeaderFooterText as="p">
+          &copy; Copyright {new Date().getFullYear()} Avi Schoenbrun
+        </HeaderFooterText>
       </div>
     </FooterStyles>
   );
