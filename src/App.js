@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { PageMargin } from "./globalStyles";
-import "./App.scss";
-import Header from "./Header/Header";
-import Content from "./Content/Content";
-import Footer from "./Footer/Footer";
+import styled from "styled-components";
+import { globalColors, PageMargin } from "./Components/globalStyles";
+import Header from "./Components/GlobalTheme/Header/Header";
+import Content from "./Components/Content/Content";
+import Footer from "./Components/GlobalTheme/Footer";
 import Portrait from "./images/Headshots-Portrai---300x300t.jpg";
 import iconHTML5 from "./images/Icon - Programming - HTML.png";
 import iconCSS3 from "./images/Icon - Programming - CSS.png";
@@ -12,9 +12,137 @@ import iconJavascript from "./images/Icon---Programming---JavaScript-CROPPED.png
 import iconReact from "./images/Icon - Programming - React.png";
 
 // TODO
-// 1. Style contact info
-// 2. Site meta
-// 3. Add "made with" section
+// 1. Site meta
+
+const AppStyle = styled.div`
+  a {
+    color: ${globalColors.yellow};
+    text-decoration: none;
+    text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.75);
+    transition: color 0.5s ease;
+    &:hover,
+    &:focus {
+      color: ${globalColors.yellowLT};
+    }
+  }
+
+  button,
+  .btn {
+    color: ${globalColors.tanDK};
+    background-color: ${globalColors.yellow};
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1em;
+    font-weight: 900;
+    text-align: center;
+    padding: 13px 13px 10px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
+    text-shadow: none;
+    cursor: pointer;
+    transition: 0.25s ease-out;
+    &.btn-img {
+      padding: 10px 13px;
+    }
+    img {
+      height: 20px;
+      width: auto;
+      margin-right: 7px;
+    }
+    &:hover,
+    &:focus {
+      background-color: ${globalColors.yellow};
+      color: ${globalColors.tanDK};
+      box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .page__title {
+    color: ${globalColors.blue};
+    margin: 0 0 40px;
+    font-size: 40px;
+    font-weight: 100;
+    text-align: center;
+    &:after {
+      content: "";
+      display: block;
+      margin: 40px auto 0;
+      width: 150px;
+      border-bottom: 1px solid ${globalColors.tanLT};
+    }
+    span {
+      display: block;
+    }
+  }
+
+  .page__section {
+    margin-bottom: 50px;
+  }
+
+  .section__intro {
+    width: 95%;
+    margin: 0 auto 75px;
+    @media screen and (min-width: 760px) {
+      width: 750px;
+    }
+    h3 {
+      @include section-title;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.8em;
+      letter-spacing: 0.07em;
+    }
+  }
+
+  .title-list {
+    padding: 0;
+    margin: 0 0 40px;
+    & > li {
+      list-style: none;
+    }
+    & .title-list {
+      @media screen and (min-width: 760px) {
+        margin-left: 20px;
+      }
+    }
+    & ul {
+      list-style-type: square;
+    }
+  }
+
+  #site__content {
+    transition: opacity 0.5s;
+    .header--fixed & {
+      @media screen and (min-width: 960px) {
+        margin-top: 250px;
+      }
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .show,
+  .hide,
+  .fade {
+    transition: opacity 0.4s ease;
+  }
+  .show {
+    opacity: 1;
+  }
+  .hide {
+    opacity: 0;
+  }
+  .fade {
+    @media screen and (max-width: 960px) {
+      opacity: 0.25;
+    }
+  }
+`;
 
 class App extends Component {
   state = {
@@ -85,80 +213,59 @@ class App extends Component {
       }
     ],
     repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
-    headerState: "header--static"
+    headerClass: "App"
   };
 
-  headerStateToggle = () => {
-    let headerStateVar = "header--static";
-    if (
-      window.scrollY >= 500 &&
-      (headerStateVar === "header--fixed fadeOut" ||
-        headerStateVar === "header--static")
-    ) {
-      headerStateVar = "header--fixed fadeIn";
-    } else if (
-      window.scrollY < 500 &&
-      window.scrollY >= 250 &&
-      headerStateVar === "header--fixed fadeIn"
-    ) {
-      headerStateVar = "header--fixed fadeOut";
-    } else {
-      headerStateVar = "header--static";
-    }
-    this.setState({ headerState: headerStateVar });
+  // TODO: Switch to React Transition Group
+  // https://reactcommunity.org/react-transition-group/
+  // https://github.com/reactjs/react-transition-group
+  // https://blog.bitsrc.io/how-to-implement-smooth-transitions-in-react-bd0497b06b8
+  //  https://css-tricks.com/animating-between-views-in-react/
+  navClickChange = newPage => {
+    const visElems = ["site__content", "site__footer"];
+    const doVis = () => {
+      visElems.forEach(el => {
+        document.getElementById(el).classList.toggle("hide");
+      });
+    };
+
+    doVis();
+
+    setTimeout(() => {
+      this.setState({ currentPage: newPage });
+      window.scrollTo(0, 0);
+      doVis();
+      document.getElementById("site__content").classList.remove("fade");
+    }, 250);
   };
 
   componentDidMount() {
-    document.addEventListener("scroll", this.headerStateToggle);
+    //document.addEventListener("scroll", this.headerClassToggleHandler);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("scroll", this.headerStateToggle);
+    //window.removeEventListener("scroll", this.headerClassToggleHandler);
   }
 
   render() {
-    const navClickChange = newPage => {
-      const visElems = ["site__content", "site__footer"];
-      const doVis = () => {
-        visElems.forEach(el => {
-          document.getElementById(el).classList.toggle("hide");
-        });
-      };
-
-      doVis();
-
-      // 1. copy mainNav arr & mutate COPY to selected: false for all elems
-      // 2. mutate elem with current index in COPY to selected:true
-      // 3. setStaet oldArr: newArr
-      // 4. add selected class to current elem
-      // 5. call funct
-
-      setTimeout(() => {
-        this.setState({ currentPage: newPage });
-        window.scrollTo(0, 0);
-        doVis();
-        document.getElementById("site__content").classList.remove("fade");
-      }, 250);
-    };
-
     return (
-      <div className={`App ${this.state.headerState}`}>
+      <AppStyle className={this.state.headerClass}>
         <Header
           portrait={this.state.portrait}
           roles={this.state.roles}
           contactInfo={this.state.contactInfo}
           mainNav={this.state.mainNav}
-          changePage={newPage => navClickChange(newPage)}
+          changePage={newPage => this.navClickChange(newPage)}
         />
         <PageMargin id="site__content">
           <Content
             currentPage={this.state.currentPage}
-            changePage={newPage => navClickChange(newPage)}
+            changePage={newPage => this.navClickChange(newPage)}
             resumeFile={this.state.resumeFile}
           />
         </PageMargin>
         <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
-      </div>
+      </AppStyle>
     );
   }
 }

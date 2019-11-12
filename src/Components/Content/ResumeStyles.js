@@ -1,10 +1,7 @@
-@import "../global/global.scss";
-
-#resume {
-  $standard-li-margin: 7px;
-  h3 {
-    @include section-title;
-  }
+import styled from "styled-components";
+import { globalColors } from "../globalStyles";
+const standardLiMargin = "7px";
+const ResumeStyles = styled.section`
   #employment-summary {
     li {
       margin: 0 0 15px;
@@ -16,7 +13,7 @@
     p {
       font-size: 13px;
       margin: 0;
-      color: color(tan);
+      color: ${globalColors.tan};
     }
   }
   #professional-experience,
@@ -25,31 +22,31 @@
     h4 {
       font-size: 20px;
       margin: 0;
-      color: color(blue);
+      color: ${globalColors.blue};
     }
     .position__meta {
       font-size: 13px;
       margin: 0 0 15px;
-      color: color(tan);
+      color: ${globalColors.tan};
     }
     .title-list {
       .title-list {
         margin-bottom: 15px;
         li {
           line-height: 1.5em;
-          margin-bottom: $standard-li-margin;
+          margin-bottom: ${standardLiMargin};
         }
       }
       .ref-contact-info {
         margin: 5px 0 15px;
-        color: color(tan);
+        color: ${globalColors.tan};
       }
       &.has-nested-ul li {
         margin-bottom: 30px;
         ul {
           margin-bottom: 15px;
           li {
-            margin-bottom: $standard-li-margin;
+            margin-bottom: ${standardLiMargin};
           }
         }
       }
@@ -60,16 +57,16 @@
       font-weight: 300;
       text-transform: uppercase;
       margin: 0 0 3px;
-      color: color(tan);
+      color: ${globalColors.tan};
       strong {
         font-style: normal;
-        color: color(blue);
+        color: ${globalColors.blue};
       }
     }
   }
   #education {
     li {
-      margin-bottom: $standard-li-margin;
+      margin-bottom: ${standardLiMargin};
     }
   }
   .grid-list {
@@ -80,8 +77,10 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 2px;
     li {
-      background-color: color(tan, xlt);
+      background-color: ${globalColors.tanXLT};
       padding: 13px 15px;
     }
   }
-}
+`;
+
+export default ResumeStyles;
