@@ -30,12 +30,23 @@ const ResumeStyles = styled.section`
       color: ${globalColors.tan};
     }
     .title-list {
-      .title-list {
+      padding: 0;
+      margin: 0 0 40px;
+      & > li {
+        list-style: none;
+      }
+      & .title-list {
         margin-bottom: 15px;
         li {
           line-height: 1.5em;
           margin-bottom: ${standardLiMargin};
         }
+        @media screen and (min-width: 760px) {
+          margin-left: 20px;
+        }
+      }
+      & ul {
+        list-style-type: square;
       }
       .ref-contact-info {
         margin: 5px 0 15px;

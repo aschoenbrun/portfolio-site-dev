@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SectionIntro } from "../GlobalTheme/globalStyles";
+import { PageTitle, SectionIntro } from "../GlobalTheme/globalStyles";
 import ResumeStyles from "./ResumeStyles";
 
 const coverLetter = props => {
   return (
     <ResumeStyles id="cover-letter">
+      <PageTitle>
+        <span>Enthusiastic for the</span>
+        <span>efficient, current, effective & structured</span>
+      </PageTitle>
       <SectionIntro>
-        <h2 className="page__title">
-          <span>Enthusiastic for the</span>
-          <span>efficient, current, effective & structured</span>
-        </h2>
         <p>
           Since I was young, I&#39;ve always been enamored by function,
           structure &amp; design. From Legos to diagrams to my forays into

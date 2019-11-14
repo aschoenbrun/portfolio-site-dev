@@ -61,55 +61,8 @@ const AppStyle = styled.div`
     }
   }
 
-  .page__title {
-    color: ${globalColors.blue};
-    margin: 0 0 40px;
-    font-size: 40px;
-    font-weight: 100;
-    text-align: center;
-    &:after {
-      content: "";
-      display: block;
-      margin: 40px auto 0;
-      width: 150px;
-      border-bottom: 1px solid ${globalColors.tanLT};
-    }
-    span {
-      display: block;
-    }
-  }
-
   .page__section {
     margin-bottom: 50px;
-  }
-
-  .title-list {
-    padding: 0;
-    margin: 0 0 40px;
-    & > li {
-      list-style: none;
-    }
-    & .title-list {
-      @media screen and (min-width: 760px) {
-        margin-left: 20px;
-      }
-    }
-    & ul {
-      list-style-type: square;
-    }
-  }
-
-  #site__content {
-    position: relative;
-    transition: opacity 0.5s;
-    .header--fixed & {
-      @media screen and (min-width: 960px) {
-        margin-top: 250px;
-      }
-    }
-    p {
-      text-align: left;
-    }
   }
 
   .show,

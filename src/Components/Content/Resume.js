@@ -1,11 +1,15 @@
 import React from "react";
 import ResumeStyles from "./ResumeStyles";
-import { SectionTitle, SectionIntro } from "../GlobalTheme/globalStyles";
+import {
+  PageTitle,
+  SectionTitle,
+  SectionIntro
+} from "../GlobalTheme/globalStyles";
 
 const resume = props => {
   return (
     <ResumeStyles id="resume">
-      <h2 className="page__title">Resume</h2>
+      <PageTitle>Resume</PageTitle>
       <SectionIntro id="summary">
         <SectionTitle>Summary</SectionTitle>
         <p>

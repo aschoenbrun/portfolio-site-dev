@@ -7,7 +7,17 @@ import CoverLetter from "./CoverLetter";
 import Resume from "./Resume";
 
 const Content = ({ location }) => {
-  const ContentStyles = styled.div`
+  const ContentStyles = styled(PageMargin)`
+    position: relative;
+    transition: opacity 0.5s;
+    .header--fixed & {
+      @media screen and (min-width: 960px) {
+        margin-top: 250px;
+      }
+    }
+    p {
+      text-align: left;
+    }
     .fade-enter {
       opacity: 0.01;
     }
@@ -27,24 +37,22 @@ const Content = ({ location }) => {
     }
   `;
   return (
-    <PageMargin id="site__content">
-      <ContentStyles id="content-styles">
-        <TransitionGroup>
-          <CSSTransition
-            in
-            id="css-transition"
-            key={location.key}
-            classNames="fade"
-            timeout={300}
-          >
-            <Switch location={location}>
-              <Route exact path="/" component={CoverLetter} />
-              <Route path="/resume" component={Resume} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      </ContentStyles>
-    </PageMargin>
+    <ContentStyles id="site__content">
+      <TransitionGroup>
+        <CSSTransition
+          in
+          id="css-transition"
+          key={location.key}
+          classNames="fade"
+          timeout={300}
+        >
+          <Switch location={location}>
+            <Route exact path="/" component={CoverLetter} />
+            <Route path="/resume" component={Resume} />
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </ContentStyles>
   );
 };
 

@@ -21,6 +21,24 @@ export const PageMargin = styled.div`
   }
 `;
 
+export const PageTitle = styled.h1`
+  color: ${globalColors.blue};
+  margin: 0 0 40px;
+  font-size: 40px;
+  font-weight: 100;
+  text-align: center;
+  &:after {
+    content: "";
+    display: block;
+    margin: 40px auto 0;
+    width: 150px;
+    border-bottom: 1px solid ${globalColors.tanLT};
+  }
+  span {
+    display: block;
+  }
+`;
+
 export const SectionTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 700;
