@@ -10,7 +10,7 @@ const globalColors = {
   tanDK: "rgb(66, 65, 59)"
 };
 
-const PageMargin = styled.main`
+const PageMargin = styled.div`
   width: 95%;
   margin: 0 auto;
   @media screen and (min-width: 1024px) {

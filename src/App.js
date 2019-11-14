@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
-import { globalColors, PageMargin } from "./Components/globalStyles";
+import { globalColors } from "./Components/GlobalTheme/globalStyles";
 import Header from "./Components/GlobalTheme/Header/Header";
 import Content from "./Components/Content/Content";
 import Footer from "./Components/GlobalTheme/Footer";
@@ -115,6 +116,7 @@ const AppStyle = styled.div`
   }
 
   #site__content {
+    position: relative;
     transition: opacity 0.5s;
     .header--fixed & {
       @media screen and (min-width: 960px) {
@@ -177,10 +179,12 @@ class App extends Component {
     mainNav: [
       {
         name: "Cover Letter",
+        slug: "",
         key: "coverLetter"
       },
       {
         name: "Resume",
+        slug: "resume",
         key: "resume"
       }
     ],
@@ -235,7 +239,6 @@ class App extends Component {
       this.setState({ currentPage: newPage });
       window.scrollTo(0, 0);
       doVis();
-      document.getElementById("site__content").classList.remove("fade");
     }, 250);
   };
 
@@ -250,21 +253,20 @@ class App extends Component {
   render() {
     return (
       <AppStyle className={this.state.headerClass}>
-        <Header
-          portrait={this.state.portrait}
-          roles={this.state.roles}
-          contactInfo={this.state.contactInfo}
-          mainNav={this.state.mainNav}
-          changePage={newPage => this.navClickChange(newPage)}
-        />
-        <PageMargin id="site__content">
-          <Content
-            currentPage={this.state.currentPage}
+        <Router>
+          <Header
+            portrait={this.state.portrait}
+            roles={this.state.roles}
+            contactInfo={this.state.contactInfo}
+            mainNav={this.state.mainNav}
             changePage={newPage => this.navClickChange(newPage)}
-            resumeFile={this.state.resumeFile}
+            totop={() => {
+              window.scrollTo(0, 0);
+            }}
           />
-        </PageMargin>
-        <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
+          <Content />
+          <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
+        </Router>
       </AppStyle>
     );
   }

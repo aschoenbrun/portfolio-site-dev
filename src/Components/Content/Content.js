@@ -1,21 +1,22 @@
 import React from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
+import { PageMargin } from "../GlobalTheme/globalStyles";
 import CoverLetter from "./CoverLetter";
 import Resume from "./Resume";
 
-const content = props => {
-  const changePage = props.changePage;
-  if (props.currentPage === "Cover Letter") {
-    return (
-      <CoverLetter
-        pageLinkCoverLetter={() => {
-          changePage("Resume");
-        }}
-      />
-    );
-  } else if (props.currentPage === "Resume") {
-    return <Resume />;
-  }
-  return { content };
+const content = location => {
+  return (
+    <PageMargin id="site__content">
+      <Switch>
+        <Route path="/resume">
+          <Resume />
+        </Route>
+        <Route path="/" exact>
+          <CoverLetter />
+        </Route>
+      </Switch>
+    </PageMargin>
+  );
 };
 
-export default content;
+export default withRouter(content);

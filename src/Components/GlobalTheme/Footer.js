@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { globalColors, HeaderFooterText } from "../globalStyles";
+import { globalColors, HeaderFooterText } from "./globalStyles";
 import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
 
 const FooterStyles = styled.footer`

@@ -1,6 +1,6 @@
 import React from "react";
 import ResumeStyles from "./ResumeStyles";
-import { SectionTitle } from "../globalStyles";
+import { SectionTitle } from "../GlobalTheme/globalStyles";
 
 const resume = props => {
   return (

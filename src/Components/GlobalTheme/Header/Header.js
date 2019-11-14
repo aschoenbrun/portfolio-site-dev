@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Headroom from "react-headroom";
-import { globalColors } from "../../globalStyles";
+import { globalColors } from "../globalStyles";
 import Role from "./Role";
 import ContactInfo from "./ContactInfo";
 import MainNav from "./MainNav";
@@ -146,20 +146,13 @@ const header = props => {
         display: block;
         text-transform: uppercase;
         background-color: ${globalColors.yellow};
-        color: ${globalColors.tanDK};
-        font-size: 12px;
-        line-height: 1em;
-        font-weight: 900;
-        text-align: center;
         width: 100%;
-        padding: 13px 0;
         margin: 4px 0 0;
         box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
         transition: 0.25s ease-out;
         cursor: pointer;
         @media screen and (min-width: 960px) {
           width: auto;
-          padding: 13px 15px 10px;
           margin: 0 6px 4px 0;
           box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
         }
@@ -171,7 +164,6 @@ const header = props => {
         &:focus {
           background-color: ${globalColors.yellowLT};
           @media screen and (min-width: 960px) {
-            padding: 17px 15px 10px;
             margin-bottom: 0;
             box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
           }
@@ -181,6 +173,31 @@ const header = props => {
             padding: 18px 15px 9px;
             margin-bottom: -1;
             box-shadow: 0px 0.1px 1px 0px rgba(0, 0, 0, 0.5);
+          }
+        }
+        a {
+          color: ${globalColors.tanDK};
+          display: block;
+          padding: 13px 0;
+          font-size: 12px;
+          line-height: 1em;
+          font-weight: 900;
+          text-align: center;
+          text-shadow: none;
+          transition: 0.5s;
+          @media screen and (min-width: 960px) {
+            padding: 13px 15px 10px;
+          }
+          &:hover,
+          &:focus {
+            @media screen and (min-width: 960px) {
+              padding: 17px 15px 10px;
+            }
+          }
+          &:active {
+            @media screen and (min-width: 960px) {
+              padding: 18px 15px 9px;
+            }
           }
         }
         &#mobile-nav__toggle {
@@ -252,8 +269,6 @@ const header = props => {
 
   let contactInfo = <section id="contact-info">{contactList}</section>;
 
-  let changePage = props.changePage;
-
   const mobileNavDrawerToggle = () => {
     document.getElementById("main-nav").classList.toggle("nav--open");
     document.getElementById("site__content").classList.toggle("fade");
@@ -261,6 +276,7 @@ const header = props => {
 
   const mobileNavDrawerStow = () => {
     document.getElementById("main-nav").classList.remove("nav--open");
+    document.getElementById("site__content").classList.remove("fade");
   };
 
   const mainNav = props.mainNav.map((info, index) => {
@@ -268,10 +284,10 @@ const header = props => {
       <MainNav
         name={info.name}
         key={info.key}
+        slug={info.slug}
         index={index}
         selected={info.selected}
         changePage={() => {
-          changePage(info.name);
           mobileNavDrawerStow();
         }}
       />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ResumeStyles from "./ResumeStyles";
 
 const coverLetter = props => {
@@ -37,7 +38,15 @@ const coverLetter = props => {
         what time and venue works for you. Thank you for your time, &amp; I look
         forward to hearing from you.
       </p>
-      <button onClick={props.pageLinkCoverLetter}>View Resume</button>
+      <Link
+        to="/resume"
+        className="btn"
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+      >
+        View Resume
+      </Link>
     </ResumeStyles>
   );
 };
