@@ -36,6 +36,7 @@
     "lodash": "^4.17.15",
     "node-sass": "^4.13.0",
     "react-headroom": "^3.0.0",
+    "react-helmet": "^5.2.1",
     "react-transition-group": "^4.3.0",
     "styled-components": "^5.0.0-rc.1"
   }

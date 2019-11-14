@@ -88,11 +88,11 @@ class App extends Component {
     portrait: Portrait,
     roles: [
       {
-        role: "Front-End Developer",
+        name: "Front-End Developer",
         id: "fed"
       },
       {
-        role: "UI/UX Designer",
+        name: "UI/UX Designer",
         id: "uixd"
       }
     ],

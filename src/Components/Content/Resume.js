@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import ResumeStyles from "./ResumeStyles";
 import {
   PageTitle,
@@ -6,9 +7,19 @@ import {
   SectionIntro
 } from "../GlobalTheme/globalStyles";
 
-const resume = props => {
+const PageMeta = () => {
+  return (
+    <Helmet>
+      <title>Resume - Avi Schoenbrun</title>
+      <link rel="canonical" href="https://aysportfolio/resume/" />
+    </Helmet>
+  );
+};
+
+const resume = () => {
   return (
     <ResumeStyles id="resume">
+      <PageMeta />
       <PageTitle>Resume</PageTitle>
       <SectionIntro id="summary">
         <SectionTitle>Summary</SectionTitle>

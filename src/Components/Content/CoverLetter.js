@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { PageTitle, SectionIntro } from "../GlobalTheme/globalStyles";
 import ResumeStyles from "./ResumeStyles";
 
-const coverLetter = props => {
+const PageMeta = () => {
+  return (
+    <Helmet>
+      <title>Cover Letter - Avi Schoenbrun</title>
+      <link rel="canonical" href="https://aysportfolio/" />
+    </Helmet>
+  );
+};
+
+const coverLetter = () => {
   return (
     <ResumeStyles id="cover-letter">
+      <PageMeta />
       <PageTitle>
         <span>Enthusiastic for the</span>
         <span>efficient, current, effective & structured</span>

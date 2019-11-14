@@ -83,7 +83,7 @@ const header = props => {
           margin-right: 20px;
         }
       }
-      h1 {
+      h2 {
         font-size: 27px;
         font-weight: 300;
         line-height: 1.1em;
@@ -93,7 +93,7 @@ const header = props => {
           line-height: normal;
         }
       }
-      h2 {
+      h3 {
         font-size: 12px;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -259,7 +259,7 @@ const header = props => {
   // LOGIC
 
   let roles = props.roles.map(role => {
-    return <Role role={role.role} key={role.id} />;
+    return <Role name={role.name} key={role.id} />;
   });
 
   let contactList = props.contactInfo.map(info => {
@@ -289,7 +289,7 @@ const header = props => {
     return (
       <MainNav
         name={info.name}
-        key={info.key}
+        key={info.id}
         slug={info.slug}
         index={index}
         selected={info.selected}
@@ -309,8 +309,8 @@ const header = props => {
             style={{ backgroundImage: `url(${props.portrait})` }}
           ></div>
           <div>
-            <h1>Avi Schoenbrun</h1>
-            <h2>{roles}</h2>
+            <h2>Avi Schoenbrun</h2>
+            <h3>{roles}</h3>
           </div>
         </div>
         <div id="header__bottom">{contactInfo}</div>
