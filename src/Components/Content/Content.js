@@ -4,7 +4,7 @@ import { PageMargin } from "../GlobalTheme/globalStyles";
 import CoverLetter from "./CoverLetter";
 import Resume from "./Resume";
 
-const content = location => {
+const content = props => {
   return (
     <PageMargin id="site__content">
       <Switch>

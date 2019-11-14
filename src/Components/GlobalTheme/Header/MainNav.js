@@ -1,19 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const mainNav = props => {
+const MainNav = props => {
   return (
     <li id={props.key}>
-      <Link
-        onClick={() => {
-          window.scrollTo(0, 0);
-        }}
-        to={`/${props.slug}`}
-      >
+      <Link onClick={props.changePage} to={`/${props.slug}`}>
         {props.name}
       </Link>
     </li>
   );
 };
 
-export default mainNav;
+export default MainNav;

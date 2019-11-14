@@ -124,7 +124,7 @@ const AppStyle = styled.div`
       }
     }
     p {
-      text-align: justify;
+      text-align: left;
     }
   }
 

@@ -170,13 +170,15 @@ const header = props => {
         }
         @media screen and (min-width: 960px) {
           &:active {
-            padding: 18px 15px 9px;
             margin-bottom: -1;
             box-shadow: 0px 0.1px 1px 0px rgba(0, 0, 0, 0.5);
           }
         }
-        a {
+        a,
+        button {
           color: ${globalColors.tanDK};
+          background-color: transparent;
+          box-shadow: none;
           display: block;
           padding: 13px 0;
           font-size: 12px;
@@ -199,6 +201,9 @@ const header = props => {
               padding: 18px 15px 9px;
             }
           }
+        }
+        button {
+          width: 100%;
         }
         &#mobile-nav__toggle {
           .menu-toggle__icon-bar {
@@ -277,6 +282,7 @@ const header = props => {
   const mobileNavDrawerStow = () => {
     document.getElementById("main-nav").classList.remove("nav--open");
     document.getElementById("site__content").classList.remove("fade");
+    window.scrollTo(0, 0);
   };
 
   const mainNav = props.mainNav.map((info, index) => {
@@ -311,18 +317,20 @@ const header = props => {
         <ul id="main-nav">
           {mainNav}
           <li id="mobile-nav__toggle" onClick={() => mobileNavDrawerToggle()}>
-            <div id="bar-1" className="menu-toggle__icon-bar">
-              <div id="left-bar" className="bar--half"></div>
-              <div id="right-bar" className="bar--half"></div>
-            </div>
-            <div id="bar-2" className="menu-toggle__icon-bar">
-              <div id="left-bar" className="bar--half"></div>
-              <div id="right-bar" className="bar--half"></div>
-            </div>
-            <div id="bar-3" className="menu-toggle__icon-bar">
-              <div id="left-bar" className="bar--half"></div>
-              <div id="right-bar" className="bar--half"></div>
-            </div>
+            <button>
+              <div id="bar-1" className="menu-toggle__icon-bar">
+                <div id="left-bar" className="bar--half"></div>
+                <div id="right-bar" className="bar--half"></div>
+              </div>
+              <div id="bar-2" className="menu-toggle__icon-bar">
+                <div id="left-bar" className="bar--half"></div>
+                <div id="right-bar" className="bar--half"></div>
+              </div>
+              <div id="bar-3" className="menu-toggle__icon-bar">
+                <div id="left-bar" className="bar--half"></div>
+                <div id="right-bar" className="bar--half"></div>
+              </div>
+            </button>
           </li>
         </ul>
       </Headroom>
