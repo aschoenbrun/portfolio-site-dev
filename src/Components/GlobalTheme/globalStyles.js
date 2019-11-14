@@ -55,9 +55,6 @@ export const SectionIntro = styled.div`
   @media screen and (min-width: 760px) {
     width: 750px;
   }
-  h3 {
-    @include section-title;
-  }
   p {
     font-size: 18px;
     line-height: 1.8em;
