@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const globalColors = {
+export const globalColors = {
   blue: "rgb(15, 27, 35)",
   yellow: "rgb(255, 196, 0)",
   yellowLT: "rgb(255, 210, 61)",
@@ -10,7 +10,7 @@ const globalColors = {
   tanDK: "rgb(66, 65, 59)"
 };
 
-const PageMargin = styled.div`
+export const PageMargin = styled.div`
   width: 95%;
   margin: 0 auto;
   @media screen and (min-width: 1024px) {
@@ -21,7 +21,7 @@ const PageMargin = styled.div`
   }
 `;
 
-const SectionTitle = styled.h3`
+export const SectionTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 700;
   font-size: 23px;
@@ -31,7 +31,23 @@ const SectionTitle = styled.h3`
   border-bottom: 1px solid globalColors.tanLT;
 `;
 
-const HeaderFooterText = styled.span`
+export const SectionIntro = styled.div`
+  width: 95%;
+  margin: 0 auto 75px;
+  @media screen and (min-width: 760px) {
+    width: 750px;
+  }
+  h3 {
+    @include section-title;
+  }
+  p {
+    font-size: 18px;
+    line-height: 1.8em;
+    letter-spacing: 0.07em;
+  }
+`;
+
+export const HeaderFooterText = styled.span`
   text-transform: uppercase;
   font-size: 11px;
   line-height: 1em;
@@ -52,5 +68,3 @@ const HeaderFooterText = styled.span`
     }
   }
 `;
-
-export { globalColors, PageMargin, SectionTitle, HeaderFooterText };

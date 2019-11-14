@@ -83,22 +83,6 @@ const AppStyle = styled.div`
     margin-bottom: 50px;
   }
 
-  .section__intro {
-    width: 95%;
-    margin: 0 auto 75px;
-    @media screen and (min-width: 760px) {
-      width: 750px;
-    }
-    h3 {
-      @include section-title;
-    }
-    p {
-      font-size: 18px;
-      line-height: 1.8em;
-      letter-spacing: 0.07em;
-    }
-  }
-
   .title-list {
     padding: 0;
     margin: 0 0 40px;
