@@ -259,7 +259,7 @@ const header = props => {
   // LOGIC
 
   let roles = props.roles.map(role => {
-    return <Role role={role.role} key={role.key} />;
+    return <Role role={role.role} key={role.id} />;
   });
 
   let contactList = props.contactInfo.map(info => {
@@ -267,7 +267,7 @@ const header = props => {
       <ContactInfo
         contactInfo={info.info}
         contactLink={info.link}
-        key={info.key}
+        key={info.id}
       />
     );
   });

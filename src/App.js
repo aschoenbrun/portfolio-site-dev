@@ -89,40 +89,40 @@ class App extends Component {
     roles: [
       {
         role: "Front-End Developer",
-        key: "fed"
+        id: "fed"
       },
       {
         role: "UI/UX Designer",
-        key: "uixd"
+        id: "uixd"
       }
     ],
     contactInfo: [
       {
         info: "linkedin.com/in/avischoenbrun",
         link: "https://www.linkedin.com/in/avischoenbrun",
-        key: "lnkdin"
+        id: "lnkdin"
       },
       {
         info: "aviy.sch@gmail.com",
         link: "mailto:aviy.sch@gmail.com",
-        key: "email"
+        id: "email"
       },
       {
         info: "(732) 372-5102",
         link: "tel:732-372-5102",
-        key: "phone"
+        id: "phone"
       }
     ],
     mainNav: [
       {
         name: "Cover Letter",
         slug: "",
-        key: "coverLetter"
+        id: "coverLetter"
       },
       {
         name: "Resume",
         slug: "resume",
-        key: "resume"
+        id: "resume"
       }
     ],
     currentPage: "Cover Letter",
@@ -130,27 +130,27 @@ class App extends Component {
       {
         name: "HTML5",
         image: iconHTML5,
-        key: "html5"
+        id: "html5"
       },
       {
         name: "CSS3",
         image: iconCSS3,
-        key: "css3"
+        id: "css3"
       },
       {
         name: "SASS",
         image: iconSASS,
-        key: "sass"
+        id: "sass"
       },
       {
         name: "Javascript",
         image: iconJavascript,
-        key: "javascript"
+        id: "javascript"
       },
       {
         name: "React",
         image: iconReact,
-        key: "react"
+        id: "react"
       }
     ],
     repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",

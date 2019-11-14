@@ -50,7 +50,7 @@ const FooterStyles = styled.footer`
 const footer = props => {
   let builtWith = props.builtWith.map(lang => {
     return (
-      <HeaderFooterText id={lang.key}>
+      <HeaderFooterText id={lang.id}>
         <img src={lang.image} alt={lang.name} />
         {lang.name}
       </HeaderFooterText>
