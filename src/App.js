@@ -115,14 +115,10 @@ class App extends Component {
     ],
     pages: [
       {
-        name: "Cover Letter",
-        slug: "",
-        id: "coverLetter"
+        name: "Cover Letter"
       },
       {
-        name: "Resume",
-        slug: "resume",
-        id: "resume"
+        name: "Resume"
       }
     ],
     builtWith: [
