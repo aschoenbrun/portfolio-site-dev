@@ -1,7 +1,7 @@
 import React from "react";
 
 const role = props => {
-  return <span>{props.role}</span>;
+  return <span id={props.id}>{props.name}</span>;
 };
 
 export default role;

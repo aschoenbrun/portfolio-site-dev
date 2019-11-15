@@ -1,11 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const mainNav = props => {
+const MainNav = props => {
   return (
-    <li onClick={props.changePage} id={props.key}>
-      {props.name}
+    <li id={props.id} key={props.id}>
+      <NavLink onClick={props.changePage} to={`/${props.slug}`}>
+        {props.name}
+      </NavLink>
     </li>
   );
 };
 
-export default mainNav;
+export default MainNav;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
-import { globalColors, PageMargin } from "./Components/globalStyles";
+import { globalColors } from "./Components/GlobalTheme/globalStyles";
 import Header from "./Components/GlobalTheme/Header/Header";
 import Content from "./Components/Content/Content";
 import Footer from "./Components/GlobalTheme/Footer";
@@ -60,70 +61,8 @@ const AppStyle = styled.div`
     }
   }
 
-  .page__title {
-    color: ${globalColors.blue};
-    margin: 0 0 40px;
-    font-size: 40px;
-    font-weight: 100;
-    text-align: center;
-    &:after {
-      content: "";
-      display: block;
-      margin: 40px auto 0;
-      width: 150px;
-      border-bottom: 1px solid ${globalColors.tanLT};
-    }
-    span {
-      display: block;
-    }
-  }
-
   .page__section {
     margin-bottom: 50px;
-  }
-
-  .section__intro {
-    width: 95%;
-    margin: 0 auto 75px;
-    @media screen and (min-width: 760px) {
-      width: 750px;
-    }
-    h3 {
-      @include section-title;
-    }
-    p {
-      font-size: 18px;
-      line-height: 1.8em;
-      letter-spacing: 0.07em;
-    }
-  }
-
-  .title-list {
-    padding: 0;
-    margin: 0 0 40px;
-    & > li {
-      list-style: none;
-    }
-    & .title-list {
-      @media screen and (min-width: 760px) {
-        margin-left: 20px;
-      }
-    }
-    & ul {
-      list-style-type: square;
-    }
-  }
-
-  #site__content {
-    transition: opacity 0.5s;
-    .header--fixed & {
-      @media screen and (min-width: 960px) {
-        margin-top: 250px;
-      }
-    }
-    p {
-      text-align: justify;
-    }
   }
 
   .show,
@@ -149,67 +88,68 @@ class App extends Component {
     portrait: Portrait,
     roles: [
       {
-        role: "Front-End Developer",
-        key: "fed"
+        name: "Front-End Developer",
+        id: "fed"
       },
       {
-        role: "UI/UX Designer",
-        key: "uixd"
+        name: "UI/UX Designer",
+        id: "uixd"
       }
     ],
     contactInfo: [
       {
         info: "linkedin.com/in/avischoenbrun",
         link: "https://www.linkedin.com/in/avischoenbrun",
-        key: "lnkdin"
+        id: "lnkdin"
       },
       {
         info: "aviy.sch@gmail.com",
         link: "mailto:aviy.sch@gmail.com",
-        key: "email"
+        id: "email"
       },
       {
         info: "(732) 372-5102",
         link: "tel:732-372-5102",
-        key: "phone"
+        id: "phone"
       }
     ],
-    mainNav: [
+    pages: [
       {
         name: "Cover Letter",
-        key: "coverLetter"
+        slug: "",
+        id: "coverLetter"
       },
       {
         name: "Resume",
-        key: "resume"
+        slug: "resume",
+        id: "resume"
       }
     ],
-    currentPage: "Cover Letter",
     builtWith: [
       {
         name: "HTML5",
         image: iconHTML5,
-        key: "html5"
+        id: "html5"
       },
       {
         name: "CSS3",
         image: iconCSS3,
-        key: "css3"
+        id: "css3"
       },
       {
         name: "SASS",
         image: iconSASS,
-        key: "sass"
+        id: "sass"
       },
       {
         name: "Javascript",
         image: iconJavascript,
-        key: "javascript"
+        id: "javascript"
       },
       {
         name: "React",
         image: iconReact,
-        key: "react"
+        id: "react"
       }
     ],
     repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
@@ -235,36 +175,26 @@ class App extends Component {
       this.setState({ currentPage: newPage });
       window.scrollTo(0, 0);
       doVis();
-      document.getElementById("site__content").classList.remove("fade");
     }, 250);
   };
-
-  componentDidMount() {
-    //document.addEventListener("scroll", this.headerClassToggleHandler);
-  }
-
-  componentWillUnmount() {
-    //window.removeEventListener("scroll", this.headerClassToggleHandler);
-  }
 
   render() {
     return (
       <AppStyle className={this.state.headerClass}>
-        <Header
-          portrait={this.state.portrait}
-          roles={this.state.roles}
-          contactInfo={this.state.contactInfo}
-          mainNav={this.state.mainNav}
-          changePage={newPage => this.navClickChange(newPage)}
-        />
-        <PageMargin id="site__content">
-          <Content
-            currentPage={this.state.currentPage}
+        <Router>
+          <Header
+            portrait={this.state.portrait}
+            roles={this.state.roles}
+            contactInfo={this.state.contactInfo}
+            pages={this.state.pages}
             changePage={newPage => this.navClickChange(newPage)}
-            resumeFile={this.state.resumeFile}
+            totop={() => {
+              window.scrollTo(0, 0);
+            }}
           />
-        </PageMargin>
-        <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
+          <Content pages={this.state.pages} />
+          <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
+        </Router>
       </AppStyle>
     );
   }

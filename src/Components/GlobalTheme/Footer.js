@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { globalColors, HeaderFooterText } from "../globalStyles";
+import { globalColors, HeaderFooterText } from "./globalStyles";
 import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
 
 const FooterStyles = styled.footer`
@@ -50,7 +50,7 @@ const FooterStyles = styled.footer`
 const footer = props => {
   let builtWith = props.builtWith.map(lang => {
     return (
-      <HeaderFooterText id={lang.key}>
+      <HeaderFooterText key={lang.id} id={lang.name}>
         <img src={lang.image} alt={lang.name} />
         {lang.name}
       </HeaderFooterText>

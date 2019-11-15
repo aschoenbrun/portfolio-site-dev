@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { HeaderFooterText } from "../../globalStyles";
+import { HeaderFooterText } from "../globalStyles";
 
 const ContactInfoStyles = styled(HeaderFooterText)`
   &:last-child {
