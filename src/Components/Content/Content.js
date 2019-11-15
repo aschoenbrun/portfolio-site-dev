@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { PageMargin } from "../GlobalTheme/globalStyles";
 import CoverLetter from "./CoverLetter";
@@ -21,8 +21,9 @@ const Content = props => {
   return (
     <ContentStyles id="site__content">
       <Switch>
-        <Route exact path="/" component={CoverLetter} />
+        <Route path="/cover-letter" component={CoverLetter} />
         <Route path="/resume" component={Resume} />
+        <Redirect exact from="/" to="/cover-letter" />
       </Switch>
     </ContentStyles>
   );
