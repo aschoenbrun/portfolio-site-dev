@@ -113,7 +113,7 @@ class App extends Component {
         id: "phone"
       }
     ],
-    mainNav: [
+    pages: [
       {
         name: "Cover Letter",
         slug: "",
@@ -125,7 +125,6 @@ class App extends Component {
         id: "resume"
       }
     ],
-    currentPage: "Cover Letter",
     builtWith: [
       {
         name: "HTML5",
@@ -179,14 +178,6 @@ class App extends Component {
     }, 250);
   };
 
-  componentDidMount() {
-    //document.addEventListener("scroll", this.headerClassToggleHandler);
-  }
-
-  componentWillUnmount() {
-    //window.removeEventListener("scroll", this.headerClassToggleHandler);
-  }
-
   render() {
     return (
       <AppStyle className={this.state.headerClass}>
@@ -195,13 +186,13 @@ class App extends Component {
             portrait={this.state.portrait}
             roles={this.state.roles}
             contactInfo={this.state.contactInfo}
-            mainNav={this.state.mainNav}
+            pages={this.state.pages}
             changePage={newPage => this.navClickChange(newPage)}
             totop={() => {
               window.scrollTo(0, 0);
             }}
           />
-          <Content />
+          <Content pages={this.state.pages} />
           <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
         </Router>
       </AppStyle>

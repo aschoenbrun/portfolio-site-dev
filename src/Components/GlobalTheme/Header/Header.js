@@ -285,7 +285,7 @@ const header = props => {
     window.scrollTo(0, 0);
   };
 
-  const mainNav = props.mainNav.map((info, index) => {
+  const mainNav = props.pages.map((info, index) => {
     return (
       <MainNav
         name={info.name}
