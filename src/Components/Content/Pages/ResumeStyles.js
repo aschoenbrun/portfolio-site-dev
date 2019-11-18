@@ -80,18 +80,6 @@ const ResumeStyles = styled.section`
       margin-bottom: ${standardLiMargin};
     }
   }
-  .grid-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 2px;
-    li {
-      background-color: ${globalColors.tanXLT};
-      padding: 13px 15px;
-    }
-  }
 `;
 
 export default ResumeStyles;

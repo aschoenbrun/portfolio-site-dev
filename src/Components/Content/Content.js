@@ -24,9 +24,9 @@ const Content = props => {
   return (
     <ContentStyles id="site__content">
       <Switch>
-        <Route path="/cover-letter" component={CoverLetter} />
+        <Route path="/about-me" component={CoverLetter} />
         <Route path="/resume" component={Resume} />
-        <Redirect exact from="/" to="/cover-letter" />
+        <Redirect exact from="/" to="/about-me" />
       </Switch>
     </ContentStyles>
   );
