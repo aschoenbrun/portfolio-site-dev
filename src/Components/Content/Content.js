@@ -2,8 +2,8 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { PageMargin } from "../GlobalTheme/globalStyles";
-import CoverLetter from "./CoverLetter";
-import Resume from "./Resume";
+import CoverLetter from "./Pages/CoverLetter";
+import Resume from "./Pages/Resume";
 
 const Content = props => {
   const ContentStyles = styled(PageMargin)`
@@ -13,6 +13,9 @@ const Content = props => {
       @media screen and (min-width: 960px) {
         margin-top: 250px;
       }
+    }
+    section {
+      margin-bottom: 75px;
     }
     p {
       text-align: left;

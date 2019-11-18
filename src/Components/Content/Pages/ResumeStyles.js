@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { globalColors } from "../GlobalTheme/globalStyles";
+import { globalColors } from "../../GlobalTheme/globalStyles";
 const standardLiMargin = "7px";
 const ResumeStyles = styled.section`
   #employment-summary {

@@ -1,11 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import ResumeStyles from "./ResumeStyles";
-import {
-  PageTitle,
-  SectionTitle,
-  SectionIntro
-} from "../GlobalTheme/globalStyles";
+import { PageTitle } from "../../GlobalTheme/globalStyles";
+import SectionTitle from "../SectionTitle";
+import SectionIntro from "../SectionIntro";
 
 const PageMeta = () => {
   return (
@@ -21,32 +19,24 @@ const resume = () => {
     <ResumeStyles id="resume">
       <PageMeta />
       <PageTitle>Resume</PageTitle>
-      <SectionIntro id="summary">
+      <section id="summary">
         <SectionTitle>Summary</SectionTitle>
-        <p>
-          Creative, technically-minded, solutions-driven front end developer /
-          UI/UX Designer utilizing his problem-solving skills, affinity for
-          effective structure &amp; good design eye to build compelling web
-          applications.
-        </p>
-        <a
-          className="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
-        >
-          Download Resume
-        </a>
-      </SectionIntro>
-      <section
-        id="highly-effective-in"
-        className="resume__section page__section"
-      >
-        <SectionTitle>Highly effective in</SectionTitle>
-        <ul className="grid-list">
-          <li>Solutions-driven code</li>
-          <li>Effective &amp; compelling UI/UX</li>
-        </ul>
+        <SectionIntro>
+          <p>
+            Creative, technically-minded, solutions-driven front end developer /
+            UI/UX Designer utilizing his problem-solving skills, affinity for
+            effective structure &amp; good design eye to build compelling web
+            applications.
+          </p>
+          <a
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
+          >
+            Download Resume
+          </a>
+        </SectionIntro>
       </section>
       <section id="technologies" className="resume__section page__section">
         <SectionTitle>Technologies</SectionTitle>
@@ -76,38 +66,6 @@ const resume = () => {
           <li>Photoshop</li>
           <li>Illustrator</li>
           <li>InDesign</li>
-        </ul>
-      </section>
-      <section
-        id="employment-summary"
-        className="resume__section page__section"
-      >
-        <SectionTitle>Employment Summary</SectionTitle>
-        <ul className="title-list">
-          <li>
-            <h4>Effective Media</h4>
-            <p>
-              <em>Feb 2016 - Present</em>
-            </p>
-          </li>
-          <li>
-            <h4>EverDixie EMS Supplies</h4>
-            <p>
-              <em>Dec 2011 - Aug 2015</em>
-            </p>
-          </li>
-          <li>
-            <h4>Dealmed, INC.</h4>
-            <p>
-              <em>Jan 2009 - Jan 2011</em>
-            </p>
-          </li>
-          <li>
-            <h4>Freelancing</h4>
-            <p>
-              <em>Nov 2007 - Dec 2012</em>
-            </p>
-          </li>
         </ul>
       </section>
       <section
