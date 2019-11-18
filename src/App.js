@@ -84,77 +84,76 @@ const AppStyle = styled.div`
 `;
 
 class App extends Component {
-  state = {
-    portrait: Portrait,
-    roles: [
-      {
-        name: "Front-End Developer",
-        id: "fed"
-      },
-      {
-        name: "UI/UX Designer",
-        id: "uixd"
-      }
-    ],
-    contactInfo: [
-      {
-        info: "linkedin.com/in/avischoenbrun",
-        link: "https://www.linkedin.com/in/avischoenbrun",
-        id: "lnkdin"
-      },
-      {
-        info: "aviy.sch@gmail.com",
-        link: "mailto:aviy.sch@gmail.com",
-        id: "email"
-      },
-      {
-        info: "(732) 372-5102",
-        link: "tel:732-372-5102",
-        id: "phone"
-      }
-    ],
-    pages: [
-      {
-        name: "Cover Letter",
-        slug: "",
-        id: "coverLetter"
-      },
-      {
-        name: "Resume",
-        slug: "resume",
-        id: "resume"
-      }
-    ],
-    builtWith: [
-      {
-        name: "HTML5",
-        image: iconHTML5,
-        id: "html5"
-      },
-      {
-        name: "CSS3",
-        image: iconCSS3,
-        id: "css3"
-      },
-      {
-        name: "SASS",
-        image: iconSASS,
-        id: "sass"
-      },
-      {
-        name: "Javascript",
-        image: iconJavascript,
-        id: "javascript"
-      },
-      {
-        name: "React",
-        image: iconReact,
-        id: "react"
-      }
-    ],
-    repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
-    headerClass: "App"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      portrait: Portrait,
+      roles: [
+        {
+          name: "Front-End Developer",
+          id: "fed"
+        },
+        {
+          name: "UI/UX Designer",
+          id: "uixd"
+        }
+      ],
+      contactInfo: [
+        {
+          info: "linkedin.com/in/avischoenbrun",
+          link: "https://www.linkedin.com/in/avischoenbrun",
+          id: "lnkdin"
+        },
+        {
+          info: "aviy.sch@gmail.com",
+          link: "mailto:aviy.sch@gmail.com",
+          id: "email"
+        },
+        {
+          info: "(732) 372-5102",
+          link: "tel:732-372-5102",
+          id: "phone"
+        }
+      ],
+      pages: [
+        {
+          name: "Cover Letter"
+        },
+        {
+          name: "Resume"
+        }
+      ],
+      builtWith: [
+        {
+          name: "HTML5",
+          image: iconHTML5,
+          id: "html5"
+        },
+        {
+          name: "CSS3",
+          image: iconCSS3,
+          id: "css3"
+        },
+        {
+          name: "SASS",
+          image: iconSASS,
+          id: "sass"
+        },
+        {
+          name: "Javascript",
+          image: iconJavascript,
+          id: "javascript"
+        },
+        {
+          name: "React",
+          image: iconReact,
+          id: "react"
+        }
+      ],
+      repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",
+      headerClass: "App"
+    };
+  }
 
   // TODO: Switch to React Transition Group
   // https://reactcommunity.org/react-transition-group/

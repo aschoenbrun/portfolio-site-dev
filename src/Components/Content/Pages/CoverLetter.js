@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { PageTitle, SectionIntro } from "../GlobalTheme/globalStyles";
+import { PageTitle } from "../../GlobalTheme/globalStyles";
 import ResumeStyles from "./ResumeStyles";
+import SectionIntro from "../SectionIntro";
 
 const PageMeta = () => {
   return (

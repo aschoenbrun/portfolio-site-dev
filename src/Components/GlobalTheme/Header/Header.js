@@ -1,4 +1,5 @@
 import React from "react";
+import { kebabCase } from "../../globalJS";
 import styled from "styled-components";
 import Headroom from "react-headroom";
 import { globalColors } from "../globalStyles";
@@ -285,14 +286,14 @@ const header = props => {
     window.scrollTo(0, 0);
   };
 
-  const mainNav = props.pages.map((info, index) => {
+  const mainNav = props.pages.map((page, index) => {
+    const elemID = kebabCase(page.name);
     return (
       <MainNav
-        name={info.name}
-        key={info.id}
-        slug={info.slug}
+        name={page.name}
+        key={elemID}
+        slug={elemID}
         index={index}
-        selected={info.selected}
         changePage={() => {
           mobileNavDrawerStow();
         }}

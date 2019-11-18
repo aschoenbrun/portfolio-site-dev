@@ -39,29 +39,6 @@ export const PageTitle = styled.h1`
   }
 `;
 
-export const SectionTitle = styled.h3`
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 23px;
-  padding: 0 0 5px;
-  margin: 0 0 20px;
-  color: color(blue);
-  border-bottom: 1px solid globalColors.tanLT;
-`;
-
-export const SectionIntro = styled.div`
-  width: 95%;
-  margin: 0 auto 75px;
-  @media screen and (min-width: 760px) {
-    width: 750px;
-  }
-  p {
-    font-size: 18px;
-    line-height: 1.8em;
-    letter-spacing: 0.07em;
-  }
-`;
-
 export const HeaderFooterText = styled.span`
   text-transform: uppercase;
   font-size: 11px;
