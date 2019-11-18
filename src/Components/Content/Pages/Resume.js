@@ -14,6 +14,11 @@ const PageMeta = () => {
   );
 };
 
+// TODO: List structure
+// li
+// ListH &
+// ListV &
+
 const resume = () => {
   return (
     <ResumeStyles id="resume">
@@ -40,6 +45,7 @@ const resume = () => {
       </section>
       <section id="technologies" className="resume__section page__section">
         <SectionTitle>Technologies</SectionTitle>
+
         <ul className="grid-list">
           <li>HTML5</li>
           <li>CSS3</li>
