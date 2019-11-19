@@ -8,7 +8,7 @@ import SectionIntro from "../SectionIntro";
 const PageMeta = () => {
   return (
     <Helmet>
-      <title>Cover Letter - Avi Schoenbrun</title>
+      <title>About Me - Avi Schoenbrun</title>
       <link rel="canonical" href="https://aysportfolio/" />
     </Helmet>
   );

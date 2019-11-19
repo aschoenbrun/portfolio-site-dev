@@ -105,7 +105,8 @@ const header = props => {
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin: 0;
-        color: ${globalColors.tan};
+        color: ${globalColors.tanLT};
+        opacity: 0.75;
         @media screen and (min-width: 760px) {
           font-size: 14px;
         }
