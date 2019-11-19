@@ -12,6 +12,12 @@ const FooterStyles = styled.footer`
     position: relative;
     z-index: 1000;
     padding: 20px 20px 25px;
+    .btn {
+      margin-top: 0;
+      @media screen and (min-width: 760px) {
+        margin-top: -20px;
+      }
+    }
   }
   #footer__bottom {
     background-color: ${globalColors.blue};
