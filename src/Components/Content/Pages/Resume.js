@@ -319,7 +319,7 @@ const RefListSets = props => {
   return refLists;
 };
 
-// REFACTORING LIST RENDERING LOGIC:
+// TODO: REFACTOR LIST RENDERING LOGIC:
 /*
 const ListSets = props => {
   const lvl1Lists = props.topList.map(topElem => {
