@@ -11,6 +11,9 @@ const SectionTitleStyles = styled.h3`
   font-size: 25px;
   margin: 0 0 20px;
   color: ${globalColors.blue};
+  @media screen and (min-width: 1024px) {
+    margin: 0 0 20px -17px;
+  }
   & span {
     line-height: 27px;
   }
@@ -51,11 +54,20 @@ export const SectionSubTitle = props => {
 };
 
 const SectionSubTitleDescStyles = styled(SectionSubTitleStyles)`
-  color: ${globalColors.tan};
   font-size: 13px;
-  margin: -5px 0 7px;
+  margin: 0 0 10px;
   font-weight: 400;
   color: ${globalColors.tan};
+  span {
+    display: block;
+    margin-bottom: 5px;
+  }
+  @media screen and (min-width: 760px) {
+    margin: -5px 0 7px;
+    span {
+      display: inline;
+    }
+  }
 `;
 export const SectionSubTitleDesc = props => {
   return (
@@ -63,6 +75,17 @@ export const SectionSubTitleDesc = props => {
   );
 };
 
+const SectionTitleDividerStyles = styled.span`
+  display: none !important;
+  @media screen and (min-width: 760px) {
+    display: block;
+  }
+`;
 export const SectionTitleDivider = () => {
-  return <span className="divider">|</span>;
+  return (
+    <SectionTitleDividerStyles className="divider">
+      {" "}
+      |{" "}
+    </SectionTitleDividerStyles>
+  );
 };

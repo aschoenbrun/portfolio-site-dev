@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import ResumeStyles from "./ResumeStyles";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
 import {
   SectionTitle,
@@ -170,7 +169,7 @@ export default class Resume extends Component {
 
   render() {
     return (
-      <ResumeStyles id="resume">
+      <div id="resume">
         <PageMeta />
         <PageTitle>Resume</PageTitle>
         <section id="summary">
@@ -216,7 +215,7 @@ export default class Resume extends Component {
             <RefSets refList={this.state.references} />
           </TitleList>
         </section>
-      </ResumeStyles>
+      </div>
     );
   }
 }
@@ -249,8 +248,11 @@ const ExpSets = props => {
       <li key={expMainKey}>
         <SectionSubTitle>{exp.title}</SectionSubTitle>
         <SectionSubTitleDesc>
-          {exp.org} <SectionTitleDivider /> {exp.location}{" "}
-          <SectionTitleDivider /> {exp.dates}
+          <span>{exp.org}</span>
+          <SectionTitleDivider />
+          <span>{exp.location}</span>
+          <SectionTitleDivider />
+          <span>{exp.dates}</span>
         </SectionSubTitleDesc>
         <List>
           <ExpListSets expList={exp.experienceList} />
@@ -316,3 +318,34 @@ const RefListSets = props => {
   });
   return refLists;
 };
+
+// REFACTORING LIST RENDERING LOGIC:
+/*
+const ListSets = props => {
+  const lvl1Lists = props.topList.map(topElem => {
+    return (
+      <li key={topLElem.key}>
+        <SectionSubTitle>{topElem.title}</SectionSubTitle>
+        <ListH>
+          <SubListSets subList={topElem.subList} />
+        </ListH>
+      </li>
+    );
+  });
+  return lvl1Lists;
+};
+
+const SubListSets = props => {
+  const subLists = props.subList.map(subElem => {
+    if (subElem.type === "email") {
+      return (
+        <li key={subElem.info}>
+          <a href={`mailto:${info.info}`}>{info.info}</a>
+        </li>
+      );
+      return <li key={info.info}>{info.info}</li>;
+    }
+  })
+  return subLists
+}
+*/
