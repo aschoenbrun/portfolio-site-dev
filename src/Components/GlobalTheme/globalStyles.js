@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const globalColors = {
-  blue: "rgb(15, 27, 35)",
+  blue: "rgb(0, 31, 43)",
   yellow: "rgb(255, 196, 0)",
   yellowLT: "rgb(255, 210, 61)",
   tan: "rgb(91, 88, 75)",

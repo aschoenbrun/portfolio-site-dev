@@ -9,10 +9,10 @@ const SectionTitleStyles = styled.h3`
   text-transform: lowercase;
   font-weight: 700;
   font-size: 25px;
-  margin: 0 0 20px;
+  margin: 0 0 30px;
   color: ${globalColors.blue};
   @media screen and (min-width: 1024px) {
-    margin: 0 0 20px -17px;
+    margin: 0 0 30px -17px;
   }
   & span {
     line-height: 27px;
@@ -55,7 +55,7 @@ export const SectionSubTitle = props => {
 
 const SectionSubTitleDescStyles = styled(SectionSubTitleStyles)`
   font-size: 13px;
-  margin: 0 0 10px;
+  margin: 0 0 15px;
   font-weight: 400;
   color: ${globalColors.tan};
   span {
@@ -63,7 +63,7 @@ const SectionSubTitleDescStyles = styled(SectionSubTitleStyles)`
     margin-bottom: 5px;
   }
   @media screen and (min-width: 760px) {
-    margin: -3px 0 13px;
+    margin: -8px 0 13px;
     span {
       display: inline;
     }

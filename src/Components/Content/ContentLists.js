@@ -6,6 +6,12 @@ const TitleListStyles = styled.ul`
   margin: 0;
   padding: 0;
   list-style-type: none;
+  li {
+    margin-bottom: 30px;
+    @media screen and (min-width: 760px) {
+      margin-bottom: 15px;
+    }
+  }
 `;
 export const TitleList = props => {
   return <TitleListStyles>{props.children}</TitleListStyles>;
@@ -27,7 +33,7 @@ const ListStyles = styled.ul`
       color: ${globalColors.tan};
       letter-spacing: -1px;
       font-size: 11px;
-      margin-top: 3px;
+      margin-top: 1px;
       margin-right: 10px;
     }
   }

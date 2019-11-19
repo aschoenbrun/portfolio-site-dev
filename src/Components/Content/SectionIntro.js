@@ -5,7 +5,7 @@ import { globalColors } from "../GlobalTheme/globalStyles";
 const SectionIntroStyles = styled.div`
   .section-header__slashes {
     float: left;
-    margin-top: 4px;
+    margin-top: 2px;
     margin-right: 10px;
     letter-spacing: 0.01em;
     color: ${globalColors.tanLT};

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
-import { PageMargin } from "../GlobalTheme/globalStyles";
+import { PageMargin, globalColors } from "../GlobalTheme/globalStyles";
 import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";
 
@@ -16,6 +16,10 @@ const Content = props => {
     }
     section {
       margin-bottom: 75px;
+    }
+    p,
+    li {
+      color: ${globalColors.tanDK};
     }
     p {
       text-align: left;
