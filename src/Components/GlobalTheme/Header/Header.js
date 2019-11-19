@@ -24,6 +24,12 @@ const header = props => {
       @media screen and (min-width: 960px) {
         margin-bottom: 50px;
       }
+      .headroom--unpinned,
+      .headroom--scrolled {
+        @media screen and (max-width: 960px) {
+          position: static !important;
+        }
+      }
       .headroom--scrolled {
         @media screen and (min-width: 760px) {
           width: 100%;
@@ -35,15 +41,15 @@ const header = props => {
               margin-right: 15px;
               box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
             }
-            h1,
-            h2 {
+            h2,
+            h3 {
               display: inline;
             }
-            h1 {
+            h2 {
               font-size: 20px;
               margin-right: 25px;
             }
-            h2 {
+            h3 {
               font-size: 12px;
             }
           }

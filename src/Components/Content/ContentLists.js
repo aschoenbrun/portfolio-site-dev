@@ -6,6 +6,12 @@ const TitleListStyles = styled.ul`
   margin: 0;
   padding: 0;
   list-style-type: none;
+  li {
+    margin-bottom: 30px;
+    @media screen and (min-width: 760px) {
+      margin-bottom: 15px;
+    }
+  }
 `;
 export const TitleList = props => {
   return <TitleListStyles>{props.children}</TitleListStyles>;
@@ -13,7 +19,7 @@ export const TitleList = props => {
 
 const ListStyles = styled.ul`
   padding: 0;
-  margin: 0 0 15px;
+  margin: 0 0 25px;
   list-style-type: none;
   li {
     display: flex;
@@ -27,7 +33,7 @@ const ListStyles = styled.ul`
       color: ${globalColors.tan};
       letter-spacing: -1px;
       font-size: 11px;
-      margin-top: 3px;
+      margin-top: 1px;
       margin-right: 10px;
     }
   }
@@ -45,7 +51,6 @@ const ListHorizStyles = styled(ListStyles)`
     align-items: center;
     margin-right: 10px;
     margin-bottom: 5px;
-
     &::before,
     &:before {
       margin-top: 0;
