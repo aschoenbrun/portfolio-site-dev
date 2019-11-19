@@ -13,7 +13,7 @@ export const TitleList = props => {
 
 const ListStyles = styled.ul`
   padding: 0;
-  margin: 0 0 15px;
+  margin: 0 0 25px;
   list-style-type: none;
   li {
     display: flex;
@@ -45,7 +45,6 @@ const ListHorizStyles = styled(ListStyles)`
     align-items: center;
     margin-right: 10px;
     margin-bottom: 5px;
-
     &::before,
     &:before {
       margin-top: 0;

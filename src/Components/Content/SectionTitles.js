@@ -46,7 +46,7 @@ const SectionSubTitleStyles = styled.h4`
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.2em;
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   color: ${globalColors.blue};
 `;
 export const SectionSubTitle = props => {
@@ -63,7 +63,7 @@ const SectionSubTitleDescStyles = styled(SectionSubTitleStyles)`
     margin-bottom: 5px;
   }
   @media screen and (min-width: 760px) {
-    margin: -5px 0 7px;
+    margin: -3px 0 13px;
     span {
       display: inline;
     }
