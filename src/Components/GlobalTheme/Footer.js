@@ -13,9 +13,9 @@ const FooterStyles = styled.footer`
     z-index: 1000;
     padding: 20px 20px 25px;
     .btn {
-      margin-top: 0;
+      margin-top: -20px;
       @media screen and (min-width: 760px) {
-        margin-top: -20px;
+        margin-top: 0px;
       }
     }
   }
