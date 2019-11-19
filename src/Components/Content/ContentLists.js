@@ -18,7 +18,9 @@ const ListStyles = styled.ul`
   li {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    line-height: 1.5em;
+    letter-spacing: 0.1em;
     &::before,
     &:before {
       content: "\x0005C\x0005C";
@@ -42,6 +44,8 @@ const ListHorizStyles = styled(ListStyles)`
   li {
     align-items: center;
     margin-right: 10px;
+    margin-bottom: 5px;
+
     &::before,
     &:before {
       margin-top: 0;
