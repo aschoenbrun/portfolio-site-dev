@@ -185,7 +185,7 @@ export default class Resume extends Component {
               className="btn"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
+              href="https://drive.google.com/file/d/1RcEHj7oHl_9yUOZhE8S-hUuQ7UBLd9tG/view?usp=sharing"
             >
               Download Resume
             </a>
