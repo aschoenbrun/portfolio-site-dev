@@ -78,14 +78,14 @@ export const SectionSubTitleDesc = props => {
 const SectionTitleDividerStyles = styled.span`
   display: none !important;
   @media screen and (min-width: 760px) {
-    display: block;
+    display: inline-block !important;
+    margin: 0 7px;
+    font-weight: 100;
+    color: ${globalColors.tanLT};
   }
 `;
 export const SectionTitleDivider = () => {
   return (
-    <SectionTitleDividerStyles className="divider">
-      {" "}
-      |{" "}
-    </SectionTitleDividerStyles>
+    <SectionTitleDividerStyles className="divider">|</SectionTitleDividerStyles>
   );
 };
