@@ -117,7 +117,7 @@ class App extends Component {
       ],
       pages: [
         {
-          name: "Cover Letter"
+          name: "About me"
         },
         {
           name: "Resume"

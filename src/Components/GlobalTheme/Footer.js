@@ -4,7 +4,7 @@ import { globalColors, HeaderFooterText } from "./globalStyles";
 import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
 
 const FooterStyles = styled.footer`
-  margin-top: 40px;
+  margin-top: 75px;
   text-align: center;
   #footer__top {
     background-color: ${globalColors.tanDK};

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { PageMargin } from "../GlobalTheme/globalStyles";
-import CoverLetter from "./Pages/CoverLetter";
+import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";
 
 const Content = props => {
@@ -19,14 +19,16 @@ const Content = props => {
     }
     p {
       text-align: left;
+      line-height: 1.5em;
+      letter-spacing: 0.1em;
     }
   `;
   return (
     <ContentStyles id="site__content">
       <Switch>
-        <Route path="/cover-letter" component={CoverLetter} />
+        <Route path="/about-me" component={AboutMe} />
         <Route path="/resume" component={Resume} />
-        <Redirect exact from="/" to="/cover-letter" />
+        <Redirect exact from="/" to="/about-me" />
       </Switch>
     </ContentStyles>
   );

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import ResumeStyles from "./ResumeStyles";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
-import SectionTitle from "../SectionTitle";
+import {
+  SectionTitle,
+  SectionSubTitle,
+  SectionSubTitleDesc,
+  SectionTitleDivider
+} from "../SectionTitles";
 import SectionIntro from "../SectionIntro";
+import { TitleList, List, ListH } from "../ContentLists";
 
 const PageMeta = () => {
   return (
@@ -19,321 +24,328 @@ const PageMeta = () => {
 // ListH &
 // ListV &
 
-const resume = () => {
-  return (
-    <ResumeStyles id="resume">
-      <PageMeta />
-      <PageTitle>Resume</PageTitle>
-      <section id="summary">
-        <SectionTitle>Summary</SectionTitle>
-        <SectionIntro>
-          <p>
-            Creative, technically-minded, solutions-driven front end developer /
-            UI/UX Designer utilizing his problem-solving skills, affinity for
-            effective structure &amp; good design eye to build compelling web
-            applications.
-          </p>
-          <a
-            className="btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://docs.google.com/document/d/1K1aMWlveTgI4s4nTZtJGXqHvymoWi1hmzNfA6M_lMGA/edit?usp=sharing"
-          >
-            Download Resume
-          </a>
-        </SectionIntro>
-      </section>
-      <section id="technologies" className="resume__section page__section">
-        <SectionTitle>Technologies</SectionTitle>
+export default class Resume extends Component {
+  constructor(props) {
+    super(props);
 
-        <ul className="grid-list">
-          <li>HTML5</li>
-          <li>CSS3</li>
-          <li>SASS</li>
-          <li>Bootstrap</li>
-          <li>Javascript</li>
-          <li>jQuery</li>
-          <li>React</li>
-          <li>NPM</li>
-          <li>Git</li>
-          <li>Webpack</li>
-          <li>PHP</li>
-          <li>WordPress</li>
-          <li>Genesis Framework</li>
-          <li>Shopify</li>
-          <li>Microsoft TFVC</li>
-          <li>VS Code</li>
-          <li>Atom</li>
-          <li>DreamWeaver</li>
-          <li>Notepad++</li>
-          <li>Asana</li>
-          <li>Wrik</li>
-          <li>Trello</li>
-          <li>Photoshop</li>
-          <li>Illustrator</li>
-          <li>InDesign</li>
-        </ul>
-      </section>
-      <section
-        id="professional-experience"
-        className="resume__section page__section"
-      >
-        <SectionTitle>Professional Experience</SectionTitle>
-        <ul className="title-list has-nested-ul">
-          <li>
-            <h4 id="effective-media-llc">Effective Media, LLC</h4>
-            <p className="position__meta">
-              <em>Founder, Developer &amp; Designer, Feb 2016 - Present</em>
+    this.state = {
+      pageTitle: "Resume",
+      skillSets: [
+        {
+          title: "Languages and Frameworks",
+          skills: [
+            "Javascript",
+            "jQuery",
+            "React",
+            "HTML5",
+            "CSS3",
+            "SASS",
+            "PHP",
+            "Bootstrap",
+            "Wordpress",
+            "WooCommerce",
+            "Shopify"
+          ]
+        },
+        {
+          title: "Utilities and Software",
+          skills: [
+            "NPM",
+            "Webpack",
+            "Git",
+            "Visual Studio Code",
+            "Atom",
+            "Asana",
+            "Trello",
+            "Photoshop",
+            "Dreamweaver",
+            "Notepad++",
+            "Illustrator",
+            "InDesign"
+          ]
+        },
+        {
+          title: "Techniques and Conventions",
+          skills: [
+            "Wireframing",
+            "Mockups",
+            "Color theory",
+            "SEO",
+            "Responsive design",
+            "Web security"
+          ]
+        }
+      ],
+      experience: [
+        {
+          title: "Founder, Developer and Designer",
+          org: "Effective Media, LLC",
+          location: "Lakewood, NJ",
+          dates: "Feb 2016 - PRESENT",
+          experienceList: [
+            "Structured a custom branded interface to be conducive to a streamlined user workflow while also increasing efficiency.",
+            "Designed and developed clean, easy to use websites featuring compelling, professional design, dynamic functionality and structure effective in correctly guiding the user."
+          ]
+        },
+        {
+          title: "Director of Marketing and Promotions",
+          org: "EverDixie EMS Supplies",
+          location: "Brooklyn, NY",
+          dates: "Dec 2011 - Aug 2015",
+          experienceList: [
+            "Created and modernized branding for subsidiaries and existing brands for optimal relatability.",
+            "Implemented live chat to an e-commerce website I designed and built resulting in greatly optimized customer service",
+            "Organized the home page of an e-commerce website from a jumbled mess to a layout that effectively showcased multiple banners and showcases."
+          ]
+        },
+        {
+          title: "Director of Marketing and Promotions",
+          org: "Dealmed, Inc",
+          location: "Lakewood, NJ",
+          dates: "Jan 2009 - Jan 2011",
+          experienceList: [
+            "Designed and built a blog.",
+            "Designed and coded custom HTML email blasts."
+          ]
+        }
+      ],
+      education: [
+        {
+          school: "New York Interactive Media Training",
+          skills: ["HTML", "CSS"]
+        },
+        {
+          school: "Udemy",
+          skills: [
+            "React JS",
+            "Javacript",
+            "jQuery",
+            "Bootstrap",
+            "HTML5",
+            "CSS3"
+          ]
+        }
+      ],
+      references: [
+        {
+          name: "Daniel Soloff",
+          contactInfo: [
+            {
+              type: "phone",
+              info: "(732) 905-9700 x 604"
+            }
+          ]
+        },
+        {
+          name: "Eli Davidson",
+          contactInfo: [
+            {
+              type: "email",
+              info: "mail@e-davidson.com"
+            }
+          ]
+        },
+        {
+          name: "Avi Rosenthal",
+          contactInfo: [
+            {
+              type: "phone",
+              info: "(732) 228-8888 x 201"
+            }
+          ]
+        },
+        {
+          name: "Mimi Frankel",
+          contactInfo: [
+            {
+              type: "phone",
+              info: "(732) 298-3746"
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  render() {
+    return (
+      <div id="resume">
+        <PageMeta />
+        <PageTitle>Resume</PageTitle>
+        <section id="summary">
+          <SectionTitle>Summary</SectionTitle>
+          <SectionIntro>
+            <p>
+              Creative, technically-minded, solutions-driven front end developer
+              / UI/UX Designer utilizing his problem-solving skills, affinity
+              for effective structure &amp; good design eye to build compelling
+              web applications.
             </p>
-            <ul className="title-list">
-              <li>
-                <h5>
-                  <strong>Chefman</strong> (In-House customer servive portal UX
-                  design &amp; development)
-                </h5>
-                <ul>
-                  <li>Designed clean, easy to use interface.</li>
-                  <li>
-                    Developed front-end utilizing HTML5, SASS/CSS3 &amp;
-                    Bootstrap while manipulating existing C# code.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h5>
-                  <strong>Gesher Century Challenge</strong> (Website)
-                </h5>
-                <ul>
-                  <li>
-                    Utilized PHP scripts and plugins to create a rider
-                    registration and profile page creation process that could
-                    take 2 minutes to understand &amp; fill out while featuring
-                    complex options that dynamically changed the form.
-                  </li>
-                  <li>
-                    Used PHP and plugins to integrate a unique donation campaign
-                    for each rider and placed a donation meter on the rider’s
-                    profile page.
-                  </li>
-                  <li>
-                    Used HTML5 and CSS3 via SASS to create sections with a
-                    parallax background and element overlays as well as CSS-only
-                    animated buttons.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h5>
-                  <strong>Absolute Earth Naturals</strong> (Website)
-                </h5>
-                <ul>
-                  <li>
-                    Designed &amp; developed a fully custom theme and page
-                    structure from Wordpres &amp; Genesis framework using PHP,
-                    HTML5, CSS3 and Javascript.
-                  </li>
-                  <li>
-                    Developed a banner on the homepage featuring an autoplaying
-                    Youtube video and overlaying elements.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h5>
-                  <strong>Blue Ribbon</strong> (Website)
-                </h5>
-                <ul>
-                  <li>
-                    Using HTML5, CSS3, PHP and plugins, created a banner
-                    management system in the admin backend to allow the client
-                    to toggle and edit home page banners at will.
-                  </li>
-                  <li>
-                    Placed header elements aesthetically around existing
-                    elements.
-                  </li>
-                  <li>
-                    Used HTML5 &amp; CSS3 to customize form to resemble the
-                    client’s paper version.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h5>
-                  <strong>Brooklyn Family Pages</strong> (Website, Branding,
-                  Graphics)
-                </h5>
-                <ul>
-                  <li>
-                    Created a testimonial display system by creating a Wordpress
-                    custom post type, using a plugin to change the relevant post
-                    admin page to present the necessary fields for the
-                    appropriate elements, and using PHP, HTML5, CSS3 &amp;
-                    Javascript to alter the Genesis Framework to display the
-                    posts in a mosaic format for easier perusal.
-                  </li>
-                  <li>
-                    Using a plugin PHP, HTML5 &amp; CSS3, created a page admin
-                    section that allowed the client to easily manage various
-                    charts via admin form instead of HTML
-                  </li>
-                  <li>
-                    Using a plugin, created a dynamic order form that changed
-                    based on certain form entries
-                  </li>
-                  <li>
-                    Rebranded the client to portray more accurately their wider
-                    distribution area and what they provide while maintaining an
-                    iconic design.
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h5>
-                  <strong>Guttman Realty</strong> (Website)
-                </h5>
-                <ul>
-                  <li>
-                    Accommodated logo with thin header using Illustrator to
-                    split logo elements, Photoshop to convert to an image &amp;
-                    HTML5 &amp; CSS3 to place aesthetically.
-                  </li>
-                  <li>
-                    Using HTML5 &amp; CSS3 created a grid-based real estate
-                    listing format.
-                  </li>
-                  <li>
-                    Managed implementation of listing filter via a third party
-                  </li>
-                  <li>
-                    Designed descriptive, theme appropriate icons using
-                    Illustrator.
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h4 id="everdixie-ems-supplies">EverDixie EMS Supplies</h4>
-            <p className="position__meta">
-              <em>
-                Director of Marketing &amp; Promotions, DEC 2011 - Aug 2015
-              </em>
-            </p>
-            <ul>
-              <li>
-                Used HTML5 &amp; CSS to rework the layout of one of their
-                ecommerce websites to be comprehensive and compelling where it
-                was confusing and cluttered.
-              </li>
-              <li>
-                Rebuilt an aged ecommerce storefront to a more modern aesthetic
-                and approach.
-              </li>
-              <li>
-                Built an informational website for one of the company’s new
-                product brands for sales representatives to refer to.
-              </li>
-              <li>Used HTML and CSS to design and code HTML email blasts.</li>
-              <li>
-                Took clean, bold product images for the website and Amazon and
-                improved or modified them in Photoshop, leading to increased
-                sales.
-              </li>
-              <li>
-                Used Photoshop, Illustrator and InDesign to create branding for
-                subsidiaries &amp; brands. Modernized the branding of existing
-                brands.
-              </li>
-              <li>
-                Used InDesign to create compelling booklets and other materials
-                for use in trade shows.
-              </li>
-              <li>
-                Used InDesign and Photoshop to create compelling web banners for
-                featured products and offers.
-              </li>
-            </ul>
-          </li>
-          <li>
-            <h4 id="dealmed-inc">Dealmed, Inc.</h4>
-            <p className="position__meta">
-              <em>
-                Director of Marketing &amp; Promotions, Jan 2009 - Jan 2011
-              </em>
-            </p>
-            <ul>
-              <li>Used HTML, CSS3 and PHP to build a Wordpress blog.</li>
-              <li>
-                Used InDesign, Photoshop to design HTML email blasts &amp; used
-                HTML &amp; CSS to code them.
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section id="education" className="resume__section page__section">
-        <SectionTitle>Education</SectionTitle>
-        <ul className="title-list">
-          <li>
-            <h4 id="nyim">New York Interactive Media Training</h4>
-            <p className="position__meta">
-              <em>HTML, CSS</em>
-            </p>
-          </li>
-          <li>
-            <h4 id="udemy">Udemy</h4>
-            <p className="position__meta">
-              <em>Bootstrap, HTML5, Javascript, jQuery, React</em>
-            </p>
-          </li>
-        </ul>
-      </section>
-      <section
-        id="industry-knowledge"
-        className="resume__section page__section"
-      >
-        <SectionTitle>Industry Knowledge</SectionTitle>
-        <ul className="grid-list">
-          <li>MVC</li>
-          <li>UI/UX</li>
-          <li>Responsive, mobile-first design</li>
-          <li>Wireframing</li>
-          <li>Mockups</li>
-          <li>SEO</li>
-          <li>Visitor flow</li>
-          <li>Headless CMS</li>
-          <li>Semantic Web</li>
-          <li>Google API</li>
-          <li>PCI Compliance</li>
-          <li>Color Theory</li>
-        </ul>
-      </section>
-      <section id="references" className="resume__section page__section">
-        <SectionTitle>References</SectionTitle>
-        <ul className="title-list">
-          <li>
-            <h4 id="daniel-soloff">Daniel Soloff</h4>
-            <p className="ref-contact-info">(732) 905-9700 x 604</p>
-          </li>
-          <li>
-            <h4 id="eli-davidson">Eli Davidson</h4>
-            <p className="ref-contact-info">
-              <a href="mailto:mail@e-davidson.com">mail@e-davidson.com</a>
-            </p>
-          </li>
-          <li>
-            <h4 id="avi-rosenthal">Avi Rosenthal</h4>
-            <p className="ref-contact-info">(732) 228-8888 x 201</p>
-          </li>
-          <li>
-            <h4 id="mimi-frankel">Mimi Frankel</h4>
-            <p className="ref-contact-info">(732) 298-3746</p>
-          </li>
-        </ul>
-      </section>
-    </ResumeStyles>
-  );
+            <a
+              className="btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://drive.google.com/file/d/1RcEHj7oHl_9yUOZhE8S-hUuQ7UBLd9tG/view?usp=sharing"
+            >
+              Download Resume
+            </a>
+          </SectionIntro>
+        </section>
+        <section id="skills" className="resume__section page__section">
+          <SectionTitle>Skills</SectionTitle>
+          <TitleList>
+            <SkillSets skills={this.state.skillSets} />
+          </TitleList>
+        </section>
+        <section id="experience" className="resume__section page__section">
+          <SectionTitle>Experience</SectionTitle>
+          <TitleList>
+            <ExpSets expList={this.state.experience} />
+          </TitleList>
+        </section>
+        <section id="education" className="resume__section page__section">
+          <SectionTitle>Education</SectionTitle>
+          <TitleList>
+            <EduSets eduList={this.state.education} />
+          </TitleList>
+        </section>
+        <section id="references" className="resume__section page__section">
+          <SectionTitle>References</SectionTitle>
+          <TitleList>
+            <RefSets refList={this.state.references} />
+          </TitleList>
+        </section>
+      </div>
+    );
+  }
+}
+
+const SkillSets = props => {
+  const skillSetsList = props.skills.map(skill => {
+    return (
+      <li key={skill.title}>
+        <SectionSubTitle>{skill.title}</SectionSubTitle>
+        <ListH>
+          <SkillListSets skillList={skill.skills} />
+        </ListH>
+      </li>
+    );
+  });
+  return skillSetsList;
 };
 
-export default resume;
+const SkillListSets = props => {
+  const skillLists = props.skillList.map(skill => {
+    return <li key={skill}>{skill}</li>;
+  });
+  return skillLists;
+};
+
+const ExpSets = props => {
+  const expSetList = props.expList.map(exp => {
+    let expMainKey = exp.title + " " + exp.org;
+    return (
+      <li key={expMainKey}>
+        <SectionSubTitle>{exp.title}</SectionSubTitle>
+        <SectionSubTitleDesc>
+          <span>{exp.org}</span>
+          <SectionTitleDivider />
+          <span>{exp.location}</span>
+          <SectionTitleDivider />
+          <span>{exp.dates}</span>
+        </SectionSubTitleDesc>
+        <List>
+          <ExpListSets expList={exp.experienceList} />
+        </List>
+      </li>
+    );
+  });
+  return expSetList;
+};
+
+const ExpListSets = props => {
+  const expLists = props.expList.map(exp => {
+    return <li key={exp}>{exp}</li>;
+  });
+  return expLists;
+};
+
+const EduSets = props => {
+  const eduSetsList = props.eduList.map(edu => {
+    return (
+      <li key={edu.school}>
+        <SectionSubTitle>{edu.school}</SectionSubTitle>
+        <ListH>
+          <EduListSets eduList={edu.skills} />
+        </ListH>
+      </li>
+    );
+  });
+  return eduSetsList;
+};
+
+const EduListSets = props => {
+  const eduLists = props.eduList.map(skill => {
+    return <li key={skill}>{skill}</li>;
+  });
+  return eduLists;
+};
+
+const RefSets = props => {
+  const eduSetsList = props.refList.map(ref => {
+    return (
+      <li key={ref.name}>
+        <SectionSubTitle>{ref.name}</SectionSubTitle>
+        <ListH>
+          <RefListSets refList={ref.contactInfo} />
+        </ListH>
+      </li>
+    );
+  });
+  return eduSetsList;
+};
+
+const RefListSets = props => {
+  const refLists = props.refList.map(info => {
+    if (info.type === "email") {
+      return (
+        <li key={info.info}>
+          <a href={`mailto:${info.info}`}>{info.info}</a>
+        </li>
+      );
+    }
+    return <li key={info.info}>{info.info}</li>;
+  });
+  return refLists;
+};
+
+// TODO: REFACTOR LIST RENDERING LOGIC:
+/*
+const ListSets = props => {
+  const lvl1Lists = props.topList.map(topElem => {
+    return (
+      <li key={topLElem.key}>
+        <SectionSubTitle>{topElem.title}</SectionSubTitle>
+        <ListH>
+          <SubListSets subList={topElem.subList} />
+        </ListH>
+      </li>
+    );
+  });
+  return lvl1Lists;
+};
+
+const SubListSets = props => {
+  const subLists = props.subList.map(subElem => {
+    if (subElem.type === "email") {
+      return (
+        <li key={subElem.info}>
+          <a href={`mailto:${info.info}`}>{info.info}</a>
+        </li>
+      );
+      return <li key={info.info}>{info.info}</li>;
+    }
+  })
+  return subLists
+}
+*/
