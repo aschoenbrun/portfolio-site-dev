@@ -28,7 +28,7 @@ const Content = props => {
     }
   `;
   return (
-    <ContentStyles id="site__content">
+    <ContentStyles as="main" id="site__content">
       <Switch>
         <Route path="/about-me" component={AboutMe} />
         <Route path="/resume" component={Resume} />
