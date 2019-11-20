@@ -53,7 +53,7 @@ export default class Resume extends Component {
         {
           title: "Utilities and Software",
           skills: [
-            "NPM",
+            "Node JS",
             "Webpack",
             "Git",
             "Visual Studio Code",
