@@ -34,12 +34,12 @@ export default class Resume extends Component {
         {
           title: "Languages and Frameworks",
           skills: [
-            "Javascript",
-            "jQuery",
             "React",
             "React Router",
             "Styled Components",
             "CSS Modules",
+            "Javascript",
+            "jQuery",
             "HTML5",
             "CSS3",
             "SASS",
