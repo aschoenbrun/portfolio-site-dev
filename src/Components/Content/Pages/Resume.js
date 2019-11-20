@@ -37,6 +37,9 @@ export default class Resume extends Component {
             "Javascript",
             "jQuery",
             "React",
+            "React Router",
+            "Styled Components",
+            "CSS Modules",
             "HTML5",
             "CSS3",
             "SASS",
@@ -118,11 +121,8 @@ export default class Resume extends Component {
           school: "Udemy",
           skills: [
             "React JS",
-            "React Router",
             "Javacript",
             "jQuery",
-            "Styled Components",
-            "CSS Modules",
             "Bootstrap",
             "HTML5",
             "CSS3"
