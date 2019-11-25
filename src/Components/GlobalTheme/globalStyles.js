@@ -60,3 +60,9 @@ export const HeaderFooterText = styled.span`
     }
   }
 `;
+
+export const Display = styled.div`
+  border: 1px solid ${globalColors.tanLT};
+  padding: 10px;
+  width: 100%;
+`;

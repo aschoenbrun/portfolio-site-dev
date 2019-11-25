@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { PageMargin, globalColors } from "../GlobalTheme/globalStyles";
 import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";
+import MyApps from "./Pages/MyApps";
 
 const Content = props => {
   const ContentStyles = styled(PageMargin)`
@@ -32,7 +33,9 @@ const Content = props => {
       <Switch>
         <Route path="/about-me" component={AboutMe} />
         <Route path="/resume" component={Resume} />
+        <Route path="/my-apps/calculator" component={MyApps} />
         <Redirect exact from="/" to="/about-me" />
+        <Redirect exact from="/my-apps" to="/my-apps/calculator" />
       </Switch>
     </ContentStyles>
   );

@@ -57,7 +57,7 @@ const AppStyle = styled.div`
     }
     &:hover,
     &:focus {
-      background-color: ${globalColors.yellow};
+      background-color: ${globalColors.yellowLT};
       color: ${globalColors.tanDK};
       box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
     }
