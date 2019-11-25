@@ -6,11 +6,13 @@ import Header from "./Components/GlobalTheme/Header/Header";
 import Content from "./Components/Content/Content";
 import Footer from "./Components/GlobalTheme/Footer";
 import Portrait from "./images/Headshots-Portrai---300x300t.jpg";
-import iconHTML5 from "./images/Icon - Programming - HTML.png";
-import iconCSS3 from "./images/Icon - Programming - CSS.png";
-import iconSASS from "./images/Sass-Logo---Seal-(Color).png";
+import iconHTML5 from "./images/Icon---Programming---HTML.png";
+import iconCSS3 from "./images/Icon---Programming---CSS.png";
 import iconJavascript from "./images/Icon---Programming---JavaScript-CROPPED.png";
-import iconReact from "./images/Icon - Programming - React.png";
+import iconReact from "./images/Icon---Programming---React.png";
+import iconReactRouter from "./images/Icon---Programming---React-Router.png";
+import iconNode from "./images/Icon---Programming---Node-JS-ICON-ONLY.png";
+import iconStyledComponents from "./images/icon---Programming---styled-components.png";
 
 // TODO
 // 1. Site meta
@@ -55,7 +57,7 @@ const AppStyle = styled.div`
     }
     &:hover,
     &:focus {
-      background-color: ${globalColors.yellow};
+      background-color: ${globalColors.yellowLT};
       color: ${globalColors.tanDK};
       box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
     }
@@ -135,11 +137,6 @@ class App extends Component {
           id: "css3"
         },
         {
-          name: "SASS",
-          image: iconSASS,
-          id: "sass"
-        },
-        {
           name: "Javascript",
           image: iconJavascript,
           id: "javascript"
@@ -148,6 +145,21 @@ class App extends Component {
           name: "React",
           image: iconReact,
           id: "react"
+        },
+        {
+          name: "React Router",
+          image: iconReactRouter,
+          id: "reactRouter"
+        },
+        {
+          name: "Node JS",
+          image: iconNode,
+          id: "nodeJs"
+        },
+        {
+          name: "Styled Components",
+          image: iconStyledComponents,
+          id: "styledComponents"
         }
       ],
       repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src",

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { globalColors, HeaderFooterText } from "./globalStyles";
+import { kebabCase } from "../globalJS";
 import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
 
 const FooterStyles = styled.footer`
@@ -26,24 +27,31 @@ const FooterStyles = styled.footer`
       margin: 0;
     }
   }
+  h3 {
+    display: block;
+    width: 100%;
+    font-size: 17px;
+    margin: 0;
+    padding-right: 0;
+    color: ${globalColors.tanLT};
+  }
   #built-with {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 0 30px;
-    strong {
-      display: block;
-      width: 100%;
-      font-size: 17px;
-      margin: 0 0 20px 0;
-      padding-right: 0;
-    }
-    & span {
+    margin: 7px 0 15px;
+    ul,
+    li {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       align-items: center;
+      list-style-type: none;
+      color: ${globalColors.tanLT};
+    }
+    ul {
+      justify-content: center;
+      padding-left: 0;
     }
     img {
       height: 20px;
@@ -55,8 +63,9 @@ const FooterStyles = styled.footer`
 
 const footer = props => {
   let builtWith = props.builtWith.map(lang => {
+    const langID = kebabCase(lang.name);
     return (
-      <HeaderFooterText key={lang.id} id={lang.name}>
+      <HeaderFooterText as="li" key={langID} id={langID}>
         <img src={lang.image} alt={lang.name} />
         {lang.name}
       </HeaderFooterText>
@@ -69,9 +78,8 @@ const footer = props => {
     <FooterStyles id="site__footer">
       <div id="footer__top">
         <p id="built-with">
-          <HeaderFooterText>
-            <strong>Built with</strong> {builtWith}
-          </HeaderFooterText>
+          <HeaderFooterText as="h3">Built with</HeaderFooterText>
+          <ul>{builtWith}</ul>
         </p>
         <a
           className="btn btn-img"
