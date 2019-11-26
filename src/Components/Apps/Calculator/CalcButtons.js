@@ -1,13 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { FaPlus, FaMinus, FaTimes, FaDivide, FaEquals } from "react-icons/fa";
+import {
+  FaPlus,
+  FaMinus,
+  FaTimes,
+  FaDivide,
+  FaTrashAlt,
+  FaEquals
+} from "react-icons/fa";
 
 const CalcButtonStyles = styled.div`
   display: grid;
-  grid-gap: 4px;
+  grid-gap: ${props => props.calcDims[0].gridGap};
+  & button {
+    padding-right: 0;
+    padding-left: 0;
+    width: ${props => props.calcDims[0].buttonWidth};
+  }
 `;
 
-export const NumButtons = () => {
+export const NumButtons = props => {
   const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
     numButtonNumArr.push(i);
@@ -16,18 +28,12 @@ export const NumButtons = () => {
 
   // TODO: Figure out why "0" won't move properly
   const NumButtonStyles = styled(CalcButtonStyles)`
-    grid-template-columns: repeat(3, 35px);
+    grid-template-columns: repeat(3, ${props.calcDims[0].buttonWidth});
     justify-items: center;
-    margin-right: 4px;
+    margin-right: ${props.calcDims[0].gridGap};
     & button:first-child {
-      order: ${numButtonNumArr.length - 1};
+      order: ${numButtonNumArr.length};
       justify-self: center;
-    }
-    #num-btn--posNeg,
-    #num-btn--dec {
-      padding-right: 0;
-      padding-left: 0;
-      width: 35px;
     }
   `;
 
@@ -47,12 +53,17 @@ export const NumButtons = () => {
       </button>
     );
   });
-  return <NumButtonStyles id="num-buttons">{numButtonList}</NumButtonStyles>;
+
+  return (
+    <NumButtonStyles calcDims={props.calcDims} id="num-buttons">
+      {numButtonList}
+    </NumButtonStyles>
+  );
 };
 
-export const OpButtons = () => {
+export const OpButtons = props => {
   const OpButtonStyles = styled(CalcButtonStyles)`
-    grid-template-columns: 35px;
+    grid-template-columns: ${props.calcDims[0].buttonWidth};
   `;
 
   // TODO: Equals and Clr as sep under
@@ -74,5 +85,39 @@ export const OpButtons = () => {
       </button>
     );
   });
-  return <OpButtonStyles id="op-buttons">{opButtonList}</OpButtonStyles>;
+  return (
+    <OpButtonStyles calcDims={props.calcDims} id="op-buttons">
+      {opButtonList}
+    </OpButtonStyles>
+  );
+};
+
+export const FnlButtons = props => {
+  const FnlButtonStyles = styled(CalcButtonStyles)`
+    grid-template-columns: repeat(2, 1fr);
+    button {
+      width: 100%;
+    }
+  `;
+
+  const fnlArr = ["equ", "clr"];
+
+  const fnlButtonsList = fnlArr.map(fnl => {
+    let fnlIcon;
+    if (fnl === "clr") {
+      fnlIcon = <FaEquals />;
+    } else if (fnl === "equ") {
+      fnlIcon = <FaTrashAlt />;
+    }
+    return (
+      <button className="btn fnl-btn" id={`fnl-btn--${fnl}`} key={fnl}>
+        {fnlIcon}
+      </button>
+    );
+  });
+  return (
+    <FnlButtonStyles calcDims={props.calcDims} id="fnl-buttons">
+      {fnlButtonsList}
+    </FnlButtonStyles>
+  );
 };

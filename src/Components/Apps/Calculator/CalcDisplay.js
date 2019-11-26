@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Display } from "../../GlobalTheme/globalStyles";
 import WebFont from "webfontloader";
 
@@ -10,11 +9,7 @@ const CalcDisplay = props => {
     }
   });
 
-  const CalcDisplayStyles = styled(Display)`
-    font-family: "Fira Code", Courier, monospace;
-  `;
-
-  return <CalcDisplayStyles>{props.children}</CalcDisplayStyles>;
+  return <Display className="display--code">{props.children}</Display>;
 };
 
 export default CalcDisplay;
