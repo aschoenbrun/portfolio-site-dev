@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import styled from "styled-components";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
 import { NumButtons, OpButtons } from "./CalcButtons";
 import CalcDisplay from "./CalcDisplay";
@@ -14,6 +15,11 @@ const PageMeta = () => {
 };
 
 const CalculatorMain = () => {
+  const CalcButtonsSectionStyles = styled.section`
+    display: flex;
+    align-items: flex-start;
+  `;
+
   const nums = useState([0]);
   const ops = useState([]);
   return (
@@ -23,10 +29,10 @@ const CalculatorMain = () => {
       <section id="display">
         <CalcDisplay />
       </section>
-      <section id="buttons">
+      <CalcButtonsSectionStyles id="buttons">
         <NumButtons />
         <OpButtons />
-      </section>
+      </CalcButtonsSectionStyles>
     </div>
   );
 };

@@ -77,10 +77,10 @@ const footer = props => {
   return (
     <FooterStyles id="site__footer">
       <div id="footer__top">
-        <p id="built-with">
+        <div id="built-with">
           <HeaderFooterText as="h3">Built with</HeaderFooterText>
           <ul>{builtWith}</ul>
-        </p>
+        </div>
         <a
           className="btn btn-img"
           href={props.repo}
