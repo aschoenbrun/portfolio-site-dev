@@ -100,14 +100,14 @@ export const FnlButtons = props => {
     }
   `;
 
-  const fnlArr = ["equ", "clr"];
+  const fnlArr = ["clr", "equ"];
 
   const fnlButtonsList = fnlArr.map(fnl => {
     let fnlIcon;
     if (fnl === "clr") {
-      fnlIcon = <FaEquals />;
-    } else if (fnl === "equ") {
       fnlIcon = <FaTrashAlt />;
+    } else if (fnl === "equ") {
+      fnlIcon = <FaEquals />;
     }
     return (
       <button className="btn fnl-btn" id={`fnl-btn--${fnl}`} key={fnl}>
