@@ -62,7 +62,13 @@ export const HeaderFooterText = styled.span`
 `;
 
 export const Display = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   border: 1px solid ${globalColors.tanLT};
   padding: 10px;
-  width: 100%;
+  width: calc(100% - 20px);
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
 `;

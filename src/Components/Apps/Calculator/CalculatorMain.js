@@ -15,24 +15,31 @@ const PageMeta = () => {
 };
 
 const CalculatorMain = () => {
-  const CalcButtonsSectionStyles = styled.section`
+  const CalcAppStyles = styled.div`
+    display: grid;
+    justify-content: center;
+  `;
+
+  const CalcButtonsSectionStyles = styled.div`
     display: flex;
     align-items: flex-start;
   `;
 
-  const nums = useState([0]);
-  const ops = useState([]);
+  const [nums, setNums] = useState([0]);
+  const [ops, setOps] = useState([]);
+  const [display, setDisplay] = useState(0);
+
   return (
     <div id="app--calculator">
       <PageMeta />
       <PageTitle>Calculator</PageTitle>
-      <section id="display">
-        <CalcDisplay />
-      </section>
-      <CalcButtonsSectionStyles id="buttons">
-        <NumButtons />
-        <OpButtons />
-      </CalcButtonsSectionStyles>
+      <CalcAppStyles id="calc-app">
+        <CalcDisplay>{display}</CalcDisplay>
+        <CalcButtonsSectionStyles id="buttons">
+          <NumButtons />
+          <OpButtons />
+        </CalcButtonsSectionStyles>
+      </CalcAppStyles>
     </div>
   );
 };

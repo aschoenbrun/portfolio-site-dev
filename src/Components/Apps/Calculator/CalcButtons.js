@@ -8,11 +8,11 @@ const CalcButtonStyles = styled.div`
 `;
 
 export const NumButtons = () => {
-  const numButtonArr = [];
+  const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
-    numButtonArr.push(i);
+    numButtonNumArr.push(i);
   }
-  numButtonArr.push.apply(numButtonArr, ["posNeg", "dec"]);
+  const numButtonArr = [...numButtonNumArr, "posNeg", "dec"];
 
   // TODO: Figure out why "0" won't move properly
   const NumButtonStyles = styled(CalcButtonStyles)`
@@ -20,7 +20,7 @@ export const NumButtons = () => {
     justify-items: center;
     margin-right: 4px;
     & button:first-child {
-      order: ${numButtonArr.length - 1};
+      order: ${numButtonNumArr.length - 1};
       justify-self: center;
     }
     #num-btn--posNeg,
@@ -55,7 +55,8 @@ export const OpButtons = () => {
     grid-template-columns: 35px;
   `;
 
-  const ops = ["add", "sub", "mult", "divd", "equ"];
+  // TODO: Equals and Clr as sep under
+  const ops = ["add", "sub", "mult", "divd"];
   const opButtonList = ops.map(op => {
     let opIcon;
     if (op === "add") {
@@ -66,8 +67,6 @@ export const OpButtons = () => {
       opIcon = <FaTimes />;
     } else if (op === "divd") {
       opIcon = <FaDivide />;
-    } else if (op === "equ") {
-      opIcon = <FaEquals />;
     }
     return (
       <button className="btn op-btn" id={`op-btn--${op}`} key={op}>
