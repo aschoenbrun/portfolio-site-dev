@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 export const globalColors = {
@@ -61,8 +62,27 @@ export const HeaderFooterText = styled.span`
   }
 `;
 
-export const Display = styled.div`
+const DisplayStyles = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   border: 1px solid ${globalColors.tanLT};
   padding: 10px;
-  width: 100%;
+  max-width: calc(100% - 22px);
+  min-width: 0;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  white-space: nowrap;
+  &.display--code {
+    font-family: "Fira Code", Courier, monospace;
+  }
 `;
+
+export const Display = props => {
+  return (
+    <DisplayStyles className={props.className}>
+      <div>{props.children}</div>
+    </DisplayStyles>
+  );
+};

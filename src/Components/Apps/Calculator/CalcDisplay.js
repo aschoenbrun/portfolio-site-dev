@@ -1,8 +1,15 @@
 import React from "react";
 import { Display } from "../../GlobalTheme/globalStyles";
+import WebFont from "webfontloader";
 
-const CalcDisplay = () => {
-  return <Display></Display>;
+const CalcDisplay = props => {
+  WebFont.load({
+    google: {
+      families: ["Fira Code"]
+    }
+  });
+
+  return <Display className="display--code">{props.children}</Display>;
 };
 
 export default CalcDisplay;
