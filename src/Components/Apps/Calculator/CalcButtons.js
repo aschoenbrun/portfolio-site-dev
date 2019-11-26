@@ -94,6 +94,7 @@ export const OpButtons = props => {
 
 export const FnlButtons = props => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
+    grid-column: 1 / 3;
     grid-template-columns: repeat(2, 1fr);
     button {
       width: 100%;

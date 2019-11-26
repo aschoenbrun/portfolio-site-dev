@@ -37,9 +37,6 @@ const CalculatorMain = () => {
       ${calcDims[0].buttonWidth};
     grid-gap: ${calcDims[0].gridGap};
     align-items: flex-start;
-    & #fnl-buttons {
-      grid-column: 1 / 3;
-    }
   `;
 
   return (
