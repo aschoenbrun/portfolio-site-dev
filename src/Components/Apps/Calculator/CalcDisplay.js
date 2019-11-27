@@ -1,13 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Display } from "../../GlobalTheme/globalStyles";
-import WebFont from "webfontloader";
 
 const CalcDisplay = props => {
-  WebFont.load({
-    google: {
-      families: ["Fira Code"]
-    }
-  });
+  const [display, setDisplay] = useState();
 
   return <Display className="display--code">{props.children}</Display>;
 };

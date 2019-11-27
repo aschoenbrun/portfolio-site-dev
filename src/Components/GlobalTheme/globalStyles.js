@@ -1,5 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import WebFont from "webfontloader";
+
+WebFont.load({
+  google: {
+    families: ["Fira Code"]
+  }
+});
 
 export const globalColors = {
   blue: "rgb(0, 31, 43)",
