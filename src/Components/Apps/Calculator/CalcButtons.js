@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {
   FaPlus,
@@ -11,31 +11,79 @@ import {
 
 const CalcButtonStyles = styled.div`
   display: grid;
-  grid-gap: ${props => props.calcDims[0].gridGap};
+  grid-gap: ${props => props.calcDims.gridGap};
   & button {
     padding-right: 0;
     padding-left: 0;
-    width: ${props => props.calcDims[0].buttonWidth};
+    width: ${props => props.calcDims.buttonWidth};
   }
 `;
 
-export const NumButtons = props => {
+export const NumButtons = ({
+  props,
+  calcDims,
+  numInputs,
+  setNumInputs,
+  numPosNeg,
+  setNumPosNeg,
+  num,
+  setNum,
+  res,
+  setRes,
+  display,
+  setDisplay
+}) => {
   const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
     numButtonNumArr.push(i);
   }
   const numButtonArr = [...numButtonNumArr, "posNeg", "dec"];
 
-  // TODO: Figure out why "0" won't move properly
   const NumButtonStyles = styled(CalcButtonStyles)`
-    grid-template-columns: repeat(3, ${props.calcDims[0].buttonWidth});
+    grid-template-columns: repeat(3, ${calcDims.buttonWidth});
     justify-items: center;
-    margin-right: ${props.calcDims[0].gridGap};
+    margin-right: ${calcDims.gridGap};
     & button:first-child {
       order: ${numButtonNumArr.length};
       justify-self: center;
     }
   `;
+
+  useEffect(() => {
+    console.log(num);
+    setDisplay(num);
+  }, [num, setDisplay]);
+
+  const entryClickHandler = el => {
+    const numInputStr = arr => {
+      return arr.join("");
+    };
+
+    if (el !== "+/-") {
+      if (numInputs.length === 1 && numInputs[0] === 0) {
+        setNumInputs([el]);
+        setNum(el);
+      } else {
+        let numArr = [...numInputs, el];
+        setNumInputs(numArr);
+        setNum(numInputStr(numArr));
+      }
+    } else {
+      // Find out why not updating until next num insert
+      // Perhaps incorporate useEffect?
+      if (numPosNeg) {
+        setNumPosNeg(false);
+        let posNumArr = ["-", ...numInputs];
+        setNumInputs(posNumArr);
+        numInputStr(posNumArr);
+      } else {
+        setNumPosNeg(true);
+        numInputs = numInputs.shift();
+        setNumInputs(numInputs);
+        numInputStr(numInputs);
+      }
+    }
+  };
 
   const numButtonList = numButtonArr.map(numEl => {
     let numElIcon;
@@ -47,28 +95,35 @@ export const NumButtons = props => {
       numElIcon = numEl;
     }
     let btnID = `num-btn--${numEl}`;
+
     return (
-      <button value={numEl} className="btn num-btn" id={btnID} key={btnID}>
+      <button
+        value={numEl}
+        className="btn num-btn"
+        id={btnID}
+        key={btnID}
+        onClick={() => entryClickHandler(numElIcon)}
+      >
         {numElIcon}
       </button>
     );
   });
 
   return (
-    <NumButtonStyles calcDims={props.calcDims} id="num-buttons">
+    <NumButtonStyles id="num-buttons" calcDims={calcDims}>
       {numButtonList}
     </NumButtonStyles>
   );
 };
 
-export const OpButtons = props => {
+export const OpButtons = ({ props, calcDims, ops, setOps }) => {
   const OpButtonStyles = styled(CalcButtonStyles)`
-    grid-template-columns: ${props.calcDims[0].buttonWidth};
+    grid-template-columns: ${calcDims.buttonWidth};
   `;
 
   // TODO: Equals and Clr as sep under
-  const ops = ["add", "sub", "mult", "divd"];
-  const opButtonList = ops.map(op => {
+  const opsArr = ["add", "sub", "mult", "divd"];
+  const opButtonList = opsArr.map(op => {
     let opIcon;
     if (op === "add") {
       opIcon = <FaPlus />;
@@ -86,13 +141,13 @@ export const OpButtons = props => {
     );
   });
   return (
-    <OpButtonStyles calcDims={props.calcDims} id="op-buttons">
+    <OpButtonStyles calcDims={calcDims} id="op-buttons">
       {opButtonList}
     </OpButtonStyles>
   );
 };
 
-export const FnlButtons = props => {
+export const FnlButtons = ({ props, calcDims, fnlActn, setFnlActn }) => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
     grid-column: 1 / 3;
     grid-template-columns: repeat(2, 1fr);
@@ -117,7 +172,7 @@ export const FnlButtons = props => {
     );
   });
   return (
-    <FnlButtonStyles calcDims={props.calcDims} id="fnl-buttons">
+    <FnlButtonStyles calcDims={calcDims} id="fnl-buttons">
       {fnlButtonsList}
     </FnlButtonStyles>
   );

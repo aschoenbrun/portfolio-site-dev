@@ -68,6 +68,7 @@ const DisplayStyles = styled.div`
   align-items: center;
   border: 1px solid ${globalColors.tanLT};
   padding: 10px;
+  line-height: 1em;
   max-width: calc(100% - 22px);
   min-width: 0;
   margin-bottom: 20px;
