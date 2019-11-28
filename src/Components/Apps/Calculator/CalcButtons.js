@@ -54,25 +54,26 @@ export const NumButtons = ({
       let newNumArr = [0];
       if (el !== "+/-") {
         if (numInputs.length === 1 && numInputs[0] === 0) {
-          setOldNum(0);
           newNumArr = [el];
         } else {
           newNumArr = [...numInputs, el];
         }
       } else {
-        if (numPosNeg) {
-          setNumPosNeg(false);
-          newNumArr = ["-", ...numInputs];
-        } else {
-          setNumPosNeg(true);
-          let removed = numInputs.splice(0, 1);
-          newNumArr = numInputs;
+        if (numInputs[0] !== 0) {
+          if (numPosNeg) {
+            setNumPosNeg(false);
+            newNumArr = ["-", ...numInputs];
+          } else {
+            setNumPosNeg(true);
+            numInputs.splice(0, 1);
+            newNumArr = numInputs;
+          }
         }
       }
       setNumInputs(newNumArr);
       setNum(parseFloat(newNumArr.join("")));
     },
-    [numInputs, setNumInputs, setNum, numPosNeg, setNumPosNeg, setOldNum]
+    [numInputs, setNumInputs, setNum, numPosNeg, setNumPosNeg]
   );
 
   const numButtonList = numButtonArr.map(numEl => {
@@ -111,6 +112,8 @@ export const OpButtons = ({
   calcDims,
   ops,
   setOps,
+  numInputs,
+  setNumInputs,
   num,
   setNum,
   oldNum,
@@ -126,54 +129,59 @@ export const OpButtons = ({
     {
       name: "add",
       icon: <FaPlus />,
-      operation: () => {
-        return oldNum + num;
+      operation: (x, y) => {
+        return x + y;
       }
     },
     {
       name: "sub",
       icon: <FaMinus />,
-      operation: () => {
-        return oldNum - num;
+      operation: (x, y) => {
+        return x - y;
       }
     },
     {
       name: "mult",
       icon: <FaTimes />,
-      operation: () => {
-        return oldNum * num;
+      operation: (x, y) => {
+        return x * y;
       }
     },
     {
       name: "divd",
       icon: <FaDivide />,
-      operation: () => {
-        return oldNum / num;
+      operation: (x, y) => {
+        return x / y;
       }
     }
   ];
 
-  let opHandler = useCallback(
-    op => {
-      setRes(op.operation(num, oldNum));
-      setOldNum(res);
-      setNum(res);
-    },
-    [res, setRes, oldNum, setOldNum, num, setNum]
+  // FIXME: If change res to neg then apply operator - setas umInputs, oldNum and num to 0
+  const opButtonList = useCallback(
+    opsArr.map(op => {
+      const opHandler = (res, name) => {
+        setRes(res);
+        setOldNum(res);
+        setNumInputs([0]);
+        setNum(res);
+        setOps(name);
+      };
+      return (
+        <button
+          className="btn op-btn"
+          id={`op-btn--${op.name}`}
+          key={op.name}
+          onClick={() => {
+            let opRes = op.operation(oldNum, num);
+            opHandler(opRes, op.name);
+          }}
+        >
+          {op.icon}
+        </button>
+      );
+    }),
+    [setRes, setOldNum, setNum, setNumInputs, setOps]
   );
-
-  const opButtonList = opsArr.map(op => {
-    return (
-      <button
-        className="btn op-btn"
-        id={`op-btn--${op.name}`}
-        key={op.name}
-        onClick={() => opHandler(op)}
-      >
-        {op.icon}
-      </button>
-    );
-  });
   return (
     <OpButtonStyles calcDims={calcDims} id="op-buttons">
       {opButtonList}
@@ -181,7 +189,18 @@ export const OpButtons = ({
   );
 };
 
-export const FnlButtons = ({ props, calcDims, fnlActn, setFnlActn }) => {
+export const FnlButtons = ({
+  props,
+  calcDims,
+  fnlActn,
+  setFnlActn,
+  res,
+  setRes,
+  setOldNum,
+  setNumInputs,
+  setNum,
+  setOps
+}) => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
     grid-column: 1 / 3;
     grid-template-columns: repeat(2, 1fr);
@@ -192,13 +211,20 @@ export const FnlButtons = ({ props, calcDims, fnlActn, setFnlActn }) => {
 
   const fnlArr = ["clr", "equ"];
 
-  const fnlClrHandler = useCallback(e => {
+  const fnlClrHandler = useCallback(() => {
     console.log("CLEAR!");
-  }, []);
+    setRes(0);
+    setOldNum(0);
+    setNumInputs([0]);
+    setNum(0);
+    setOps("");
+  }, [setNum, setNumInputs, setOldNum, setOps, setRes]);
 
-  const fnlEquHandler = useCallback(e => {
+  const fnlEquHandler = useCallback(() => {
     console.log("Equals");
-  }, []);
+    setNum(res);
+    setOps("");
+  }, [setNum, setOps, res]);
 
   const fnlButtonsList = fnlArr.map(fnl => {
     let fnlIcon, fnlHandler;

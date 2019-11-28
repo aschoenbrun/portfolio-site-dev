@@ -19,9 +19,10 @@ const CalculatorMain = () => {
   const [numPosNeg, setNumPosNeg] = useState(true);
   const [num, setNum] = useState(0);
   const [oldNum, setOldNum] = useState(0);
-  const [ops, setOps] = useState([]);
+  const [ops, setOps] = useState();
   const [fnlActn, setFnlActn] = useState([]);
   const [res, setRes] = useState();
+  console.log(`Input Array: ${numInputs}`);
   console.log(`Old Number: ${oldNum}`);
   console.log(`Number: ${num}`);
 
@@ -68,6 +69,8 @@ const CalculatorMain = () => {
             calcDims={calcDims}
             ops={ops}
             setOps={setOps}
+            numInputs={numInputs}
+            setNumInputs={setNumInputs}
             num={num}
             setNum={setNum}
             oldNum={oldNum}
@@ -75,7 +78,17 @@ const CalculatorMain = () => {
             res={res}
             setRes={setRes}
           />
-          <FnlButtons calcDims={calcDims} fnl={fnlActn} setFnl={setFnlActn} />
+          <FnlButtons
+            calcDims={calcDims}
+            fnl={fnlActn}
+            setFnl={setFnlActn}
+            res={res}
+            setRes={setRes}
+            setOldNum={setOldNum}
+            setNumInputs={setNumInputs}
+            setNum={setNum}
+            setOps={setOps}
+          />
         </CalcButtonsSectionStyles>
       </CalcAppStyles>
     </div>
