@@ -19,6 +19,10 @@ const CalcButtonStyles = styled.div`
   }
 `;
 
+const equHandler = () => {
+  console.log("EQUALS! =");
+};
+
 export const NumButtons = ({
   props,
   calcDims,
@@ -53,27 +57,14 @@ export const NumButtons = ({
     el => {
       let newNumArr = [0];
       if (el !== "+/-") {
-        if (numInputs.length === 1 && numInputs[0] === 0) {
-          newNumArr = [el];
-        } else {
-          newNumArr = [...numInputs, el];
-        }
+        newNumArr = [...numInputs, el];
+        setNumInputs(newNumArr);
+        setNum(parseFloat(newNumArr.join("")));
       } else {
-        if (numInputs[0] !== 0) {
-          if (numPosNeg) {
-            setNumPosNeg(false);
-            newNumArr = ["-", ...numInputs];
-          } else {
-            setNumPosNeg(true);
-            numInputs.splice(0, 1);
-            newNumArr = numInputs;
-          }
-        }
+        setNum(0 - num);
       }
-      setNumInputs(newNumArr);
-      setNum(parseFloat(newNumArr.join("")));
     },
-    [numInputs, setNumInputs, setNum, numPosNeg, setNumPosNeg]
+    [numInputs, setNumInputs, num, setNum]
   );
 
   const numButtonList = numButtonArr.map(numEl => {
