@@ -16,15 +16,15 @@ const PageMeta = () => {
 
 const CalculatorMain = () => {
   const [numInputs, setNumInputs] = useState([0]);
-  const [numPosNeg, setNumPosNeg] = useState(true);
   const [num, setNum] = useState(0);
   const [oldNum, setOldNum] = useState(0);
-  const [ops, setOps] = useState();
+  const [op, setOp] = useState("");
   const [fnlActn, setFnlActn] = useState([]);
-  const [res, setRes] = useState();
-  console.log(`Input Array: ${numInputs}`);
+  const [res, setRes] = useState(0);
   console.log(`Old Number: ${oldNum}`);
   console.log(`Number: ${num}`);
+  console.log(op);
+  console.log(res);
 
   const calcDims = {
     buttonWidth: "35px",
@@ -58,8 +58,6 @@ const CalculatorMain = () => {
             calcDims={calcDims}
             numInputs={numInputs}
             setNumInputs={setNumInputs}
-            numPosNeg={numPosNeg}
-            setNumPosNeg={setNumPosNeg}
             num={num}
             setNum={setNum}
             oldNum={oldNum}
@@ -67,8 +65,8 @@ const CalculatorMain = () => {
           />
           <OpButtons
             calcDims={calcDims}
-            ops={ops}
-            setOps={setOps}
+            op={op}
+            setOp={setOp}
             numInputs={numInputs}
             setNumInputs={setNumInputs}
             num={num}
@@ -86,8 +84,9 @@ const CalculatorMain = () => {
             setRes={setRes}
             setOldNum={setOldNum}
             setNumInputs={setNumInputs}
+            num={num}
             setNum={setNum}
-            setOps={setOps}
+            setOp={setOp}
           />
         </CalcButtonsSectionStyles>
       </CalcAppStyles>

@@ -19,10 +19,6 @@ const CalcButtonStyles = styled.div`
   }
 `;
 
-const equHandler = () => {
-  console.log("EQUALS! =");
-};
-
 export const NumButtons = ({
   props,
   calcDims,
@@ -101,8 +97,8 @@ export const NumButtons = ({
 export const OpButtons = ({
   props,
   calcDims,
-  ops,
-  setOps,
+  op,
+  setOp,
   numInputs,
   setNumInputs,
   num,
@@ -116,62 +112,64 @@ export const OpButtons = ({
     grid-template-columns: ${calcDims.buttonWidth};
   `;
 
+  const opHandler = () => {
+    setOldNum(num);
+    setNumInputs([0]);
+    setNum(0);
+  };
+
   const opsArr = [
     {
       name: "add",
       icon: <FaPlus />,
-      operation: (x, y) => {
-        return x + y;
+      operation: () => {
+        console.log("PLUS +");
+        setOp("add");
       }
     },
     {
       name: "sub",
       icon: <FaMinus />,
-      operation: (x, y) => {
-        return x - y;
+      operation: () => {
+        console.log("MINUS -");
+        setOp("sub");
       }
     },
     {
       name: "mult",
       icon: <FaTimes />,
-      operation: (x, y) => {
-        return x * y;
+      operation: () => {
+        console.log("MULTIPLY *");
+        setOp("mult");
       }
     },
     {
       name: "divd",
       icon: <FaDivide />,
-      operation: (x, y) => {
-        return x / y;
+      operation: () => {
+        console.log("DIVIDE /");
+        setOp("divd");
       }
     }
   ];
 
-  // FIXME: If change res to neg then apply operator - setas umInputs, oldNum and num to 0
   const opButtonList = useCallback(
-    opsArr.map(op => {
-      const opHandler = (res, name) => {
-        setRes(res);
-        setOldNum(res);
-        setNumInputs([0]);
-        setNum(res);
-        setOps(name);
-      };
+    opsArr.map(opBtn => {
       return (
         <button
           className="btn op-btn"
-          id={`op-btn--${op.name}`}
-          key={op.name}
+          id={`op-btn--${opBtn.name}`}
+          key={opBtn.name}
           onClick={() => {
-            let opRes = op.operation(oldNum, num);
-            opHandler(opRes, op.name);
+            opHandler();
+            opBtn.operation();
           }}
         >
-          {op.icon}
+          {opBtn.icon}
         </button>
       );
     }),
-    [setRes, setOldNum, setNum, setNumInputs, setOps]
+    [setRes, setOldNum, setNum, setNumInputs, setOp]
   );
   return (
     <OpButtonStyles calcDims={calcDims} id="op-buttons">
@@ -187,10 +185,13 @@ export const FnlButtons = ({
   setFnlActn,
   res,
   setRes,
+  oldNum,
   setOldNum,
   setNumInputs,
+  num,
   setNum,
-  setOps
+  op,
+  setOp
 }) => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
     grid-column: 1 / 3;
@@ -208,15 +209,30 @@ export const FnlButtons = ({
     setOldNum(0);
     setNumInputs([0]);
     setNum(0);
-    setOps("");
-  }, [setNum, setNumInputs, setOldNum, setOps, setRes]);
+    setOp("");
+  }, [setNum, setNumInputs, setOldNum, setOp, setRes]);
 
-  const fnlEquHandler = useCallback(() => {
-    console.log("Equals");
-    setNum(res);
-    setOps("");
-  }, [setNum, setOps, res]);
+  const fnlEquHandler = useCallback(
+    op => {
+      let numTotal;
+      if (op === "add") {
+        numTotal = oldNum + num;
+      } else if (op === "sub") {
+        numTotal = oldNum - num;
+      } else if (op === "mult") {
+        numTotal = oldNum * num;
+      } else if (op === "divd") {
+        numTotal = oldNum / num;
+      }
+      setRes(numTotal);
+      setOp("");
+      setNumInputs([0]);
+      console.log("Equals");
+    },
+    [setNumInputs, setOp, setRes, num, oldNum, res]
+  );
 
+  // FIXME: Find out why Equals isnt working. Experiment with useContext()
   const fnlButtonsList = fnlArr.map(fnl => {
     let fnlIcon, fnlHandler;
     if (fnl === "clr") {
