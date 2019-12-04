@@ -19,12 +19,8 @@ const CalculatorMain = () => {
   const [num, setNum] = useState(0);
   const [oldNum, setOldNum] = useState(0);
   const [op, setOp] = useState("");
-  const [fnlActn, setFnlActn] = useState([]);
-  const [res, setRes] = useState(0);
-  console.log(`Old Number: ${oldNum}`);
-  console.log(`Number: ${num}`);
-  console.log(`Op: ${op}`);
-  console.log(`Result: ${res}`);
+  const [opClicked, setOpClicked] = useState(false);
+  const [opIcon, setOpIcon] = useState(null);
 
   const calcDims = {
     buttonWidth: "35px",
@@ -52,12 +48,14 @@ const CalculatorMain = () => {
       <PageMeta />
       <PageTitle>Calculator</PageTitle>
       <CalcAppStyles calcDims={calcDims} id="calc-app">
-        <CalcDisplay calcDims={calcDims} num={num} op={op} />
+        <CalcDisplay calcDims={calcDims} num={num} op={op} opIcon={opIcon} />
         <CalcButtonsSectionStyles id="buttons">
           <NumButtons
             calcDims={calcDims}
             numInputs={numInputs}
             setNumInputs={setNumInputs}
+            op={op}
+            setOp={setOp}
             num={num}
             setNum={setNum}
             oldNum={oldNum}
@@ -73,15 +71,13 @@ const CalculatorMain = () => {
             setNum={setNum}
             oldNum={oldNum}
             setOldNum={setOldNum}
-            res={res}
-            setRes={setRes}
+            opClicked={opClicked}
+            setOpClicked={setOpClicked}
+            opIcon={opIcon}
+            setOpIcon={setOpIcon}
           />
           <FnlButtons
             calcDims={calcDims}
-            fnl={fnlActn}
-            setFnl={setFnlActn}
-            res={res}
-            setRes={setRes}
             oldNum={oldNum}
             setOldNum={setOldNum}
             setNumInputs={setNumInputs}
@@ -89,6 +85,8 @@ const CalculatorMain = () => {
             setNum={setNum}
             setOp={setOp}
             op={op}
+            opIcon={opIcon}
+            setOpIcon={setOpIcon}
           />
         </CalcButtonsSectionStyles>
       </CalcAppStyles>
