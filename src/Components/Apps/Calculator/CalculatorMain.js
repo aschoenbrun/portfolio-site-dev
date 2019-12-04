@@ -23,8 +23,8 @@ const CalculatorMain = () => {
   const [res, setRes] = useState(0);
   console.log(`Old Number: ${oldNum}`);
   console.log(`Number: ${num}`);
-  console.log(op);
-  console.log(res);
+  console.log(`Op: ${op}`);
+  console.log(`Result: ${res}`);
 
   const calcDims = {
     buttonWidth: "35px",
@@ -52,7 +52,7 @@ const CalculatorMain = () => {
       <PageMeta />
       <PageTitle>Calculator</PageTitle>
       <CalcAppStyles calcDims={calcDims} id="calc-app">
-        <CalcDisplay calcDims={calcDims}>{num}</CalcDisplay>
+        <CalcDisplay calcDims={calcDims} num={num} op={op} />
         <CalcButtonsSectionStyles id="buttons">
           <NumButtons
             calcDims={calcDims}
@@ -82,11 +82,13 @@ const CalculatorMain = () => {
             setFnl={setFnlActn}
             res={res}
             setRes={setRes}
+            oldNum={oldNum}
             setOldNum={setOldNum}
             setNumInputs={setNumInputs}
             num={num}
             setNum={setNum}
             setOp={setOp}
+            op={op}
           />
         </CalcButtonsSectionStyles>
       </CalcAppStyles>

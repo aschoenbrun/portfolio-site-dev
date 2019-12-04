@@ -20,18 +20,11 @@ const CalcButtonStyles = styled.div`
 `;
 
 export const NumButtons = ({
-  props,
   calcDims,
   numInputs,
   setNumInputs,
-  numPosNeg,
-  setNumPosNeg,
   num,
-  setNum,
-  oldNum,
-  setOldNum,
-  res,
-  setRes
+  setNum
 }) => {
   const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
@@ -95,11 +88,8 @@ export const NumButtons = ({
 };
 
 export const OpButtons = ({
-  props,
   calcDims,
-  op,
   setOp,
-  numInputs,
   setNumInputs,
   num,
   setNum,
@@ -181,9 +171,6 @@ export const OpButtons = ({
 export const FnlButtons = ({
   props,
   calcDims,
-  fnlActn,
-  setFnlActn,
-  res,
   setRes,
   oldNum,
   setOldNum,
@@ -223,13 +210,14 @@ export const FnlButtons = ({
         numTotal = oldNum * num;
       } else if (op === "divd") {
         numTotal = oldNum / num;
+      } else {
+        numTotal = num;
       }
-      setRes(numTotal);
-      setOp("");
+      setNum(numTotal);
       setNumInputs([0]);
-      console.log("Equals");
+      setOp("equ");
     },
-    [setNumInputs, setOp, setRes, num, oldNum, res]
+    [setNumInputs, setNum, num, oldNum, setOp]
   );
 
   // FIXME: Find out why Equals isnt working. Experiment with useContext()
@@ -240,7 +228,7 @@ export const FnlButtons = ({
       fnlHandler = fnlClrHandler;
     } else if (fnl === "equ") {
       fnlIcon = <FaEquals />;
-      fnlHandler = fnlEquHandler;
+      fnlHandler = () => fnlEquHandler(op);
     }
     return (
       <button

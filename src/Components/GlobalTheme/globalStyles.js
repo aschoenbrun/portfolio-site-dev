@@ -15,7 +15,8 @@ export const globalColors = {
   tan: "rgb(91, 88, 75)",
   tanLT: "rgb(151, 145, 126)",
   tanXLT: "rgb(236, 234, 223)",
-  tanDK: "rgb(66, 65, 59)"
+  tanDK: "rgb(66, 65, 59)",
+  orange: "rgb(67, 21, 7)"
 };
 
 export const PageMargin = styled.div`
@@ -89,8 +90,6 @@ const DisplayStyles = styled.div`
 
 export const Display = props => {
   return (
-    <DisplayStyles className={props.className}>
-      <div>{props.children}</div>
-    </DisplayStyles>
+    <DisplayStyles className={props.className}>{props.children}</DisplayStyles>
   );
 };
