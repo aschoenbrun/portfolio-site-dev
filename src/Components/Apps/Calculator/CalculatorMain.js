@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { create, all } from "mathjs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
 import { NumButtons, OpButtons, FnlButtons } from "./CalcButtons";
 import CalcDisplay from "./CalcDisplay";
+
+const math = create(all);
 
 const PageMeta = () => {
   return (
@@ -22,6 +25,12 @@ const CalculatorMain = () => {
   const [opClicked, setOpClicked] = useState(false);
   const [opIcon, setOpIcon] = useState(null);
   const [keyTypeClicked, setKeyTypeClicked] = useState("");
+
+  useEffect(() => {
+    console.log(`Old Number: ${oldNum}`);
+    console.log(`Op: ${op}`);
+    console.log(`Number: ${num}`);
+  }, [num, oldNum, op]);
 
   const calcDims = {
     buttonWidth: "35px",
@@ -49,7 +58,12 @@ const CalculatorMain = () => {
       <PageMeta />
       <PageTitle>Calculator</PageTitle>
       <CalcAppStyles calcDims={calcDims} id="calc-app">
-        <CalcDisplay calcDims={calcDims} num={num} op={op} opIcon={opIcon} />
+        <CalcDisplay
+          calcDims={calcDims}
+          num={math.format(num, { precision: 14 })}
+          op={op}
+          opIcon={opIcon}
+        />
         <CalcButtonsSectionStyles id="buttons">
           <NumButtons
             calcDims={calcDims}

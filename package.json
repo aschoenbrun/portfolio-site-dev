@@ -37,6 +37,7 @@
     "@fortawesome/react-fontawesome": "^0.1.7",
     "babel-plugin-styled-components": "^1.10.6",
     "lodash": "^4.17.15",
+    "mathjs": "^6.2.5",
     "node-sass": "^4.13.0",
     "react-headroom": "^3.0.0",
     "react-helmet": "^5.2.1",

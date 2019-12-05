@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { create, all } from "mathjs";
 import {
   FaPlus,
   FaMinus,
@@ -8,6 +9,8 @@ import {
   FaTrashAlt,
   FaEquals
 } from "react-icons/fa";
+
+const math = create(all);
 
 const CalcButtonStyles = styled.div`
   display: grid;
@@ -53,7 +56,7 @@ export const NumButtons = ({
         setNumInputs(newNumArr);
         setNum(parseFloat(newNumArr.join("")));
       } else {
-        setNum(0 - num);
+        setNum(math.evaluate(-num));
       }
       if (op === "equ") {
         setOp("");
@@ -102,6 +105,7 @@ export const OpButtons = ({
   setNumInputs,
   num,
   setNum,
+  oldNum,
   setOldNum,
   keyTypeClicked,
   setKeyTypeClicked
@@ -110,11 +114,25 @@ export const OpButtons = ({
     grid-template-columns: ${calcDims.buttonWidth};
   `;
 
-  const opHandler = opIconProp => {
-    setOldNum(num);
+  const opHandler = (opIcon, opName, op) => {
+    let numTotal;
+    if (op === "add") {
+      numTotal = math.evaluate(oldNum + num);
+    } else if (op === "sub") {
+      numTotal = math.evaluate(oldNum - num);
+    } else if (op === "mult") {
+      numTotal = math.evaluate(oldNum * num);
+    } else if (op === "divd") {
+      numTotal = math.evaluate(oldNum / num);
+    } else {
+      numTotal = num;
+    }
+    setOldNum(numTotal);
+    setNum(numTotal);
     setNumInputs([0]);
-    setOpIcon(opIconProp);
+    setOpIcon(opIcon);
     setKeyTypeClicked("op");
+    setOp(opName);
   };
 
   const opsArr = [
@@ -161,10 +179,8 @@ export const OpButtons = ({
           key={opBtn.name}
           onClick={() => {
             // FIXME: Allow op btns to calculate current operation then allow for next number
-            if (opBtn.name !== op) {
-              opHandler(opBtn.icon);
-              opBtn.operation();
-            }
+            opHandler(opBtn.icon, opBtn.name, op);
+            //opBtn.operation();
           }}
         >
           {opBtn.icon}
@@ -214,13 +230,13 @@ export const FnlButtons = ({
     op => {
       let numTotal;
       if (op === "add") {
-        numTotal = oldNum + num;
+        numTotal = math.evaluate(oldNum + num);
       } else if (op === "sub") {
-        numTotal = oldNum - num;
+        numTotal = math.evaluate(oldNum - num);
       } else if (op === "mult") {
-        numTotal = oldNum * num;
+        numTotal = math.evaluate(oldNum * num);
       } else if (op === "divd") {
-        numTotal = oldNum / num;
+        numTotal = math.evaluate(oldNum / num);
       } else {
         numTotal = num;
       }
