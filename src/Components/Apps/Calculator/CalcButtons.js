@@ -26,7 +26,8 @@ export const NumButtons = ({
   op,
   setOp,
   num,
-  setNum
+  setNum,
+  setKeyTypeClicked
 }) => {
   const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
@@ -57,8 +58,9 @@ export const NumButtons = ({
       if (op === "equ") {
         setOp("");
       }
+      setKeyTypeClicked("num");
     },
-    [numInputs, setNumInputs, num, setNum, op, setOp]
+    [numInputs, setNumInputs, num, setNum, op, setOp, setKeyTypeClicked]
   );
 
   const numButtonList = numButtonArr.map(numEl => {
@@ -100,7 +102,9 @@ export const OpButtons = ({
   setNumInputs,
   num,
   setNum,
-  setOldNum
+  setOldNum,
+  keyTypeClicked,
+  setKeyTypeClicked
 }) => {
   const OpButtonStyles = styled(CalcButtonStyles)`
     grid-template-columns: ${calcDims.buttonWidth};
@@ -110,7 +114,7 @@ export const OpButtons = ({
     setOldNum(num);
     setNumInputs([0]);
     setOpIcon(opIconProp);
-    //setNum(0);
+    setKeyTypeClicked("op");
   };
 
   const opsArr = [
@@ -156,9 +160,7 @@ export const OpButtons = ({
           id={`op-btn--${opBtn.name}`}
           key={opBtn.name}
           onClick={() => {
-            // FIXME: Allow consecutive op button press only after digit
-            // Consider numPressed boolean state
-            // num press = true, op press = false
+            // FIXME: Allow op btns to calculate current operation then allow for next number
             if (opBtn.name !== op) {
               opHandler(opBtn.icon);
               opBtn.operation();
@@ -187,7 +189,8 @@ export const FnlButtons = ({
   setNum,
   op,
   setOp,
-  setOpIcon
+  setOpIcon,
+  setKeyTypeClicked
 }) => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
     grid-column: 1 / 3;
@@ -234,12 +237,14 @@ export const FnlButtons = ({
       fnlIcon = <FaTrashAlt />;
       fnlHandler = () => {
         fnlClrHandler();
+        setKeyTypeClicked("clr");
       };
     } else if (fnl === "equ") {
       fnlIcon = <FaEquals />;
       fnlHandler = () => {
         fnlEquHandler(op);
         setOpIcon(fnlIcon);
+        setKeyTypeClicked("equ");
       };
     }
     return (
@@ -247,7 +252,9 @@ export const FnlButtons = ({
         className="btn fnl-btn"
         id={`fnl-btn--${fnl}`}
         key={fnl}
-        onClick={fnlHandler}
+        onClick={() => {
+          fnlHandler();
+        }}
       >
         {fnlIcon}
       </button>

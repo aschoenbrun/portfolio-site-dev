@@ -21,6 +21,7 @@ const CalculatorMain = () => {
   const [op, setOp] = useState("");
   const [opClicked, setOpClicked] = useState(false);
   const [opIcon, setOpIcon] = useState(null);
+  const [keyTypeClicked, setKeyTypeClicked] = useState("");
 
   const calcDims = {
     buttonWidth: "35px",
@@ -60,6 +61,7 @@ const CalculatorMain = () => {
             setNum={setNum}
             oldNum={oldNum}
             setOldNum={setOldNum}
+            setKeyTypeClicked={setKeyTypeClicked}
           />
           <OpButtons
             calcDims={calcDims}
@@ -75,6 +77,8 @@ const CalculatorMain = () => {
             setOpClicked={setOpClicked}
             opIcon={opIcon}
             setOpIcon={setOpIcon}
+            keyTypeClicked={keyTypeClicked}
+            setKeyTypeClicked={setKeyTypeClicked}
           />
           <FnlButtons
             calcDims={calcDims}
@@ -87,6 +91,7 @@ const CalculatorMain = () => {
             op={op}
             opIcon={opIcon}
             setOpIcon={setOpIcon}
+            setKeyTypeClicked={setKeyTypeClicked}
           />
         </CalcButtonsSectionStyles>
       </CalcAppStyles>
