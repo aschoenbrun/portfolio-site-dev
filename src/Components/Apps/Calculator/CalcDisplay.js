@@ -13,10 +13,8 @@ const CalcDisplayWrapper = styled.div`
     align-items: center;
     color: ${globalColors.tanXLT};
     font-size: 12px;
-    transition: width 0.5s;
     width: 0;
     padding-right: 0;
-    transition: 0.25s;
     &.active {
       width: 34px;
       svg {
@@ -26,7 +24,7 @@ const CalcDisplayWrapper = styled.div`
   }
 `;
 
-const CalcDisplay = ({ op, num, opIcon }) => {
+const CalcDisplay = ({ op, setOp, num, opIcon }) => {
   const iconDrawer = useRef("");
 
   useEffect(() => {
@@ -35,7 +33,8 @@ const CalcDisplay = ({ op, num, opIcon }) => {
     } else {
       iconDrawer.current.classList.remove("active");
     }
-  });
+  }, [op, setOp]);
+
   return (
     <CalcDisplayWrapper id="display__wrapper">
       <div ref={iconDrawer} id="display__icon-wrapper">

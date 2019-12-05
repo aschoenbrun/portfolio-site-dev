@@ -109,9 +109,7 @@ export const OpButtons = ({
   const opHandler = opIconProp => {
     setOldNum(num);
     setNumInputs([0]);
-    setTimeout(() => {
-      setOpIcon(opIconProp);
-    }, 250);
+    setOpIcon(opIconProp);
     //setNum(0);
   };
 
@@ -158,6 +156,9 @@ export const OpButtons = ({
           id={`op-btn--${opBtn.name}`}
           key={opBtn.name}
           onClick={() => {
+            // FIXME: Allow consecutive op button press only after digit
+            // Consider numPressed boolean state
+            // num press = true, op press = false
             if (opBtn.name !== op) {
               opHandler(opBtn.icon);
               opBtn.operation();
@@ -233,17 +234,12 @@ export const FnlButtons = ({
       fnlIcon = <FaTrashAlt />;
       fnlHandler = () => {
         fnlClrHandler();
-        setTimeout(() => {
-          setOpIcon(fnlIcon);
-        }, 250);
       };
     } else if (fnl === "equ") {
       fnlIcon = <FaEquals />;
       fnlHandler = () => {
         fnlEquHandler(op);
-        setTimeout(() => {
-          setOpIcon(fnlIcon);
-        }, 250);
+        setOpIcon(fnlIcon);
       };
     }
     return (
