@@ -178,7 +178,6 @@ export const OpButtons = ({
           id={`op-btn--${opBtn.name}`}
           key={opBtn.name}
           onClick={() => {
-            // FIXME: Allow op btns to calculate current operation then allow for next number
             opHandler(opBtn.icon, opBtn.name, op);
             //opBtn.operation();
           }}

@@ -123,6 +123,9 @@ class App extends Component {
         },
         {
           name: "Resume"
+        },
+        {
+          name: "My Apps"
         }
       ],
       builtWith: [
