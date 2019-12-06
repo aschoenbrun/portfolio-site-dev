@@ -4,6 +4,15 @@ import styled from "styled-components";
 
 const RepoLinkStyles = styled.div`
   text-align: center;
+  @media screen and (max-width: 550px) {
+    .btn.repo-link {
+      text-align: left;
+      line-height: 1.25em;
+      img {
+        height: 30px;
+      }
+    }
+  }
 `;
 
 const RepoLink = props => {
