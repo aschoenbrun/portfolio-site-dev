@@ -1,8 +1,14 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { kebabCase } from "../../globalJS";
 import PageAnchor from "../../GlobalTheme/PageAnchor";
-import { SubNavStyles, PageTitle } from "../../GlobalTheme/globalStyles";
+import RepoLink from "../../GlobalTheme/RepoLink";
+import {
+  SubNavStyles,
+  PageTitle,
+  PageSubTitle
+} from "../../GlobalTheme/globalStyles";
 import SubNavItem from "../../GlobalTheme/SubNavItem";
 import CalculatorMain from "../../Apps/Calculator/CalculatorMain";
 
@@ -12,7 +18,9 @@ const MyApps = () => {
   const subPages = [
     {
       name: "Calculator",
-      component: CalculatorMain
+      component: <CalculatorMain />,
+      // prettier-ignore
+      repo: "https://github.com/aschoenbrun/portfolio-site-dev/tree/master/src/Components/Apps/Calculator"
     }
   ];
   const subNav = subPages.map((subPage, index) => {
@@ -31,7 +39,18 @@ const MyApps = () => {
     const subPageRouteList = subPages.map(subPage => {
       const elemID = kebabCase(subPage.name);
       return (
-        <Route path={`${match.path}/${elemID}`} component={subPage.component} />
+        <Route path={`${match.path}/${elemID}`}>
+          <Helmet>
+            <title>{subPage.name} - My Apps - Avi Schoenbrun</title>
+            <link
+              rel="canonical"
+              href={`https://aysportfolio/my-apps/${elemID}`}
+            />
+          </Helmet>
+          <PageSubTitle>{subPage.name}</PageSubTitle>
+          {subPage.component}
+          <RepoLink appBuilt="calculator" repo={subPage.repo} />
+        </Route>
       );
     });
     return subPageRouteList;

@@ -27,6 +27,9 @@ const Content = props => {
       line-height: 1.5em;
       letter-spacing: 0.1em;
     }
+    .repo-link {
+      margin: 60px 0 20px;
+    }
   `;
 
   return (

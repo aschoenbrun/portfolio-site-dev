@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { create, all } from "mathjs";
-import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import { PageSubTitle } from "../../GlobalTheme/globalStyles";
 import { NumButtons, OpButtons, FnlButtons } from "./CalcButtons";
 import CalcDisplay from "./CalcDisplay";
 
 const math = create(all);
-
-const PageMeta = () => {
-  return (
-    <Helmet>
-      <title>Calculator - My Apps - Avi Schoenbrun</title>
-      <link rel="canonical" href="https://aysportfolio/my-apps/calculator" />
-    </Helmet>
-  );
-};
 
 const CalculatorMain = () => {
   const [numInputs, setNumInputs] = useState([0]);
@@ -55,8 +44,6 @@ const CalculatorMain = () => {
 
   return (
     <div id="app--calculator">
-      <PageMeta />
-      <PageSubTitle>Calculator</PageSubTitle>
       <CalcAppStyles calcDims={calcDims} id="calc-app">
         <CalcDisplay
           calcDims={calcDims}

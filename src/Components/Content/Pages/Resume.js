@@ -9,6 +9,7 @@ import {
 } from "../SectionTitles";
 import SectionIntro from "../SectionIntro";
 import { TitleList, List, ListH } from "../ContentLists";
+import styled from "styled-components";
 
 const PageMeta = () => {
   return (
@@ -19,10 +20,19 @@ const PageMeta = () => {
   );
 };
 
-// TODO: List structure
-// li
-// ListH &
-// ListV &
+const ResumeStyles = styled.div`
+  #references > ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    li {
+      margin-right: 25px;
+      ul {
+        margin: 0 0 10px;
+      }
+    }
+  }
+`;
 
 export default class Resume extends Component {
   constructor(props) {
@@ -114,7 +124,13 @@ export default class Resume extends Component {
       ],
       education: [
         {
+          school: "Excelsior College",
+          location: "Albany, NY",
+          skills: ["Bachelors of Science"]
+        },
+        {
           school: "New York Interactive Media Training",
+          location: "New York, NY",
           skills: ["HTML", "CSS"]
         },
         {
@@ -149,6 +165,15 @@ export default class Resume extends Component {
           ]
         },
         {
+          name: "Eli Golding",
+          contactInfo: [
+            {
+              type: "email",
+              info: "eligolding@gmail.com"
+            }
+          ]
+        },
+        {
           name: "Avi Rosenthal",
           contactInfo: [
             {
@@ -172,7 +197,7 @@ export default class Resume extends Component {
 
   render() {
     return (
-      <div id="resume">
+      <ResumeStyles id="resume">
         <PageMeta />
         <PageTitle>Resume</PageTitle>
         <section id="summary">
@@ -218,7 +243,7 @@ export default class Resume extends Component {
             <RefSets refList={this.state.references} />
           </TitleList>
         </section>
-      </div>
+      </ResumeStyles>
     );
   }
 }
@@ -278,6 +303,7 @@ const EduSets = props => {
     return (
       <li key={edu.school}>
         <SectionSubTitle>{edu.school}</SectionSubTitle>
+        <SectionSubTitleDesc>{edu.location}</SectionSubTitleDesc>
         <ListH>
           <EduListSets eduList={edu.skills} />
         </ListH>
