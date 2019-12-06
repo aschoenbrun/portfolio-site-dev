@@ -1,5 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import WebFont from "webfontloader";
+
+WebFont.load({
+  google: {
+    families: ["Fira Code"]
+  }
+});
 
 export const globalColors = {
   blue: "rgb(0, 31, 43)",
@@ -8,7 +15,9 @@ export const globalColors = {
   tan: "rgb(91, 88, 75)",
   tanLT: "rgb(151, 145, 126)",
   tanXLT: "rgb(236, 234, 223)",
-  tanDK: "rgb(66, 65, 59)"
+  tanDK: "rgb(66, 65, 59)",
+  orange: "rgb(67, 21, 7)",
+  orangeGreyLT: "rgb(208, 194, 149);"
 };
 
 export const PageMargin = styled.div`
@@ -40,6 +49,13 @@ export const PageTitle = styled.h1`
   }
 `;
 
+export const PageSubTitle = styled.h2`
+  color: ${globalColors.tan};
+  margin: 0 0 40px;
+  text-align: center;
+  font-weight: 700;
+`;
+
 export const HeaderFooterText = styled.span`
   text-transform: uppercase;
   font-size: 11px;
@@ -62,6 +78,14 @@ export const HeaderFooterText = styled.span`
   }
 `;
 
+export const SubNavStyles = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 50px;
+  display: flex;
+  justify-content: center;
+`;
+
 const DisplayStyles = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -82,8 +106,6 @@ const DisplayStyles = styled.div`
 
 export const Display = props => {
   return (
-    <DisplayStyles className={props.className}>
-      <div>{props.children}</div>
-    </DisplayStyles>
+    <DisplayStyles className={props.className}>{props.children}</DisplayStyles>
   );
 };

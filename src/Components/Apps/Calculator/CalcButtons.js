@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
+import { create, all } from "mathjs";
 import {
   FaPlus,
   FaMinus,
@@ -8,6 +9,8 @@ import {
   FaTrashAlt,
   FaEquals
 } from "react-icons/fa";
+
+const math = create(all);
 
 const CalcButtonStyles = styled.div`
   display: grid;
@@ -20,18 +23,14 @@ const CalcButtonStyles = styled.div`
 `;
 
 export const NumButtons = ({
-  props,
   calcDims,
   numInputs,
   setNumInputs,
-  numPosNeg,
-  setNumPosNeg,
+  op,
+  setOp,
   num,
   setNum,
-  res,
-  setRes,
-  display,
-  setDisplay
+  setKeyTypeClicked
 }) => {
   const numButtonNumArr = [];
   for (let i = 0; i < 10; i++) {
@@ -49,41 +48,23 @@ export const NumButtons = ({
     }
   `;
 
-  useEffect(() => {
-    console.log(num);
-    setDisplay(num);
-  }, [num, setDisplay]);
-
-  const entryClickHandler = el => {
-    const numInputStr = arr => {
-      return arr.join("");
-    };
-
-    if (el !== "+/-") {
-      if (numInputs.length === 1 && numInputs[0] === 0) {
-        setNumInputs([el]);
-        setNum(el);
+  const entryClickHandler = useCallback(
+    el => {
+      let newNumArr = [0];
+      if (el !== "+/-") {
+        newNumArr = [...numInputs, el];
+        setNumInputs(newNumArr);
+        setNum(parseFloat(newNumArr.join("")));
       } else {
-        let numArr = [...numInputs, el];
-        setNumInputs(numArr);
-        setNum(numInputStr(numArr));
+        setNum(math.evaluate(-num));
       }
-    } else {
-      // Find out why not updating until next num insert
-      // Perhaps incorporate useEffect?
-      if (numPosNeg) {
-        setNumPosNeg(false);
-        let posNumArr = ["-", ...numInputs];
-        setNumInputs(posNumArr);
-        numInputStr(posNumArr);
-      } else {
-        setNumPosNeg(true);
-        numInputs = numInputs.shift();
-        setNumInputs(numInputs);
-        numInputStr(numInputs);
+      if (op === "equ") {
+        setOp("");
       }
-    }
-  };
+      setKeyTypeClicked("num");
+    },
+    [numInputs, setNumInputs, num, setNum, op, setOp, setKeyTypeClicked]
+  );
 
   const numButtonList = numButtonArr.map(numEl => {
     let numElIcon;
@@ -116,30 +97,93 @@ export const NumButtons = ({
   );
 };
 
-export const OpButtons = ({ props, calcDims, ops, setOps }) => {
+export const OpButtons = ({
+  calcDims,
+  op,
+  setOp,
+  setOpIcon,
+  setNumInputs,
+  num,
+  setNum,
+  oldNum,
+  setOldNum,
+  keyTypeClicked,
+  setKeyTypeClicked
+}) => {
   const OpButtonStyles = styled(CalcButtonStyles)`
     grid-template-columns: ${calcDims.buttonWidth};
   `;
 
-  // TODO: Equals and Clr as sep under
-  const opsArr = ["add", "sub", "mult", "divd"];
-  const opButtonList = opsArr.map(op => {
-    let opIcon;
+  const opHandler = (opIcon, opName, op) => {
+    let numTotal;
     if (op === "add") {
-      opIcon = <FaPlus />;
+      numTotal = math.evaluate(oldNum + num);
     } else if (op === "sub") {
-      opIcon = <FaMinus />;
+      numTotal = math.evaluate(oldNum - num);
     } else if (op === "mult") {
-      opIcon = <FaTimes />;
+      numTotal = math.evaluate(oldNum * num);
     } else if (op === "divd") {
-      opIcon = <FaDivide />;
+      numTotal = math.evaluate(oldNum / num);
+    } else {
+      numTotal = num;
     }
-    return (
-      <button className="btn op-btn" id={`op-btn--${op}`} key={op}>
-        {opIcon}
-      </button>
-    );
-  });
+    setOldNum(numTotal);
+    setNum(numTotal);
+    setNumInputs([0]);
+    setOpIcon(opIcon);
+    setKeyTypeClicked("op");
+    setOp(opName);
+  };
+
+  const opsArr = [
+    {
+      name: "add",
+      icon: <FaPlus />,
+      operation: () => {
+        setOp("add");
+      }
+    },
+    {
+      name: "sub",
+      icon: <FaMinus />,
+      operation: () => {
+        setOp("sub");
+      }
+    },
+    {
+      name: "mult",
+      icon: <FaTimes />,
+      operation: () => {
+        setOp("mult");
+      }
+    },
+    {
+      name: "divd",
+      icon: <FaDivide />,
+      operation: () => {
+        setOp("divd");
+      }
+    }
+  ];
+
+  const opButtonList = useCallback(
+    opsArr.map(opBtn => {
+      return (
+        <button
+          className="btn op-btn"
+          id={`op-btn--${opBtn.name}`}
+          key={opBtn.name}
+          onClick={() => {
+            opHandler(opBtn.icon, opBtn.name, op);
+            //opBtn.operation();
+          }}
+        >
+          {opBtn.icon}
+        </button>
+      );
+    }),
+    [setOldNum, setNum, setNumInputs, setOp]
+  );
   return (
     <OpButtonStyles calcDims={calcDims} id="op-buttons">
       {opButtonList}
@@ -147,7 +191,18 @@ export const OpButtons = ({ props, calcDims, ops, setOps }) => {
   );
 };
 
-export const FnlButtons = ({ props, calcDims, fnlActn, setFnlActn }) => {
+export const FnlButtons = ({
+  calcDims,
+  oldNum,
+  setOldNum,
+  setNumInputs,
+  num,
+  setNum,
+  op,
+  setOp,
+  setOpIcon,
+  setKeyTypeClicked
+}) => {
   const FnlButtonStyles = styled(CalcButtonStyles)`
     grid-column: 1 / 3;
     grid-template-columns: repeat(2, 1fr);
@@ -158,15 +213,59 @@ export const FnlButtons = ({ props, calcDims, fnlActn, setFnlActn }) => {
 
   const fnlArr = ["clr", "equ"];
 
+  const fnlClrHandler = useCallback(() => {
+    setOldNum(0);
+    setNumInputs([0]);
+    setNum(0);
+    setOp("");
+  }, [setNum, setNumInputs, setOldNum, setOp]);
+
+  const fnlEquHandler = useCallback(
+    op => {
+      let numTotal;
+      if (op === "add") {
+        numTotal = math.evaluate(oldNum + num);
+      } else if (op === "sub") {
+        numTotal = math.evaluate(oldNum - num);
+      } else if (op === "mult") {
+        numTotal = math.evaluate(oldNum * num);
+      } else if (op === "divd") {
+        numTotal = math.evaluate(oldNum / num);
+      } else {
+        numTotal = num;
+      }
+      setNum(numTotal);
+      setNumInputs([0]);
+      setOp("equ");
+    },
+    [setNumInputs, setNum, num, oldNum, setOp]
+  );
+
   const fnlButtonsList = fnlArr.map(fnl => {
-    let fnlIcon;
+    let fnlIcon, fnlHandler;
     if (fnl === "clr") {
       fnlIcon = <FaTrashAlt />;
+      fnlHandler = () => {
+        fnlClrHandler();
+        setKeyTypeClicked("clr");
+      };
     } else if (fnl === "equ") {
       fnlIcon = <FaEquals />;
+      fnlHandler = () => {
+        fnlEquHandler(op);
+        setOpIcon(fnlIcon);
+        setKeyTypeClicked("equ");
+      };
     }
     return (
-      <button className="btn fnl-btn" id={`fnl-btn--${fnl}`} key={fnl}>
+      <button
+        className="btn fnl-btn"
+        id={`fnl-btn--${fnl}`}
+        key={fnl}
+        onClick={() => {
+          fnlHandler();
+        }}
+      >
         {fnlIcon}
       </button>
     );

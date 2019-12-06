@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { globalColors, HeaderFooterText } from "./globalStyles";
 import { kebabCase } from "../globalJS";
-import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
+import RepoLink from "./RepoLink";
 
 const FooterStyles = styled.footer`
   margin-top: 75px;
@@ -72,8 +72,6 @@ const footer = props => {
     );
   });
 
-  const githubButtonText = "View code on GitHub";
-
   return (
     <FooterStyles id="site__footer">
       <div id="footer__top">
@@ -81,14 +79,7 @@ const footer = props => {
           <HeaderFooterText as="h3">Built with</HeaderFooterText>
           <ul>{builtWith}</ul>
         </div>
-        <a
-          className="btn btn-img"
-          href={props.repo}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={gitHubMark} alt={githubButtonText} /> {githubButtonText}
-        </a>
+        <RepoLink appBuilt={"website"} repo={props.repo} />
       </div>
       <div id="footer__bottom">
         <HeaderFooterText as="p">

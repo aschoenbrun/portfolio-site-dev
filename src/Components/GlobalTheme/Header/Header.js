@@ -138,7 +138,7 @@ const header = props => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       margin: 0 auto;
       padding: 0;
       width: 200px;
@@ -207,6 +207,16 @@ const header = props => {
           &:active {
             @media screen and (min-width: 960px) {
               padding: 18px 15px 9px;
+            }
+          }
+          &.active {
+            &,
+            &:hover,
+            &:focus {
+              @media screen and (min-width: 960px) {
+                padding: 17px 15px 10px;
+                background-color: ${globalColors.orangeGreyLT};
+              }
             }
           }
         }

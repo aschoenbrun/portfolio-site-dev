@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import { globalColors } from "./Components/GlobalTheme/globalStyles";
+import { Helmet } from "react-helmet";
 import Header from "./Components/GlobalTheme/Header/Header";
 import Content from "./Components/Content/Content";
 import Footer from "./Components/GlobalTheme/Footer";
@@ -43,7 +44,7 @@ const AppStyle = styled.div`
     font-weight: 900;
     text-align: center;
     padding: 13px 13px 10px;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
     text-shadow: none;
     cursor: pointer;
     transition: 0.25s ease-out;
@@ -60,6 +61,9 @@ const AppStyle = styled.div`
       background-color: ${globalColors.yellowLT};
       color: ${globalColors.tanDK};
       box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
+    }
+    &:active {
+      box-shadow: 0px 0.1px 1px 0px rgba(0, 0, 0, 0.5);
     }
   }
 
@@ -123,6 +127,9 @@ class App extends Component {
         },
         {
           name: "Resume"
+        },
+        {
+          name: "My Apps"
         }
       ],
       builtWith: [
@@ -192,6 +199,14 @@ class App extends Component {
   render() {
     return (
       <AppStyle className={this.state.headerClass}>
+        <Helmet>
+          <title>Portfolio - Avi Schoenbrun</title>
+          <link rel="canonical" href="https://aysportfolio/" />
+          <meta
+            name="description"
+            content="I am a creative Front-End Developer and UI/UX Designer with 6 years experience in designing and building web applications."
+          />
+        </Helmet>
         <Router>
           <Header
             portrait={this.state.portrait}

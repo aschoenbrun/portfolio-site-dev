@@ -9,7 +9,7 @@ const PageMeta = () => {
   return (
     <Helmet>
       <title>About Me - Avi Schoenbrun</title>
-      <link rel="canonical" href="https://aysportfolio/" />
+      <link rel="canonical" href="https://aysportfolio/about-me" />
     </Helmet>
   );
 };
