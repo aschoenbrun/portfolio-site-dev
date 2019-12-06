@@ -13,13 +13,10 @@ const CalcDisplayWrapper = styled.div`
     align-items: center;
     color: ${globalColors.tanXLT};
     font-size: 12px;
-    width: 0;
     padding-right: 0;
-    &.active {
-      width: 34px;
-      svg {
-        margin-left: 1px;
-      }
+    width: 34px;
+    svg {
+      margin-left: 1px;
     }
   }
 `;
