@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { create, all } from "mathjs";
 import styled from "styled-components";
 import { NumButtons, OpButtons, FnlButtons } from "./CalcButtons";
