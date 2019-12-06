@@ -58,6 +58,10 @@ const MyApps = () => {
 
   return (
     <>
+      <Helmet>
+        <title>My Apps - Avi Schoenbrun</title>
+        <link rel="canonical" href="https://aysportfolio/my-apps" />
+      </Helmet>
       <PageTitle>My Apps</PageTitle>
       <PageAnchor component="app" />
       <SubNavStyles>{subNav}</SubNavStyles>
