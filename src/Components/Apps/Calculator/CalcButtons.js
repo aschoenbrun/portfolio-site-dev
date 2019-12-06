@@ -140,7 +140,6 @@ export const OpButtons = ({
       name: "add",
       icon: <FaPlus />,
       operation: () => {
-        console.log("PLUS +");
         setOp("add");
       }
     },
@@ -148,7 +147,6 @@ export const OpButtons = ({
       name: "sub",
       icon: <FaMinus />,
       operation: () => {
-        console.log("MINUS -");
         setOp("sub");
       }
     },
@@ -156,7 +154,6 @@ export const OpButtons = ({
       name: "mult",
       icon: <FaTimes />,
       operation: () => {
-        console.log("MULTIPLY *");
         setOp("mult");
       }
     },
@@ -164,7 +161,6 @@ export const OpButtons = ({
       name: "divd",
       icon: <FaDivide />,
       operation: () => {
-        console.log("DIVIDE /");
         setOp("divd");
       }
     }
@@ -218,7 +214,6 @@ export const FnlButtons = ({
   const fnlArr = ["clr", "equ"];
 
   const fnlClrHandler = useCallback(() => {
-    console.log("CLEAR!");
     setOldNum(0);
     setNumInputs([0]);
     setNum(0);

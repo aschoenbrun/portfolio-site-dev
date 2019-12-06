@@ -15,12 +15,6 @@ const CalculatorMain = () => {
   const [opIcon, setOpIcon] = useState(null);
   const [keyTypeClicked, setKeyTypeClicked] = useState("");
 
-  useEffect(() => {
-    console.log(`Old Number: ${oldNum}`);
-    console.log(`Op: ${op}`);
-    console.log(`Number: ${num}`);
-  }, [num, oldNum, op]);
-
   const calcDims = {
     buttonWidth: "35px",
     gridGap: "4px"
