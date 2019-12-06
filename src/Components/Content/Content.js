@@ -28,14 +28,14 @@ const Content = props => {
       letter-spacing: 0.1em;
     }
   `;
+
   return (
     <ContentStyles as="main" id="site__content">
       <Switch>
         <Route path="/about-me" component={AboutMe} />
         <Route path="/resume" component={Resume} />
-        <Route path="/my-apps/calculator" component={MyApps} />
+        <Route path="/my-apps" component={MyApps} />} />
         <Redirect exact from="/" to="/about-me" />
-        <Redirect exact from="/my-apps" to="/my-apps/calculator" />
       </Switch>
     </ContentStyles>
   );

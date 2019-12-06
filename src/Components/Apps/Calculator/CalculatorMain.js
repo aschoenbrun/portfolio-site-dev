@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { create, all } from "mathjs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import { PageTitle } from "../../GlobalTheme/globalStyles";
+import { PageSubTitle } from "../../GlobalTheme/globalStyles";
 import { NumButtons, OpButtons, FnlButtons } from "./CalcButtons";
 import CalcDisplay from "./CalcDisplay";
 
@@ -56,7 +56,7 @@ const CalculatorMain = () => {
   return (
     <div id="app--calculator">
       <PageMeta />
-      <PageTitle>Calculator</PageTitle>
+      <PageSubTitle>Calculator</PageSubTitle>
       <CalcAppStyles calcDims={calcDims} id="calc-app">
         <CalcDisplay
           calcDims={calcDims}

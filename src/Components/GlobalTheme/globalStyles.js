@@ -48,6 +48,13 @@ export const PageTitle = styled.h1`
   }
 `;
 
+export const PageSubTitle = styled.h2`
+  color: ${globalColors.tan};
+  margin: 0 0 40px;
+  text-align: center;
+  font-weight: 700;
+`;
+
 export const HeaderFooterText = styled.span`
   text-transform: uppercase;
   font-size: 11px;
@@ -68,6 +75,14 @@ export const HeaderFooterText = styled.span`
       border-right: none;
     }
   }
+`;
+
+export const SubNavStyles = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 50px;
+  display: flex;
+  justify-content: center;
 `;
 
 const DisplayStyles = styled.div`
