@@ -124,7 +124,7 @@ const header = props => {
       }
     }
     #header__bottom {
-      background-color: ${globalColors.tanDK};
+      background-color: ${globalColors.tan};
       position: relative;
       z-index: 900;
       box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
