@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import styled from "styled-components";
-import { globalColors } from "./Components/GlobalTheme/globalStyles";
+import styled from "styled-components/macro";
+import {
+  globalColors,
+  GlobalStyles
+} from "./Components/GlobalTheme/globalStyles";
 import { Helmet } from "react-helmet";
 import Header from "./Components/GlobalTheme/Header/Header";
 import Content from "./Components/Content/Content";
@@ -198,30 +201,33 @@ class App extends Component {
 
   render() {
     return (
-      <AppStyle className={this.state.headerClass}>
-        <Helmet>
-          <title>Portfolio - Avi Schoenbrun</title>
-          <link rel="canonical" href="https://aysportfolio/" />
-          <meta
-            name="description"
-            content="I am a creative Front-End Developer and UI/UX Designer with 6 years experience in designing and building web applications."
-          />
-        </Helmet>
-        <Router>
-          <Header
-            portrait={this.state.portrait}
-            roles={this.state.roles}
-            contactInfo={this.state.contactInfo}
-            pages={this.state.pages}
-            changePage={newPage => this.navClickChange(newPage)}
-            totop={() => {
-              window.scrollTo(0, 0);
-            }}
-          />
-          <Content pages={this.state.pages} />
-          <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
-        </Router>
-      </AppStyle>
+      <>
+        <GlobalStyles />
+        <AppStyle className={this.state.headerClass}>
+          <Helmet>
+            <title>Portfolio - Avi Schoenbrun</title>
+            <link rel="canonical" href="https://aysportfolio/" />
+            <meta
+              name="description"
+              content="I am a creative Front-End Developer and UI/UX Designer with 6 years experience in designing and building web applications."
+            />
+          </Helmet>
+          <Router>
+            <Header
+              portrait={this.state.portrait}
+              roles={this.state.roles}
+              contactInfo={this.state.contactInfo}
+              pages={this.state.pages}
+              changePage={newPage => this.navClickChange(newPage)}
+              totop={() => {
+                window.scrollTo(0, 0);
+              }}
+            />
+            <Content pages={this.state.pages} />
+            <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
+          </Router>
+        </AppStyle>
+      </>
     );
   }
 }

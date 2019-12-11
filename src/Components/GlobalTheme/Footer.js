@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { globalColors, HeaderFooterText } from "./globalStyles";
 import { kebabCase } from "../globalJS";
 import RepoLink from "./RepoLink";

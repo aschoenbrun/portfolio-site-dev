@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { globalColors } from "../GlobalTheme/globalStyles";
 
 const SectionIntroStyles = styled.div`
