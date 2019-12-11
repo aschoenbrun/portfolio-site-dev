@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components/macro";
 import WebFont from "webfontloader";
 
 WebFont.load({
@@ -19,6 +19,39 @@ export const globalColors = {
   orange: "rgb(67, 21, 7)",
   orangeGreyLT: "rgb(208, 194, 149);"
 };
+
+export const GlobalStyles = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+  
+  /*** FIXED FOOTER***/
+  html,
+  body,
+  #root,
+  .App {
+    height: 100%;
+  }
+
+  .App {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #site__content {
+    flex: 1 0 auto;
+  }
+
+  #site__footer {
+    flex-shrink: 0;
+  }
+`;
 
 export const PageMargin = styled.div`
   width: 95%;

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const PageAnchorStyles = styled.div`
   margin-top: -40px;

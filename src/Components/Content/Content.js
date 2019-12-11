@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { PageMargin, globalColors } from "../GlobalTheme/globalStyles";
 import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";

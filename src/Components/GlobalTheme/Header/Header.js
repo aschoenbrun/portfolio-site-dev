@@ -1,6 +1,6 @@
 import React from "react";
 import { kebabCase } from "../../globalJS";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import Headroom from "react-headroom";
 import { globalColors } from "../globalStyles";
 import Role from "./Role";

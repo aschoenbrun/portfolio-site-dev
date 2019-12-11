@@ -9,7 +9,7 @@ import {
 } from "../SectionTitles";
 import SectionIntro from "../SectionIntro";
 import { TitleList, List, ListH } from "../ContentLists";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const PageMeta = () => {
   return (

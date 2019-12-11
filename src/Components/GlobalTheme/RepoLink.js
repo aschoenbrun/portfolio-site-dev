@@ -1,6 +1,6 @@
 import React from "react";
 import gitHubMark from "../../images/GitHub-Mark-120px-plus.png";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const RepoLinkStyles = styled.div`
   text-align: center;

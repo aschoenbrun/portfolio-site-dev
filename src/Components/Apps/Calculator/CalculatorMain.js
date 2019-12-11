@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { create, all } from "mathjs";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { NumButtons, OpButtons, FnlButtons } from "./CalcButtons";
 import CalcDisplay from "./CalcDisplay";
 
