@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+const sgMail = require("@sendgrid/mail");
+
 const ContactForm = () => {
   return (
     <Formik
@@ -13,21 +15,33 @@ const ContactForm = () => {
         message: ""
       }}
       validationSchema={Yup.object({
-        firstName: Yup.string()
-          .max(15, "Must be 15 characters or less")
-          .required("Required"),
-        lastName: Yup.string()
-          .max(20, "Must be 20 characters or less")
-          .required("Required"),
+        firstName: Yup.string().required("Required"),
+        lastName: Yup.string().required("Required"),
         email: Yup.string()
           .email("Invalid email address")
           .required("Required")
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+        //TODO: Deal with CORS in localhost testing environment
+
+        // setTimeout(() => {
+        //   alert(JSON.stringify(values, null, 2));
+        //   setSubmitting(false);
+        // }, 400);
+
+        sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
+
+        const myEmail = process.env.REACT_APP_MYEMAIL;
+
+        const msg = {
+          to: myEmail,
+          from: values.email,
+          subject: `AYS Portfolio contact submission from ${values.firstName} ${values.lastName}`,
+          phone: values.phone,
+          text: values.message
+        };
+        console.log(msg);
+        sgMail.send(msg);
       }}
     >
       <Form>

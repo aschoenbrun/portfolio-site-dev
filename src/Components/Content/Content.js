@@ -43,7 +43,6 @@ const Content = props => {
           path="/contact"
           render={props => <Contact contactInfo={props.contactInfo} />}
         />
-        } /> />
         <Redirect exact from="/" to="/about-me" />
       </Switch>
     </ContentStyles>

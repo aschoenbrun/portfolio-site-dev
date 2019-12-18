@@ -18,6 +18,11 @@ import iconReactRouter from "./images/Icon---Programming---React-Router.png";
 import iconNode from "./images/Icon---Programming---Node-JS-ICON-ONLY.png";
 import iconStyledComponents from "./images/icon---Programming---styled-components.png";
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+console.log(process.env);
+
 // TODO
 // 1. Site meta
 
