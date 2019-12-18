@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const sgMail = require("@sendgrid/mail");
+// const sgMail = require("@sendgrid/mail");
 
 const ContactForm = () => {
   return (
@@ -22,26 +22,22 @@ const ContactForm = () => {
           .required("Required")
       })}
       onSubmit={(values, { setSubmitting }) => {
-        //TODO: Deal with CORS in localhost testing environment
-
+        //TODO: Use Firebase
         // setTimeout(() => {
         //   alert(JSON.stringify(values, null, 2));
         //   setSubmitting(false);
         // }, 400);
-
-        sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
-
-        const myEmail = process.env.REACT_APP_MYEMAIL;
-
-        const msg = {
-          to: myEmail,
-          from: values.email,
-          subject: `AYS Portfolio contact submission from ${values.firstName} ${values.lastName}`,
-          phone: values.phone,
-          text: values.message
-        };
-        console.log(msg);
-        sgMail.send(msg);
+        // sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
+        // const myEmail = process.env.REACT_APP_MYEMAIL;
+        // const msg = {
+        //   to: myEmail,
+        //   from: values.email,
+        //   subject: `AYS Portfolio contact submission from ${values.firstName} ${values.lastName}`,
+        //   text: `Phone: ${values.phone}; Message: ${values.message}`,
+        //   html: `<p>Phone: ${values.phone}</p><p>Message: ${values.message}</p>`
+        // };
+        // console.log(msg);
+        // sgMail.send(msg);
       }}
     >
       <Form>
