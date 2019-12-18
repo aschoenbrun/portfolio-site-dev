@@ -133,6 +133,9 @@ class App extends Component {
         },
         {
           name: "My Apps"
+        },
+        {
+          name: "Contact"
         }
       ],
       builtWith: [
@@ -223,7 +226,10 @@ class App extends Component {
                 window.scrollTo(0, 0);
               }}
             />
-            <Content pages={this.state.pages} />
+            <Content
+              pages={this.state.pages}
+              contactInfo={this.state.contactInfo}
+            />
             <Footer builtWith={this.state.builtWith} repo={this.state.repo} />
           </Router>
         </AppStyle>
