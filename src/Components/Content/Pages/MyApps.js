@@ -28,7 +28,7 @@ const MyApps = () => {
     return (
       <SubNavItem
         name={subPage.name}
-        slug={`${elemID}`}
+        slug={elemID}
         anchor={"#page__anchor--app"}
         key={`${elemID}-${index + 1}`}
       />

@@ -1,10 +1,29 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import emailjs from "emailjs-com";
 
 // const sgMail = require("@sendgrid/mail");
 
 const ContactForm = () => {
+  const sendEmail = vals => {
+    console.log(vals);
+    emailjs
+      .send(
+        "gmail",
+        "ays_portfolio_contact",
+        vals,
+        "user_8WpRLz9hq2WNWuftAgtAr"
+      )
+      .then(
+        response => {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        err => {
+          console.log("FAILED...", err);
+        }
+      );
+  };
   return (
     <Formik
       initialValues={{
@@ -21,24 +40,7 @@ const ContactForm = () => {
           .email("Invalid email address")
           .required("Required")
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        //TODO: Use Firebase
-        // setTimeout(() => {
-        //   alert(JSON.stringify(values, null, 2));
-        //   setSubmitting(false);
-        // }, 400);
-        // sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
-        // const myEmail = process.env.REACT_APP_MYEMAIL;
-        // const msg = {
-        //   to: myEmail,
-        //   from: values.email,
-        //   subject: `AYS Portfolio contact submission from ${values.firstName} ${values.lastName}`,
-        //   text: `Phone: ${values.phone}; Message: ${values.message}`,
-        //   html: `<p>Phone: ${values.phone}</p><p>Message: ${values.message}</p>`
-        // };
-        // console.log(msg);
-        // sgMail.send(msg);
-      }}
+      onSubmit={vals => sendEmail(vals)}
     >
       <Form>
         <div className="form__field" id="firstName">
@@ -65,7 +67,9 @@ const ContactForm = () => {
           <Field name="message" type="textarea" as="textarea" />
           <ErrorMessage name="message" />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" value="Send">
+          Submit
+        </button>
       </Form>
     </Formik>
   );
