@@ -1,10 +1,24 @@
 import React from "react";
 import ContactForm from "./ContactForm";
 import { Helmet } from "react-helmet";
-import { PageTitle } from "../../../GlobalTheme/globalStyles";
+import styled from "styled-components/macro";
+import { PageTitle, globalColors } from "../../../GlobalTheme/globalStyles";
 
 const Contact = props => {
   // Get phone info from state in App.js
+
+  const Phone = props => {
+    const PhoneStyles = styled.div`
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+      color: ${globalColors.blue};
+    `;
+
+    return <PhoneStyles>{props.children}</PhoneStyles>;
+  };
+
   return (
     <>
       <Helmet>
@@ -12,7 +26,7 @@ const Contact = props => {
         <link rel="canonical" href="https://aysportfolio/contact" />
       </Helmet>
       <PageTitle>Contact Me</PageTitle>
-      <div id="phone">(732) 372-5102</div>
+      <Phone>(732) 372-5102</Phone>
       <ContactForm />
     </>
   );

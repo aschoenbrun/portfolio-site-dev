@@ -9,7 +9,15 @@ import { FormStyles, FormField, FieldGroup } from "../../ContentForms";
 const ContactForm = () => {
   const sendEmail = vals => {
     console.log(vals);
+
+    // TODO: Handle submit features
+    // - Reset form on (after!) send
+    // - Spinner while sending
+    // - Submit / Fail message
+    // - Clear result message when focus on any field
+
     //TODO: Switch to MailGun
+
     emailjs
       .send(
         "gmail",
