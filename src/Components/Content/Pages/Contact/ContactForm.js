@@ -2,12 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
-import {
-  FormStyles,
-  TextInput,
-  TextArea,
-  FieldGroup
-} from "../../ContentForms";
+import { FormStyles, FormField, FieldGroup } from "../../ContentForms";
 
 // const sgMail = require("@sendgrid/mail");
 
@@ -53,21 +48,45 @@ const ContactForm = () => {
       >
         <Form>
           <FieldGroup columns="2">
-            <TextInput
+            <FormField
+              fieldMainType="input"
               name="firstName"
               type="text"
               label="First Name"
               required
             />
-            <TextInput name="lastName" type="text" label="Last Name" required />
+            <FormField
+              fieldMainType="input"
+              name="lastName"
+              type="text"
+              label="Last Name"
+              required
+            />
           </FieldGroup>
 
           <FieldGroup columns="2">
-            <TextInput name="email" type="text" label="Email" required />
-            <TextInput name="phone" type="text" label="Phone" />
+            <FormField
+              fieldMainType="input"
+              name="email"
+              type="text"
+              label="Email"
+              required
+            />
+            <FormField
+              fieldMainType="input"
+              name="phone"
+              type="text"
+              label="Phone"
+            />
           </FieldGroup>
 
-          <TextArea name="message" type="textarea" label="Message" required />
+          <FormField
+            fieldMainType="textarea"
+            name="message"
+            type="textarea"
+            label="Message"
+            required
+          />
 
           <button type="submit" value="Send">
             Submit

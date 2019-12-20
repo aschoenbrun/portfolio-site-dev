@@ -17,7 +17,8 @@ export const globalColors = {
   tanXLT: "rgb(236, 234, 223)",
   tanDK: "rgb(66, 65, 59)",
   orange: "rgb(67, 21, 7)",
-  orangeGreyLT: "rgb(208, 194, 149);"
+  orangeGreyLT: "rgb(208, 194, 149);",
+  red: "rgb(166, 29, 0)"
 };
 
 export const GlobalStyles = createGlobalStyle`
