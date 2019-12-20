@@ -1,13 +1,15 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
+import { TextInput, TextArea, FieldGroup } from "../../ContentForms";
 
 // const sgMail = require("@sendgrid/mail");
 
 const ContactForm = () => {
   const sendEmail = vals => {
     console.log(vals);
+    //TODO: Switch to MailGun
     emailjs
       .send(
         "gmail",
@@ -43,30 +45,17 @@ const ContactForm = () => {
       onSubmit={vals => sendEmail(vals)}
     >
       <Form>
-        <div className="form__field" id="firstName">
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" type="text" />
-          <ErrorMessage name="firstName" />
-        </div>
-        <div className="form__field" id="lastName">
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" type="text" />
-          <ErrorMessage name="lastName" />
-        </div>
-        <div className="form__field" id="email">
-          <label htmlFor="email">Email</label>
-          <Field name="email" type="email" />
-          <ErrorMessage name="email" />
-        </div>
-        <div className="form__field" id="phone">
-          <label htmlFor="phone">Phone</label>
-          <Field name="phone" type="phone" />
-        </div>
-        <div className="form__field" id="message">
-          <label htmlFor="message">Message</label>
-          <Field name="message" type="textarea" as="textarea" />
-          <ErrorMessage name="message" />
-        </div>
+        <FieldGroup columns="2">
+          <TextInput name="firstName" type="text" label="First Name" />
+          <TextInput name="lastName" type="text" label="Last Name" />
+        </FieldGroup>
+
+        <FieldGroup columns="2">
+          <TextInput name="email" type="text" label="Email" />
+          <TextInput name="phone" type="text" label="Phone" />
+        </FieldGroup>
+
+        <TextArea name="message" type="textarea" label="Message" />
         <button type="submit" value="Send">
           Submit
         </button>
