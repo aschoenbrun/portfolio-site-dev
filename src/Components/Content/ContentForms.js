@@ -36,6 +36,9 @@ const FieldStyles = styled.div`
     margin-right: 1px;
     padding: 5px 7px;
   }
+  label {
+    transition: 0.5s;
+  }
   &.focus label {
     background-color: ${globalColors.orange};
   }
