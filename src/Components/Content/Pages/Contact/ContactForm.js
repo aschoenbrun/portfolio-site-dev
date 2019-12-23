@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
-import { FormStyles, FormField, FieldGroup } from "../../ContentForms";
+import {
+  FormStyles,
+  FormField,
+  FieldGroup,
+  FormSubmission
+} from "../../ContentForms";
 
 // const sgMail = require("@sendgrid/mail");
 
-const ContactForm = () => {
+const ContactForm = props => {
+  const [deliveryStat, setDeliveryStat] = useState("");
   const sendEmail = vals => {
-    console.log(vals);
-
     // TODO: Handle submit features
-    // - Reset form on (after!) send
-    // - Spinner while sending
-    // - Submit / Fail message
     // - Clear result message when focus on any field
 
     //TODO: Switch to MailGun
@@ -27,13 +28,16 @@ const ContactForm = () => {
       )
       .then(
         response => {
-          console.log("SUCCESS!", response.status, response.text);
+          // console.log("SUCCESS!", response.status, response.text);
+          setDeliveryStat("success");
         },
         err => {
-          console.log("FAILED...", err);
+          // console.log("FAILED...", err);
+          setDeliveryStat("failed");
         }
       );
   };
+
   return (
     <>
       <FormStyles />
@@ -52,54 +56,61 @@ const ContactForm = () => {
             .email("Invalid email address")
             .required("Required")
         })}
-        onSubmit={vals => sendEmail(vals)}
+        onSubmit={(vals, actions) => {
+          sendEmail(vals);
+          //actions.resetForm(); // Was causing issues with
+        }}
       >
-        <Form>
-          <FieldGroup columns="2">
+        {({ isSubmitting, handleReset }) => (
+          <Form>
+            <FieldGroup columns="2">
+              <FormField
+                fieldMainType="input"
+                name="firstName"
+                type="text"
+                label="First Name"
+                required
+              />
+              <FormField
+                fieldMainType="input"
+                name="lastName"
+                type="text"
+                label="Last Name"
+                required
+              />
+            </FieldGroup>
+
+            <FieldGroup columns="2">
+              <FormField
+                fieldMainType="input"
+                name="email"
+                type="text"
+                label="Email"
+                required
+              />
+              <FormField
+                fieldMainType="input"
+                name="phone"
+                type="text"
+                label="Phone"
+              />
+            </FieldGroup>
+
             <FormField
-              fieldMainType="input"
-              name="firstName"
-              type="text"
-              label="First Name"
+              fieldMainType="textarea"
+              name="message"
+              type="textarea"
+              label="Message"
               required
             />
-            <FormField
-              fieldMainType="input"
-              name="lastName"
-              type="text"
-              label="Last Name"
-              required
+            <FormSubmission
+              isSubmitting={isSubmitting}
+              deliveryStat={deliveryStat}
+              setDeliveryStat={setDeliveryStat}
+              handleReset={handleReset}
             />
-          </FieldGroup>
-
-          <FieldGroup columns="2">
-            <FormField
-              fieldMainType="input"
-              name="email"
-              type="text"
-              label="Email"
-              required
-            />
-            <FormField
-              fieldMainType="input"
-              name="phone"
-              type="text"
-              label="Phone"
-            />
-          </FieldGroup>
-
-          <FormField
-            fieldMainType="textarea"
-            name="message"
-            type="textarea"
-            label="Message"
-            required
-          />
-
-          <button type="submit" value="Send">
-            Submit
-          </button>
-        </Form>
+          </Form>
+        )}
       </Formik>
     </>
   );

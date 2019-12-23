@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useField } from "formik";
-import styled, { createGlobalStyle } from "styled-components/macro";
+import styled, { createGlobalStyle, keyframes } from "styled-components/macro";
 import { globalColors } from "../GlobalTheme/globalStyles";
 import { FaAsterisk } from "react-icons/fa";
+import { FiLoader } from "react-icons/fi";
 
 export const FormStyles = createGlobalStyle`
   form {
@@ -107,7 +108,9 @@ export const FormField = ({ fieldMainType, label, ...props }) => {
     <FieldStyles
       id={field.name}
       className={errClass + reqClass + formFocusClass}
-      onFocus={() => setFormFocusClass(" focus")}
+      onFocus={() => {
+        setFormFocusClass(" focus");
+      }}
       onBlur={() => setFormFocusClass("")}
     >
       <div id="label__wrapper">
@@ -125,5 +128,123 @@ export const FormField = ({ fieldMainType, label, ...props }) => {
       </div>
       {fieldType}
     </FieldStyles>
+  );
+};
+
+const formSubAnimation = keyframes`
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+`;
+
+const FormSubmissionStyles = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1em;
+  font-weight: 700;
+  color: white;
+  button,
+  #form__submission,
+  #form__delivery-status {
+    margin-right: 7px;
+  }
+  #form__submission,
+  #form__delivery-status {
+    text-align: center;
+    box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+  #form__submission {
+    background-color: ${globalColors.green};
+    padding: 8px 9px;
+    display: none;
+    svg {
+      font-size: 18px;
+      animation: ${formSubAnimation} 2s linear infinite;
+    }
+  }
+  &.submitting #form__submission {
+    display: block;
+  }
+  &.sent,
+  &.failed {
+    &.submitting #form__submission {
+      display: none;
+    }
+  }
+  #form__delivery-status {
+    padding: 12px 13px 11px;
+    display: none;
+  }
+  &.sent,
+  &.failed {
+    #form__delivery-status {
+      display: block;
+    }
+  }
+  &.sent #form__delivery-status {
+    background-color: ${globalColors.green};
+  }
+  &.failed #form__delivery-status {
+    background-color: ${globalColors.red};
+  }
+`;
+
+export const FormSubmission = props => {
+  const subStatusClass = useRef("");
+  const subResultTxt = useRef("");
+  useEffect(() => {
+    if (props.isSubmitting) {
+      subStatusClass.current.classList.add("submitting");
+    } else {
+      subStatusClass.current.classList.remove("submitting");
+    }
+  }, [props.isSubmitting]);
+  useEffect(() => {
+    if (props.deliveryStat === "success") {
+      subStatusClass.current.classList.remove("failed");
+      subStatusClass.current.classList.add("sent");
+      subResultTxt.current.textContent = "sent";
+    } else if (props.deliveryStat === "failed") {
+      subStatusClass.current.classList.remove("sent");
+      subStatusClass.current.classList.add("failed");
+      subResultTxt.current.textContent = "failed";
+    } else {
+      subStatusClass.current.classList.remove("sent");
+      subStatusClass.current.classList.remove("failed");
+      subResultTxt.current.textContent = "";
+    }
+  }, [props.deliveryStat]);
+
+  const fullFormClear = () => {
+    props.handleReset();
+    if (props.deliveryStat !== "") {
+      props.setDeliveryStat("");
+    }
+  };
+
+  const SubStatusIndicator = () => {
+    return <div id="form__delivery-status" ref={subResultTxt}></div>;
+  };
+
+  return (
+    <FormSubmissionStyles ref={subStatusClass}>
+      <button type="submit" value="Send">
+        Submit
+      </button>
+      <button type="button" value="Reset" onClick={fullFormClear}>
+        Reset
+      </button>
+      <div id="form__submission">
+        <FiLoader />
+      </div>
+      <SubStatusIndicator />
+    </FormSubmissionStyles>
   );
 };
