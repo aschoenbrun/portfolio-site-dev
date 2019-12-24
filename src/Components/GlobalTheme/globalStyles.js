@@ -16,12 +16,14 @@ export const globalColors = {
   tanLT: "rgb(151, 145, 126)",
   tanXLT: "rgb(236, 234, 223)",
   tanDK: "rgb(66, 65, 59)",
+  green: "rgb(12, 145, 62)",
   orange: "rgb(67, 21, 7)",
-  orangeGreyLT: "rgb(208, 194, 149);"
+  orangeGreyLT: "rgb(208, 194, 149);",
+  red: "rgb(166, 29, 0)"
 };
 
 export const GlobalStyles = createGlobalStyle`
-  body {
+  body, textarea, input, select {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
