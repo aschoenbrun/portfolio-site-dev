@@ -242,6 +242,8 @@ export const FormSubmission = props => {
     return <div id="form__delivery-status" ref={subResultTxt}></div>;
   };
 
+  // FIXME: if submit then click on field then click out triggering validation error -  TXT disappears but not style - resulting in blank square
+
   return (
     <FormSubmissionStyles ref={subStatusClass}>
       <button type="submit" value="Send">
