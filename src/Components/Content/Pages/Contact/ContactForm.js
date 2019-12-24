@@ -11,6 +11,8 @@ import {
 
 // const sgMail = require("@sendgrid/mail");
 
+export const SetDeliveryContext = React.createContext();
+
 const ContactForm = props => {
   const [deliveryStat, setDeliveryStat] = useState("");
 
@@ -39,8 +41,10 @@ const ContactForm = props => {
       );
   };
 
+  // const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+
   return (
-    <>
+    <SetDeliveryContext.Provider value={setDeliveryStat}>
       <FormStyles />
       <Formik
         initialValues={{
@@ -55,14 +59,16 @@ const ContactForm = props => {
           lastName: Yup.string().required("Required"),
           email: Yup.string()
             .email("Invalid email address")
-            .required("Required")
+            .required("Required"),
+          // phone: Yup.string().matches(phoneRegExp, "Invalid phone number"),
+          message: Yup.string().required("Required")
         })}
         onSubmit={(vals, actions) => {
           sendEmail(vals);
-          //actions.resetForm(); // Was causing issues with
+          actions.resetForm();
         }}
       >
-        {({ isSubmitting, handleReset }) => (
+        {({ isSubmitting, resetForm }) => (
           <Form>
             <FieldGroup columns="2">
               <FormField
@@ -108,12 +114,12 @@ const ContactForm = props => {
               isSubmitting={isSubmitting}
               deliveryStat={deliveryStat}
               setDeliveryStat={setDeliveryStat}
-              handleReset={handleReset}
+              resetForm={resetForm}
             />
           </Form>
         )}
       </Formik>
-    </>
+    </SetDeliveryContext.Provider>
   );
 };
 

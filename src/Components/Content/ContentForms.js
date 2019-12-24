@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useField } from "formik";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { useField, Field } from "formik";
+import { SetDeliveryContext } from "../Content/Pages/Contact/ContactForm";
 import styled, { createGlobalStyle, keyframes } from "styled-components/macro";
 import { globalColors } from "../GlobalTheme/globalStyles";
 import { FaAsterisk } from "react-icons/fa";
@@ -95,21 +96,14 @@ export const FormField = ({ fieldMainType, label, ...props }) => {
 
   let fieldType;
   if (fieldMainType === "input") {
-    fieldType = <input {...field} {...props} />;
+    fieldType = <Field {...field} {...props} />;
   } else if (fieldMainType === "textarea") {
-    fieldType = <textarea {...field} {...props} />;
-  } else if (fieldMainType === "wysiwyg") {
-    fieldType = <textarea {...field} {...props} />;
+    fieldType = <Field as="textarea" {...field} {...props} />;
   }
 
-  const [formFocusClass, setFormFocusClass] = useState("");
+  const setDeliveryStat = useContext(SetDeliveryContext);
 
-  const fullFormClear = () => {
-    props.handleReset();
-    if (props.deliveryStat !== "") {
-      props.setDeliveryStat("");
-    }
-  };
+  const [formFocusClass, setFormFocusClass] = useState("");
 
   return (
     <FieldStyles
@@ -117,7 +111,7 @@ export const FormField = ({ fieldMainType, label, ...props }) => {
       className={errClass + reqClass + formFocusClass}
       onFocus={() => {
         setFormFocusClass(" focus");
-        fullFormClear();
+        setDeliveryStat("");
       }}
       onBlur={() => setFormFocusClass("")}
     >
@@ -208,10 +202,9 @@ export const FormSubmission = props => {
   const subStatusClass = useRef("");
   const subResultTxt = useRef("");
   useEffect(() => {
+    console.log(`SUBMITTING: ${props.isSubmitting}`);
     if (props.isSubmitting) {
       subStatusClass.current.classList.add("submitting");
-    } else {
-      subStatusClass.current.classList.remove("submitting");
     }
   }, [props.isSubmitting]);
   useEffect(() => {
@@ -219,10 +212,12 @@ export const FormSubmission = props => {
     if (props.deliveryStat === "success") {
       subStatusClass.current.classList.remove("failed");
       subStatusClass.current.classList.add("sent");
+      subStatusClass.current.classList.remove("submitting");
       subResultTxt.current.textContent = "sent";
     } else if (props.deliveryStat === "failed") {
       subStatusClass.current.classList.remove("sent");
       subStatusClass.current.classList.add("failed");
+      subStatusClass.current.classList.remove("submitting");
       subResultTxt.current.textContent = "failed";
     } else {
       subStatusClass.current.classList.remove("sent");
@@ -230,13 +225,6 @@ export const FormSubmission = props => {
       subResultTxt.current.textContent = "";
     }
   }, [props.deliveryStat]);
-
-  const fullFormClear = () => {
-    props.handleReset();
-    if (props.deliveryStat !== "") {
-      props.setDeliveryStat("");
-    }
-  };
 
   const SubStatusIndicator = () => {
     return <div id="form__delivery-status" ref={subResultTxt}></div>;
@@ -249,7 +237,16 @@ export const FormSubmission = props => {
       <button type="submit" value="Send">
         Submit
       </button>
-      <button type="button" value="Reset" onClick={fullFormClear}>
+      <button
+        type="button"
+        value="Reset"
+        onClick={() => {
+          props.resetForm();
+          if (props.deliveryStat !== "") {
+            props.setDeliveryStat("");
+          }
+        }}
+      >
         Reset
       </button>
       <div id="form__submission">
