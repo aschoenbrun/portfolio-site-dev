@@ -13,6 +13,7 @@ import {
 
 const ContactForm = props => {
   const [deliveryStat, setDeliveryStat] = useState("");
+
   const sendEmail = vals => {
     // TODO: Handle submit features
     // - Clear result message when focus on any field

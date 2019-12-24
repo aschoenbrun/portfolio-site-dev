@@ -104,12 +104,20 @@ export const FormField = ({ fieldMainType, label, ...props }) => {
 
   const [formFocusClass, setFormFocusClass] = useState("");
 
+  const fullFormClear = () => {
+    props.handleReset();
+    if (props.deliveryStat !== "") {
+      props.setDeliveryStat("");
+    }
+  };
+
   return (
     <FieldStyles
       id={field.name}
       className={errClass + reqClass + formFocusClass}
       onFocus={() => {
         setFormFocusClass(" focus");
+        fullFormClear();
       }}
       onBlur={() => setFormFocusClass("")}
     >
@@ -207,6 +215,7 @@ export const FormSubmission = props => {
     }
   }, [props.isSubmitting]);
   useEffect(() => {
+    // TODO: Set class on form instead of here
     if (props.deliveryStat === "success") {
       subStatusClass.current.classList.remove("failed");
       subStatusClass.current.classList.add("sent");
