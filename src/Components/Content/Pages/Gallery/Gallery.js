@@ -1,10 +1,11 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import galleryImgs from "./galleryImageImport";
-import "./GalleryStyles.module.css";
 
 const Gallery = props => {
   const galleryImageArr = [];
+
+  // TOD: Just make a grid with fullscreen zoom!!!
 
   galleryImgs.map(img => {
     galleryImageArr.push({
