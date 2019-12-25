@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ImageGallery from "react-image-gallery";
 import galleryImgs from "./galleryImageImport";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const Gallery = props => {
   const galleryImageArr = [];
 
-  // TOD: Just make a grid with fullscreen zoom!!!
+  const [galleryState, setGalleryState] = useState({
+    showPlayButton: false,
+    showGalleryPlayButton: false
+  });
 
   galleryImgs.map(img => {
     galleryImageArr.push({
@@ -13,15 +17,15 @@ const Gallery = props => {
       thumbnail: img.size150,
       imageSet: [
         {
-          srcset: img.size1150,
+          srcSet: `${img.size1150} 1150w`,
           media: "(max-width: 1200px)"
         },
         {
-          srcset: img.size750,
+          srcSet: `${img.size750} 750w`,
           media: "(max-width: 768px)"
         },
         {
-          srcset: img.size300,
+          srcSet: `${img.size300} 300w`,
           media: "(max-width: 450px)"
         }
       ]
@@ -29,7 +33,14 @@ const Gallery = props => {
     return galleryImageArr;
   });
 
-  return <ImageGallery items={galleryImageArr} />;
+  return (
+    <ImageGallery
+      showPlayButton={
+        galleryState.showPlayButton && galleryState.showGalleryPlayButton
+      }
+      items={galleryImageArr}
+    />
+  );
 };
 
 export default Gallery;
