@@ -136,6 +136,9 @@ class App extends Component {
         },
         {
           name: "Contact"
+        },
+        {
+          name: "Gallery"
         }
       ],
       builtWith: [

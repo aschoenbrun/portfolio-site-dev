@@ -6,6 +6,7 @@ import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";
 import MyApps from "./Pages/MyApps";
 import Contact from "./Pages/Contact/Contact";
+import Gallery from "./Pages/Gallery/Gallery";
 
 const Content = props => {
   const ContentStyles = styled(PageMargin)`
@@ -43,6 +44,7 @@ const Content = props => {
           path="/contact"
           render={props => <Contact contactInfo={props.contactInfo} />}
         />
+        <Route path="/gallery" component={Gallery} /> />
         <Redirect exact from="/" to="/about-me" />
       </Switch>
     </ContentStyles>
