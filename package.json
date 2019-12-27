@@ -17,6 +17,7 @@
     "react-dom": "^16.11.0",
     "react-draft-wysiwyg": "^1.14.1",
     "react-image-gallery": "^1.0.3",
+    "react-images": "^1.1.0-beta.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
     "yup": "^0.28.0"

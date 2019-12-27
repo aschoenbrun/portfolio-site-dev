@@ -4,6 +4,8 @@ import { PageTitle } from "../../../GlobalTheme/globalStyles";
 import galleryImgs from "./galleryImageImport";
 import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
+import { globalColors } from "../../../GlobalTheme/globalStyles";
+import { FaSearchPlus } from "react-icons/fa";
 
 const Gallery = props => {
   const GalleryContainer = styled.ul`
@@ -19,18 +21,51 @@ const Gallery = props => {
     position: relative;
     img {
       width: 100%;
+      display: block;
     }
   `;
 
-  const GalleryNameStyles = styled.h2`
+  const GalleryImgUtilStyles = styled.div`
     position: absolute;
     bottom: 0;
+    display: grid;
+    grid-template-columns: auto 50px;
+    grid-gap: 4px;
+    width: 100%;
+  `;
+
+  const GalleryNameStyles = styled.h2`
+    padding: 7px 13px;
+    background-color: rgba(0, 0, 0, 0.75);
+    text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
     font-size: 20px;
     font-weight: 300;
-    background-color: rgba(0, 0, 0, 0.5);
     margin: 0;
-    padding: 7px 13px;
     color: white;
+  `;
+
+  const GalleryLbBtnStyles = styled.button`
+    color: ${globalColors.yellow};
+    text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
+    &,
+    &:hover,
+    &:focus {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.75);
+      box-shadow: none;
+      font-size: 20px;
+      padding: 0;
+    }
+    &:hover,
+    &:focus {
+      color: ${globalColors.yellowLT};
+      text-shadow: 0px 0.25px 2px rgba(0, 0, 0, 0.75);
+    }
+    &:active {
+      text-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.75);
+    }
   `;
 
   const GalleryDescStyles = styled.div`
@@ -54,7 +89,12 @@ const Gallery = props => {
               width="600"
             />
           </Image>
-          <GalleryNameStyles>{img.name}</GalleryNameStyles>
+          <GalleryImgUtilStyles>
+            <GalleryNameStyles>{img.name}</GalleryNameStyles>
+            <GalleryLbBtnStyles>
+              <FaSearchPlus />
+            </GalleryLbBtnStyles>
+          </GalleryImgUtilStyles>
         </GalleryImgStyles>
         <GalleryDescStyles>{img.desc}</GalleryDescStyles>
       </li>
