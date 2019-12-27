@@ -1,25 +1,64 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { PageTitle } from "../../../GlobalTheme/globalStyles";
-// import ImageGallery from "react-image-gallery";
-// import galleryImgs from "./galleryImageImport";
-import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
-import "react-image-gallery/styles/css/image-gallery.css";
+import galleryImgs from "./galleryImageImport";
+import { Image, Transformation } from "cloudinary-react";
+import styled from "styled-components/macro";
 
 const Gallery = props => {
-  const galleryImgs = [
-    {
-      name: "20s and 30s",
-      img: "gImg-20s-and-30s_ghj9zc"
-    },
-    {
-      name: "Absolute Earth",
-      img: "gImg-Absolute-Earth_fluao8"
-    }
-  ];
+  const GalleryContainer = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-gap: 50px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  `;
 
-  galleryImgs.map(img => {
-    
+  const GalleryImgStyles = styled.div`
+    position: relative;
+    img {
+      width: 100%;
+    }
+  `;
+
+  const GalleryNameStyles = styled.h2`
+    position: absolute;
+    bottom: 0;
+    font-size: 20px;
+    font-weight: 300;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 7px 13px;
+    color: white;
+  `;
+
+  const GalleryDescStyles = styled.div`
+    font-size: 12px;
+    font-weight: 100;
+  `;
+
+  const galleryList = galleryImgs.map(img => {
+    return (
+      <li key={img.slug}>
+        <GalleryImgStyles>
+          <Image
+            cloudName="aschoen"
+            publicId={`AYS Portfolio Site Images/${img.slug}`}
+            alt={img.name}
+          >
+            <Transformation
+              fetchFormat="auto"
+              quality="70"
+              crop="scale"
+              width="600"
+            />
+          </Image>
+          <GalleryNameStyles>{img.name}</GalleryNameStyles>
+        </GalleryImgStyles>
+        <GalleryDescStyles>{img.desc}</GalleryDescStyles>
+      </li>
+    );
   });
 
   return (
@@ -29,64 +68,9 @@ const Gallery = props => {
         <link rel="canonical" href="https://aysportfolio/contact" />
       </Helmet>
       <PageTitle>UI/UX Gallery</PageTitle>
-      <CloudinaryContext cloudName="aschoen"></CloudinaryContext>
+      <GalleryContainer>{galleryList}</GalleryContainer>
     </>
   );
 };
-
-  // const galleryImageArr = [];
-
-  // const galleryState = useState({
-  //   showPlayButton: false,
-  //   showGalleryPlayButton: false
-  // });
-
-  // galleryImgs.map(img => {
-  //   galleryImageArr.push({
-  //     original: img.original,
-  //     thumbnail: img.size150,
-  //     originalAlt: `Portfolio sample: ${img.name}`,
-  //     description: img.name,
-  //     imageSet: [
-  //       {
-  //         srcSet: `${img.size1150} 1150w`,
-  //         media: "(max-width: 1200px)"
-  //       },
-  //       {
-  //         srcSet: `${img.size800} 750w`,
-  //         media: "(max-width: 768px)"
-  //       },
-  //       {
-  //         srcSet: `${img.size450} 300w`,
-  //         media: "(max-width: 450px)"
-  //       }
-  //     ]
-  //   });
-  //   return galleryImageArr;
-  // });
-
-  // galleryImgs.map(img => {
-  //   galleryImageArr.push({
-  //     original: img.original,
-  //     thumbnail: img.size150,
-  //     originalAlt: `Portfolio sample: ${img.name}`,
-  //     description: img.name,
-  //     imageSet: [
-  //       {
-  //         srcSet: `${img.size1150} 1150w`,
-  //         media: "(max-width: 1200px)"
-  //       },
-  //       {
-  //         srcSet: `${img.size800} 750w`,
-  //         media: "(max-width: 768px)"
-  //       },
-  //       {
-  //         srcSet: `${img.size450} 300w`,
-  //         media: "(max-width: 450px)"
-  //       }
-  //     ]
-  //   });
-  //   return galleryImageArr;
-  // });
 
 export default Gallery;
