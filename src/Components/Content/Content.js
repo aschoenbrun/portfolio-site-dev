@@ -44,8 +44,9 @@ const Content = props => {
           path="/contact"
           render={props => <Contact contactInfo={props.contactInfo} />}
         />
-        <Route path="/gallery" component={Gallery} /> />
+        <Route path="/ui-ux-gallery" component={Gallery} /> />
         <Redirect exact from="/" to="/about-me" />
+        <Redirect exact from="/gallery" to="/ui-ux-gallery" />
       </Switch>
     </ContentStyles>
   );
