@@ -10,7 +10,8 @@ import { FaSearchPlus } from "react-icons/fa";
 
 const Gallery = props => {
   const [galleryLbToggle, setGalleryLbToggle] = useState(false);
-  const [curImg, setCurImg] = useState("");
+  const [curImgSlug, setCurImgSlug] = useState("");
+  const [curImgName, setCurImgName] = useState("");
 
   const GalleryContainer = styled.ul`
     display: grid;
@@ -102,7 +103,8 @@ const Gallery = props => {
             <GalleryLbBtnStyles
               onClick={() => {
                 setGalleryLbToggle(true);
-                setCurImg(img.slug);
+                setCurImgName(img.name);
+                setCurImgSlug(img.slug);
               }}
             >
               <FaSearchPlus />
@@ -125,7 +127,8 @@ const Gallery = props => {
       <GalleryLightbox
         galleryLbToggle={galleryLbToggle}
         setGalleryLbToggle={setGalleryLbToggle}
-        curImg={curImg}
+        curImgName={curImgName}
+        curImgSlug={curImgSlug}
       />
     </>
   );
