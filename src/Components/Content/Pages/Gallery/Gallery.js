@@ -78,8 +78,10 @@ const Gallery = props => {
   `;
 
   const GalleryDescStyles = styled.div`
-    font-size: 12px;
-    font-weight: 100;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 10px;
   `;
 
   const galleryList = galleryImgs.map((img, index) => {

@@ -12,6 +12,7 @@ const Content = props => {
   const ContentStyles = styled(PageMargin)`
     /*position: relative;*/
     transition: opacity 0.5s;
+    background-color: white;
     .header--fixed & {
       @media screen and (min-width: 960px) {
         margin-top: 250px;
