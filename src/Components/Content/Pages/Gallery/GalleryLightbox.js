@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
+// TODO: 1. Gallery in App.js  2. Lift appropriate states
+
 const GalleryLightbox = props => {
   const GalleryLightboxStyles = styled.div`
     position: absolute;
