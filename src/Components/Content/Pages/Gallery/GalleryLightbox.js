@@ -62,12 +62,12 @@ const GalleryLightbox = props => {
       position: absolute;
       bottom: 0;
       margin: 0;
-      padding: 5px 5px 10px;
+      padding: 5px 5px 7px;
       width: 100%;
       text-align: center;
       color: white;
-      font-weight: 300;
-      font-size: 25px;
+      font-weight: 400;
+      font-size: 13px;
       background-color: rgba(0, 0, 0, 0.75);
       text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
     }

@@ -15,7 +15,7 @@ const Gallery = props => {
 
   const GalleryContainer = styled.ul`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-gap: 50px;
     margin: 0;
     padding: 0;
