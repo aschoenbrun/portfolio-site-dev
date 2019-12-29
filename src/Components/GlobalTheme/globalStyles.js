@@ -53,6 +53,75 @@ export const GlobalStyles = createGlobalStyle`
   #site__footer {
     flex-shrink: 0;
   }
+
+  a {
+    color: ${globalColors.yellow};
+    text-decoration: none;
+    text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.75);
+    transition: color 0.5s ease;
+    &:hover,
+    &:focus {
+      color: ${globalColors.yellowLT};
+    }
+  }
+
+  button,
+  .btn {
+    color: ${globalColors.tanDK};
+    background-color: ${globalColors.yellow};
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1em;
+    font-weight: 900;
+    text-align: center;
+    padding: 13px 13px 10px;
+    box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: none;
+    cursor: pointer;
+    transition: 0.25s ease-out;
+    &.btn-img {
+      padding: 10px 13px;
+    }
+    img {
+      height: 20px;
+      width: auto;
+      margin-right: 7px;
+    }
+    &:hover,
+    &:focus {
+      background-color: ${globalColors.yellowLT};
+      color: ${globalColors.tanDK};
+      box-shadow: 0px 0.25px 2px 0px rgba(0, 0, 0, 0.5);
+    }
+    &:active {
+      box-shadow: 0px 0.1px 1px 0px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .page__section {
+    margin-bottom: 50px;
+  }
+
+  .show,
+  .hide,
+  .fade {
+    transition: opacity 0.4s ease;
+  }
+  .show {
+    opacity: 1;
+  }
+  .hide {
+    opacity: 0;
+  }
+  .fade {
+    @media screen and (max-width: 960px) {
+      opacity: 0.25;
+    }
+  }
 `;
 
 export const PageMargin = styled.div`

@@ -6,10 +6,11 @@ import AboutMe from "./Pages/AboutMe";
 import Resume from "./Pages/Resume";
 import MyApps from "./Pages/MyApps";
 import Contact from "./Pages/Contact/Contact";
+import Gallery from "./Pages/Gallery/Gallery";
 
 const Content = props => {
   const ContentStyles = styled(PageMargin)`
-    position: relative;
+    /*position: relative;*/
     transition: opacity 0.5s;
     .header--fixed & {
       @media screen and (min-width: 960px) {
@@ -43,7 +44,9 @@ const Content = props => {
           path="/contact"
           render={props => <Contact contactInfo={props.contactInfo} />}
         />
+        <Route path="/ui-ux-gallery" component={Gallery} />
         <Redirect exact from="/" to="/about-me" />
+        <Redirect exact from="/gallery" to="/ui-ux-gallery" />
       </Switch>
     </ContentStyles>
   );
