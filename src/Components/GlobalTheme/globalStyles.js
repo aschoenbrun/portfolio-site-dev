@@ -79,7 +79,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 900;
     text-align: center;
     padding: 13px 13px 10px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
     text-shadow: none;
     cursor: pointer;
     transition: 0.25s ease-out;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import GalleryLightbox from "./GalleryLightbox";
 import { Helmet } from "react-helmet";
 import { PageTitle } from "../../../GlobalTheme/globalStyles";
 import galleryImgs from "./galleryImageImport";
@@ -8,6 +9,9 @@ import { globalColors } from "../../../GlobalTheme/globalStyles";
 import { FaSearchPlus } from "react-icons/fa";
 
 const Gallery = props => {
+  const [galleryLbToggle, setGalleryLbToggle] = useState(false);
+  const [curImg, setCurImg] = useState("");
+
   const GalleryContainer = styled.ul`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
@@ -19,6 +23,7 @@ const Gallery = props => {
 
   const GalleryImgStyles = styled.div`
     position: relative;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
     img {
       width: 100%;
       display: block;
@@ -29,14 +34,14 @@ const Gallery = props => {
     position: absolute;
     bottom: 0;
     display: grid;
-    grid-template-columns: auto 50px;
+    grid-template-columns: 1fr auto;
     grid-gap: 4px;
     width: 100%;
   `;
 
   const GalleryNameStyles = styled.h2`
     padding: 7px 13px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.65);
     text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
     font-size: 20px;
     font-weight: 300;
@@ -47,21 +52,24 @@ const Gallery = props => {
   const GalleryLbBtnStyles = styled.button`
     color: ${globalColors.yellow};
     text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.65);
+    transition: 0.5s;
+    font-size: 20px;
     &,
     &:hover,
     &:focus {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.75);
       box-shadow: none;
-      font-size: 20px;
-      padding: 0;
+      padding: 0 10px;
     }
     &:hover,
     &:focus {
       color: ${globalColors.yellowLT};
       text-shadow: 0px 0.25px 2px rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.75);
+      font-size: 23px;
     }
     &:active {
       text-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.75);
@@ -73,7 +81,7 @@ const Gallery = props => {
     font-weight: 100;
   `;
 
-  const galleryList = galleryImgs.map(img => {
+  const galleryList = galleryImgs.map((img, index) => {
     return (
       <li key={img.slug}>
         <GalleryImgStyles>
@@ -91,7 +99,12 @@ const Gallery = props => {
           </Image>
           <GalleryImgUtilStyles>
             <GalleryNameStyles>{img.name}</GalleryNameStyles>
-            <GalleryLbBtnStyles>
+            <GalleryLbBtnStyles
+              onClick={() => {
+                setGalleryLbToggle(true);
+                setCurImg(img.slug);
+              }}
+            >
               <FaSearchPlus />
             </GalleryLbBtnStyles>
           </GalleryImgUtilStyles>
@@ -109,6 +122,11 @@ const Gallery = props => {
       </Helmet>
       <PageTitle>UI/UX Gallery</PageTitle>
       <GalleryContainer>{galleryList}</GalleryContainer>
+      <GalleryLightbox
+        galleryLbToggle={galleryLbToggle}
+        setGalleryLbToggle={setGalleryLbToggle}
+        curImg={curImg}
+      />
     </>
   );
 };
