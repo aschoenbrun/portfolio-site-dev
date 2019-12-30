@@ -10,6 +10,20 @@ import {
 import SectionIntro from "../SectionIntro";
 import { TitleList, List, ListH } from "../ContentLists";
 import styled from "styled-components/macro";
+const contentful = require("contentful");
+
+const client = contentful.createClient({
+  space: "juya7hxyd5x0",
+  environment: "master",
+  accessToken: "0zlV_-AWBsMoopE2XY2faO7_OnLoU_KLXEHV03ywvlM"
+});
+
+client
+  .getEntries({
+    content_type: "resumeBlock"
+  })
+  .then(response => console.log(response.items))
+  .catch(console.error);
 
 const PageMeta = () => {
   return (
