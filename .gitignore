@@ -1,2 +1,5 @@
 node_modules
 build
+src/styles/*.css
+
+.env # This contains secrets, don't store in source control
