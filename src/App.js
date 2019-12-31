@@ -13,7 +13,18 @@ import iconReact from "./images/Icon---Programming---React.png";
 import iconReactRouter from "./images/Icon---Programming---React-Router.png";
 import iconNode from "./images/Icon---Programming---Node-JS-ICON-ONLY.png";
 import iconStyledComponents from "./images/icon---Programming---styled-components.png";
+const contentful = require("contentful");
 
+const client = contentful.createClient({
+  space: "juya7hxyd5x0",
+  environment: "master",
+  accessToken: "0zlV_-AWBsMoopE2XY2faO7_OnLoU_KLXEHV03ywvlM"
+});
+
+client
+  .getEntries()
+  .then(res => console.log(res.items))
+  .catch(console.error);
 class App extends Component {
   constructor(props) {
     super(props);

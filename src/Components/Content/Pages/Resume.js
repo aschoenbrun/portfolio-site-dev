@@ -18,13 +18,6 @@ const client = contentful.createClient({
   accessToken: "0zlV_-AWBsMoopE2XY2faO7_OnLoU_KLXEHV03ywvlM"
 });
 
-client
-  .getEntries({
-    content_type: "resumeBlock"
-  })
-  .then(response => console.log(response.items))
-  .catch(console.error);
-
 const PageMeta = () => {
   return (
     <Helmet>
@@ -54,111 +47,9 @@ export default class Resume extends Component {
 
     this.state = {
       pageTitle: "Resume",
-      skillSets: [
-        {
-          title: "Languages and Frameworks",
-          skills: [
-            "React",
-            "React Router",
-            "Styled Components",
-            "CSS Modules",
-            "Javascript",
-            "jQuery",
-            "HTML5",
-            "CSS3",
-            "SASS",
-            "PHP",
-            "Bootstrap",
-            "Wordpress",
-            "WooCommerce",
-            "Shopify"
-          ]
-        },
-        {
-          title: "Utilities and Software",
-          skills: [
-            "Node JS",
-            "Webpack",
-            "Git",
-            "Visual Studio Code",
-            "Atom",
-            "Asana",
-            "Trello",
-            "Photoshop",
-            "Dreamweaver",
-            "Notepad++",
-            "Illustrator",
-            "InDesign"
-          ]
-        },
-        {
-          title: "Techniques and Conventions",
-          skills: [
-            "Wireframing",
-            "Mockups",
-            "Color theory",
-            "SEO",
-            "Responsive design",
-            "Web security"
-          ]
-        }
-      ],
-      experience: [
-        {
-          title: "Founder, Developer and Designer",
-          org: "Effective Media, LLC",
-          location: "Lakewood, NJ",
-          dates: "Feb 2016 - PRESENT",
-          experienceList: [
-            "Structured a custom branded interface to be conducive to a streamlined user workflow while also increasing efficiency.",
-            "Designed and developed clean, easy to use websites featuring compelling, professional design, dynamic functionality and structure effective in correctly guiding the user."
-          ]
-        },
-        {
-          title: "Director of Marketing and Promotions",
-          org: "EverDixie EMS Supplies",
-          location: "Brooklyn, NY",
-          dates: "Dec 2011 - Aug 2015",
-          experienceList: [
-            "Created and modernized branding for subsidiaries and existing brands for optimal relatability.",
-            "Implemented live chat to an e-commerce website I designed and built resulting in greatly optimized customer service",
-            "Organized the home page of an e-commerce website from a jumbled mess to a layout that effectively showcased multiple banners and showcases."
-          ]
-        },
-        {
-          title: "Director of Marketing and Promotions",
-          org: "Dealmed, Inc",
-          location: "Lakewood, NJ",
-          dates: "Jan 2009 - Jan 2011",
-          experienceList: [
-            "Designed and built a blog.",
-            "Designed and coded custom HTML email blasts."
-          ]
-        }
-      ],
-      education: [
-        {
-          school: "Excelsior College",
-          location: "Albany, NY",
-          skills: ["Bachelors of Science"]
-        },
-        {
-          school: "New York Interactive Media Training",
-          location: "New York, NY",
-          skills: ["HTML", "CSS"]
-        },
-        {
-          school: "Udemy",
-          skills: [
-            "React JS",
-            "Javacript",
-            "jQuery",
-            "Bootstrap",
-            "HTML5",
-            "CSS3"
-          ]
-        }
-      ],
+      skillSets: [],
+      experience: [],
+      education: [],
       references: [
         {
           name: "Daniel Soloff",
@@ -207,6 +98,29 @@ export default class Resume extends Component {
         }
       ]
     };
+  }
+
+  componentDidMount() {
+    client
+      .getEntries()
+      .then(res => {
+        const skillSetsArr = res.items.filter(
+          el => el.sys.contentType.sys.id === "resumeItem"
+        );
+        const experienceArr = res.items.filter(
+          el => el.sys.contentType.sys.id === "resumeExperience"
+        );
+        const educationArr = res.items.filter(
+          el => el.sys.contentType.sys.id === "resumeEducation"
+        );
+        console.log(skillSetsArr);
+        this.setState({
+          skillSets: skillSetsArr,
+          experience: experienceArr,
+          education: educationArr
+        });
+      })
+      .catch(console.error);
   }
 
   render() {
@@ -265,10 +179,10 @@ export default class Resume extends Component {
 const SkillSets = props => {
   const skillSetsList = props.skills.map(skill => {
     return (
-      <li key={skill.title}>
-        <SectionSubTitle>{skill.title}</SectionSubTitle>
+      <li key={skill.fields.title}>
+        <SectionSubTitle>{skill.fields.title}</SectionSubTitle>
         <ListH>
-          <SkillListSets skillList={skill.skills} />
+          <SkillListSets skillList={skill.fields.itemList} />
         </ListH>
       </li>
     );
@@ -285,19 +199,19 @@ const SkillListSets = props => {
 
 const ExpSets = props => {
   const expSetList = props.expList.map(exp => {
-    let expMainKey = exp.title + " " + exp.org;
+    let expMainKey = exp.fields.title + " " + exp.fields.company;
     return (
       <li key={expMainKey}>
-        <SectionSubTitle>{exp.title}</SectionSubTitle>
+        <SectionSubTitle>{exp.fields.title}</SectionSubTitle>
         <SectionSubTitleDesc>
-          <span>{exp.org}</span>
+          <span>{exp.fields.company}</span>
           <SectionTitleDivider />
-          <span>{exp.location}</span>
+          <span>{exp.fields.location}</span>
           <SectionTitleDivider />
-          <span>{exp.dates}</span>
+          <span>{exp.fields.dates}</span>
         </SectionSubTitleDesc>
         <List>
-          <ExpListSets expList={exp.experienceList} />
+          <ExpListSets expList={exp.fields.itemList} />
         </List>
       </li>
     );
@@ -315,11 +229,11 @@ const ExpListSets = props => {
 const EduSets = props => {
   const eduSetsList = props.eduList.map(edu => {
     return (
-      <li key={edu.school}>
-        <SectionSubTitle>{edu.school}</SectionSubTitle>
-        <SectionSubTitleDesc>{edu.location}</SectionSubTitleDesc>
+      <li key={edu.fields.school}>
+        <SectionSubTitle>{edu.fields.school}</SectionSubTitle>
+        <SectionSubTitleDesc>{edu.fields.location}</SectionSubTitleDesc>
         <ListH>
-          <EduListSets eduList={edu.skills} />
+          <EduListSets eduList={edu.fields.skills} />
         </ListH>
       </li>
     );
