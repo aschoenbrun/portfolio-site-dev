@@ -113,7 +113,6 @@ export default class Resume extends Component {
         const educationArr = res.items.filter(
           el => el.sys.contentType.sys.id === "resumeEducation"
         );
-        console.log(skillSetsArr);
         this.setState({
           skillSets: skillSetsArr,
           experience: experienceArr,
