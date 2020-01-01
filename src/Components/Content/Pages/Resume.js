@@ -50,53 +50,7 @@ export default class Resume extends Component {
       skillSets: [],
       experience: [],
       education: [],
-      references: [
-        {
-          name: "Daniel Soloff",
-          contactInfo: [
-            {
-              type: "phone",
-              info: "(732) 905-9700 x 604"
-            }
-          ]
-        },
-        {
-          name: "Eli Davidson",
-          contactInfo: [
-            {
-              type: "email",
-              info: "mail@e-davidson.com"
-            }
-          ]
-        },
-        {
-          name: "Eli Golding",
-          contactInfo: [
-            {
-              type: "email",
-              info: "eligolding@gmail.com"
-            }
-          ]
-        },
-        {
-          name: "Avi Rosenthal",
-          contactInfo: [
-            {
-              type: "phone",
-              info: "(732) 228-8888 x 201"
-            }
-          ]
-        },
-        {
-          name: "Mimi Frankel",
-          contactInfo: [
-            {
-              type: "phone",
-              info: "(732) 298-3746"
-            }
-          ]
-        }
-      ]
+      references: []
     };
   }
 
@@ -113,10 +67,14 @@ export default class Resume extends Component {
         const educationArr = res.items.filter(
           el => el.sys.contentType.sys.id === "resumeEducation"
         );
+        const referralArr = res.items.filter(
+          el => el.sys.contentType.sys.id === "referrals"
+        );
         this.setState({
           skillSets: skillSetsArr,
           experience: experienceArr,
-          education: educationArr
+          education: educationArr,
+          references: referralArr
         });
       })
       .catch(console.error);
@@ -248,31 +206,38 @@ const EduListSets = props => {
 };
 
 const RefSets = props => {
-  const eduSetsList = props.refList.map(ref => {
+  const refSetsList = props.refList.map(ref => {
+    const refEmail = () => {
+      let refEmailVar = ref.fields.email;
+      if (refEmailVar) {
+        return (
+          <li key={refEmailVar}>
+            <a href={`mailto:${refEmailVar}`}>{refEmailVar}</a>
+          </li>
+        );
+      } else {
+        return "";
+      }
+    };
+    const refPhone = () => {
+      let refPhoneVar = ref.fields.phone;
+      if (refPhoneVar) {
+        return <li key={refPhoneVar}>{refPhoneVar}</li>;
+      } else {
+        return "";
+      }
+    };
     return (
-      <li key={ref.name}>
-        <SectionSubTitle>{ref.name}</SectionSubTitle>
+      <li key={ref.fields.name}>
+        <SectionSubTitle>{ref.fields.name}</SectionSubTitle>
         <ListH>
-          <RefListSets refList={ref.contactInfo} />
+          {refEmail()}
+          {refPhone()}
         </ListH>
       </li>
     );
   });
-  return eduSetsList;
-};
-
-const RefListSets = props => {
-  const refLists = props.refList.map(info => {
-    if (info.type === "email") {
-      return (
-        <li key={info.info}>
-          <a href={`mailto:${info.info}`}>{info.info}</a>
-        </li>
-      );
-    }
-    return <li key={info.info}>{info.info}</li>;
-  });
-  return refLists;
+  return refSetsList;
 };
 
 // TODO: REFACTOR LIST RENDERING LOGIC:
