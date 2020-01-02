@@ -20,11 +20,6 @@ const client = contentful.createClient({
   environment: "master",
   accessToken: "0zlV_-AWBsMoopE2XY2faO7_OnLoU_KLXEHV03ywvlM"
 });
-
-client
-  .getEntries()
-  .then(res => console.log(res.items))
-  .catch(console.error);
 class App extends Component {
   constructor(props) {
     super(props);

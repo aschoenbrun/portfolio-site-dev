@@ -10,13 +10,7 @@ import {
 import SectionIntro from "../SectionIntro";
 import { TitleList, List, ListH } from "../ContentLists";
 import styled from "styled-components/macro";
-const contentful = require("contentful");
-
-const client = contentful.createClient({
-  space: "juya7hxyd5x0",
-  environment: "master",
-  accessToken: "0zlV_-AWBsMoopE2XY2faO7_OnLoU_KLXEHV03ywvlM"
-});
+import contentfulClient from "../../../contentfulSetup";
 
 const PageMeta = () => {
   return (
@@ -55,7 +49,7 @@ export default class Resume extends Component {
   }
 
   componentDidMount() {
-    client
+    contentfulClient
       .getEntries()
       .then(res => {
         const skillSetsArr = res.items.filter(

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
 import { List } from "../ContentLists";
 import SectionIntro from "../SectionIntro";
+import contentfulClient from "../../../contentfulSetup";
 
 const PageMeta = () => {
   return (
@@ -19,9 +20,24 @@ export default class CoverLetter extends Component {
     super(props);
 
     this.state = {
-      pageTitle: "About Me"
+      pageTitle: ""
     };
   }
+
+  componentDidMount() {
+    contentfulClient
+      .getEntry("4u4ujkhv5yHyiSszJwcjDM")
+      .then(entry => {
+        this.setState({
+          pageTitle: entry.fields.title,
+          pageContentArr: entry.fields.pageContent.content
+        });
+
+        console.log(this.state.pageContentArr);
+      })
+      .catch(console.error);
+  }
+
   render() {
     return (
       <div id="cover-letter">
@@ -35,6 +51,7 @@ export default class CoverLetter extends Component {
             and enthusiasm to your organization.
           </p>
         </SectionIntro>
+
         <p>
           I am passionate about blending smart structure with compelling, clean
           design to increase user engagement. I provide value add to employers
