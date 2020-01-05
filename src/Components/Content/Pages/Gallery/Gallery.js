@@ -15,11 +15,18 @@ const Gallery = props => {
 
   const GalleryContainer = styled.ul`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap: 50px;
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
     margin: 0;
     padding: 0;
     list-style-type: none;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    @media screen and (min-width: 1200px) {
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      grid-gap: 50px;
+    }
   `;
 
   const GalleryImgStyles = styled.div`
