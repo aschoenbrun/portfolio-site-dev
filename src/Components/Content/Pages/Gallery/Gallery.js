@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GalleryLightbox from "./GalleryLightbox";
 import { Helmet } from "react-helmet";
 import { PageTitle } from "../../../GlobalTheme/globalStyles";
-import galleryImgs from "./galleryImageImport";
 import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
 import { globalColors } from "../../../GlobalTheme/globalStyles";
 import { FaSearchPlus } from "react-icons/fa";
+import contentfulClient from "../../../../contentfulSetup";
 
 const Gallery = props => {
   const [galleryLbToggle, setGalleryLbToggle] = useState(false);
   const [curImgSlug, setCurImgSlug] = useState("");
   const [curImgName, setCurImgName] = useState("");
+  const [imgArr, setImgArr] = useState([]);
+
+  useEffect(() => {
+    contentfulClient
+      .getEntries({
+        content_type: "portfolioGalleryImage"
+      })
+      .then(response => {
+        setImgArr(response.items);
+      })
+      .catch(console.error);
+  }, []);
 
   const GalleryContainer = styled.ul`
     display: grid;
@@ -84,22 +96,23 @@ const Gallery = props => {
     }
   `;
 
+  /*
   const GalleryDescStyles = styled.div`
     font-size: 13px;
     font-weight: 400;
     font-style: italic;
     margin-top: 10px;
   `;
+  */
 
-  const galleryList = galleryImgs.map((img, index) => {
+  const galleryList = imgArr.map(img => {
+    const imgSlug = img.fields.image[0].public_id;
+    const imgName = img.fields.name;
+    // const imgTest = img.fields.testimonial;
     return (
-      <li key={img.slug}>
+      <li key={imgSlug}>
         <GalleryImgStyles>
-          <Image
-            cloudName="aschoen"
-            publicId={`AYS Portfolio Site Images/${img.slug}`}
-            alt={img.name}
-          >
+          <Image cloudName="aschoen" publicId={imgSlug} alt={imgName}>
             <Transformation
               fetchFormat="auto"
               quality="70"
@@ -108,19 +121,18 @@ const Gallery = props => {
             />
           </Image>
           <GalleryImgUtilStyles>
-            <GalleryNameStyles>{img.name}</GalleryNameStyles>
+            <GalleryNameStyles>{imgName}</GalleryNameStyles>
             <GalleryLbBtnStyles
               onClick={() => {
                 setGalleryLbToggle(true);
-                setCurImgName(img.name);
-                setCurImgSlug(img.slug);
+                setCurImgName(imgName);
+                setCurImgSlug(imgSlug);
               }}
             >
               <FaSearchPlus />
             </GalleryLbBtnStyles>
           </GalleryImgUtilStyles>
         </GalleryImgStyles>
-        <GalleryDescStyles>{img.desc}</GalleryDescStyles>
       </li>
     );
   });

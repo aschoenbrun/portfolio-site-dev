@@ -84,7 +84,7 @@ const GalleryLightbox = props => {
     <GalleryLightboxStyles ref={lbOpacity} id="gallery-lightbox">
       <Image
         cloudName="aschoen"
-        publicId={`AYS Portfolio Site Images/${props.curImgSlug}`}
+        publicId={props.curImgSlug}
         alt={props.curImgName}
       >
         <Transformation
