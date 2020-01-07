@@ -19,10 +19,14 @@ const GalleryNameStyles = styled.h2`
   padding: 7px 13px;
   background-color: rgba(0, 0, 0, 0.65);
   text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
-  font-size: 20px;
+  font-size: 15px;
+  line-height: 1em;
   font-weight: 300;
   margin: 0;
   color: white;
+  @media screen and (min-width: 420px) {
+    font-size: 17px;
+  }
 `;
 
 const GalleryUtilBtnStyles = styled.button`
@@ -68,7 +72,10 @@ const GalleryDescStyles = styled.div`
     font-weight: 300;
     font-style: italic;
     color: white !important;
+    max-height: auto;
     text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
+    max-height: 125px;
+    overflow-y: scroll;
   }
 `;
 
@@ -125,7 +132,6 @@ const GalleryUtils = props => {
       return <GalleryDescStyles ref={descClass} />;
     }
   };
-
   return (
     <GalleryImgUtilStyles>
       <GalleryNameStyles>{props.imgName}</GalleryNameStyles>

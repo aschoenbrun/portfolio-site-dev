@@ -41,6 +41,7 @@ export default class Resume extends Component {
 
     this.state = {
       pageTitle: "Resume",
+      sectionIntro: "",
       skillSets: [],
       experience: [],
       education: [],
@@ -52,6 +53,9 @@ export default class Resume extends Component {
     contentfulClient
       .getEntries()
       .then(res => {
+        const sectionIntro = res.items.filter(
+          el => el.sys.id === "1jCQ6OAEbsRMG0lPaJqa95"
+        );
         const skillSetsArr = res.items.filter(
           el => el.sys.contentType.sys.id === "resumeItem"
         );
@@ -65,6 +69,7 @@ export default class Resume extends Component {
           el => el.sys.contentType.sys.id === "referrals"
         );
         this.setState({
+          sectionIntro: sectionIntro[0].fields.intro,
           skillSets: skillSetsArr,
           experience: experienceArr,
           education: educationArr,
@@ -81,22 +86,15 @@ export default class Resume extends Component {
         <PageTitle>Resume</PageTitle>
         <section id="summary">
           <SectionTitle>Summary</SectionTitle>
-          <SectionIntro>
-            <p>
-              Creative, technically-minded, solutions-driven front end developer
-              / UI/UX Designer utilizing his problem-solving skills, affinity
-              for effective structure &amp; good design eye to build compelling
-              web applications.
-            </p>
-            <a
-              className="btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://drive.google.com/file/d/1RcEHj7oHl_9yUOZhE8S-hUuQ7UBLd9tG/view?usp=sharing"
-            >
-              Download Resume
-            </a>
-          </SectionIntro>
+          <SectionIntro>{this.state.sectionIntro}</SectionIntro>
+          <a
+            className="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://drive.google.com/file/d/1RcEHj7oHl_9yUOZhE8S-hUuQ7UBLd9tG/view?usp=sharing"
+          >
+            Download Resume
+          </a>
         </section>
         <section id="skills" className="resume__section page__section">
           <SectionTitle>Skills</SectionTitle>

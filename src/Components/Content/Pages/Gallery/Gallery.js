@@ -50,8 +50,6 @@ const Gallery = props => {
     }
   `;
 
-  // use props to have cond styling bet 1 & 2 buttons
-
   const galleryList = imgArr.map(img => {
     const imgSlug = img.fields.image[0].public_id;
     const imgName = img.fields.name;
@@ -72,6 +70,7 @@ const Gallery = props => {
             setGalleryLbToggle={setGalleryLbToggle}
             setCurImgName={setCurImgName}
             setCurImgSlug={setCurImgSlug}
+            imgSlug={imgSlug}
             imgName={imgName}
             imgDesc={imgDesc}
           />

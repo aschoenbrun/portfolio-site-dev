@@ -34,15 +34,11 @@ export default class CoverLetter extends Component {
           pageTitle: entry.fields.title,
           pageContentArr: entry.fields.pageContent.content
         });
-
-        console.log(this.state.pageContentArr);
       })
       .catch(console.error);
-    // TODO: Convert Intros to Paragraphs
     contentfulClient
       .getEntry("5GXcVkDotSTdGcJfoe5zgk")
       .then(entry => {
-        console.log(entry);
         this.setState({ pageIntro: entry.fields.intro });
       })
       .catch(console.error);
@@ -91,13 +87,13 @@ const PageContent = props => {
               return "";
           }
         });
-        return <p>{nodeList}</p>;
+        return <p key={el.value}>{nodeList}</p>;
       case "unordered-list":
         nodeList = el.content.map(node => {
           const value = node.content[0].content[0].value;
           return <li key={value}>{value}</li>;
         });
-        return <List>{nodeList}</List>;
+        return <List key={el.value}>{nodeList}</List>;
       default:
         return "";
     }
