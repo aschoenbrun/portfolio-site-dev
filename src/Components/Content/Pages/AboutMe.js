@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { PageTitle } from "../../GlobalTheme/globalStyles";
 import { List } from "../ContentLists";
 import SectionIntro from "../SectionIntro";
+import contentfulClient from "../../../contentfulSetup";
 
 const PageMeta = () => {
   return (
@@ -19,50 +20,39 @@ export default class CoverLetter extends Component {
     super(props);
 
     this.state = {
-      pageTitle: "About Me"
+      pageTitle: "",
+      pageIntro: "",
+      pageContentArr: []
     };
   }
+
+  componentDidMount() {
+    contentfulClient
+      .getEntry("4u4ujkhv5yHyiSszJwcjDM")
+      .then(entry => {
+        this.setState({
+          pageTitle: entry.fields.title,
+          pageContentArr: entry.fields.pageContent.content
+        });
+      })
+      .catch(console.error);
+    contentfulClient
+      .getEntry("5GXcVkDotSTdGcJfoe5zgk")
+      .then(entry => {
+        this.setState({ pageIntro: entry.fields.intro });
+      })
+      .catch(console.error);
+  }
+
   render() {
     return (
       <div id="cover-letter">
         <PageMeta />
         <PageTitle>{this.state.pageTitle}</PageTitle>
-        <SectionIntro>
-          <p>
-            I am a creative <strong>Front-End Developer</strong> and{" "}
-            <strong>UI/UX Designer</strong> with 6 years experience in designing
-            and building web applications. I would love to bring my expertise
-            and enthusiasm to your organization.
-          </p>
-        </SectionIntro>
-        <p>
-          I am passionate about blending smart structure with compelling, clean
-          design to increase user engagement. I provide value add to employers
-          and clients by understanding business processes and implement
-          efficient systems to drive end user retention and conversion.
-        </p>
-        <List>
-          <li>
-            As a developer I focused on elegant solutions to site design,
-            structure and functional execution utilizing modern technologies.
-          </li>
-          <li>
-            As a designer, I created an application’s theme and structure
-            focusing on conveying messaging while presenting elements and
-            options clearly. Having significant experience in UI/UX design and
-            related fields, I worked with employers and clients to apply smart
-            design techniques to their unique vision.
-          </li>
-        </List>
-        <p>
-          If you have any further questions or require additional information,
-          please feel free to reach me at (732) 372-5102 or via email at{" "}
-          <a href="mailto:aviy.sch@gmail.com">aviy.sch@gmail.com</a>.
-        </p>
-        <p>
-          Thank you for your consideration. I look forward to meeting with you
-          and discussing how I can make a strong contribution to your company.
-        </p>
+        <SectionIntro>{this.state.pageIntro}</SectionIntro>
+
+        <PageContent pageContent={this.state.pageContentArr} />
+
         <Link
           to="/resume"
           className="btn"
@@ -76,3 +66,37 @@ export default class CoverLetter extends Component {
     );
   }
 }
+
+const PageContent = props => {
+  const pageContent = props.pageContent.map(el => {
+    let nodeList;
+    switch (el.nodeType) {
+      case "paragraph":
+        nodeList = el.content.map(node => {
+          switch (node.nodeType) {
+            case "text":
+              return <span key={node.value}>{node.value}</span>;
+            case "hyperlink":
+              const value = node.content[0].value;
+              return (
+                <a href={node.data.uri} key={value}>
+                  {value}
+                </a>
+              );
+            default:
+              return "";
+          }
+        });
+        return <p key={el.value}>{nodeList}</p>;
+      case "unordered-list":
+        nodeList = el.content.map(node => {
+          const value = node.content[0].content[0].value;
+          return <li key={value}>{value}</li>;
+        });
+        return <List key={el.value}>{nodeList}</List>;
+      default:
+        return "";
+    }
+  });
+  return pageContent;
+};

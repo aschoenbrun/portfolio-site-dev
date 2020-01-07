@@ -202,7 +202,6 @@ export const FormSubmission = props => {
   const subStatusClass = useRef("");
   const subResultTxt = useRef("");
   useEffect(() => {
-    console.log(`SUBMITTING: ${props.isSubmitting}`);
     if (props.isSubmitting) {
       subStatusClass.current.classList.add("submitting");
     }

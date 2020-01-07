@@ -31,11 +31,9 @@ const ContactForm = props => {
       )
       .then(
         response => {
-          // console.log("SUCCESS!", response.status, response.text);
           setDeliveryStat("success");
         },
         err => {
-          // console.log("FAILED...", err);
           setDeliveryStat("failed");
         }
       );
