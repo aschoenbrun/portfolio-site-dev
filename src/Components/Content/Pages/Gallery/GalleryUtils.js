@@ -73,9 +73,18 @@ const GalleryDescStyles = styled.div`
     font-style: italic;
     color: white !important;
     max-height: auto;
-    text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
+    text-shadow: 0px 0.5px 3px rgba(0, 0, 0, 0.75);
     max-height: 125px;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: ${globalColors.orangeGreyLT50};
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${globalColors.orangeGreyLT50};
+      box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 
