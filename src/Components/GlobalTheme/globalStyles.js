@@ -19,6 +19,7 @@ export const globalColors = {
   green: "rgb(12, 145, 62)",
   orange: "rgb(67, 21, 7)",
   orangeGreyLT: "rgb(208, 194, 149);",
+  orangeGreyLT50: "rgba(208, 194, 149,0.5);",
   red: "rgb(166, 29, 0)"
 };
 
