@@ -3,11 +3,13 @@ import GalleryLightbox from "./GalleryLightbox";
 import GalleryUtils from "./GalleryUtils";
 import { Helmet } from "react-helmet";
 import { PageTitle } from "../../../GlobalTheme/globalStyles";
+import SectionIntro from "../../SectionIntro";
 import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
 import contentfulClient from "../../../../contentfulSetup";
 
 const Gallery = props => {
+  const [sectionIntro, setSectionIntro] = useState("");
   const [galleryLbToggle, setGalleryLbToggle] = useState(false);
   const [curImgSlug, setCurImgSlug] = useState("");
   const [curImgName, setCurImgName] = useState("");
@@ -22,13 +24,19 @@ const Gallery = props => {
         setImgArr(response.items);
       })
       .catch(console.error);
+    contentfulClient
+      .getEntry("2HRG6pvWrGKrMYuZ5kjLLO")
+      .then(entry => {
+        setSectionIntro(entry.fields.intro);
+      })
+      .catch(console.error);
   }, []);
 
   const GalleryContainer = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 25px;
-    margin: 0;
+    margin: 50px 0 0;
     padding: 0;
     list-style-type: none;
     @media screen and (min-width: 768px) {
@@ -86,6 +94,7 @@ const Gallery = props => {
         <link rel="canonical" href="https://aysportfolio/contact" />
       </Helmet>
       <PageTitle>UI/UX Gallery</PageTitle>
+      <SectionIntro>{sectionIntro}</SectionIntro>
       <GalleryContainer>{galleryList}</GalleryContainer>
       <GalleryLightbox
         galleryLbToggle={galleryLbToggle}
