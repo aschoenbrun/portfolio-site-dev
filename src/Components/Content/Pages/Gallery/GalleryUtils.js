@@ -8,7 +8,8 @@ const GalleryImgUtilStyles = styled.div`
   position: absolute;
   bottom: 0;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: ${props =>
+    props.imgDesc ? "1fr auto auto" : "1fr auto"};
   grid-gap: 4px;
   width: calc(100% - 8px);
   margin: 0 4px;
@@ -40,7 +41,8 @@ const GalleryUtilBtnStyles = styled.button`
     padding: 0 10px;
   }
   &:hover,
-  &:focus {
+  &:focus,
+  &.open {
     color: ${globalColors.yellowLT};
     text-shadow: 0px 0.25px 2px rgba(0, 0, 0, 0.75);
     background-color: rgba(0, 0, 0, 0.75);
@@ -52,8 +54,8 @@ const GalleryUtilBtnStyles = styled.button`
 `;
 
 const GalleryDescStyles = styled.div`
-  grid-column: 1 / 4;
-  background-color: rgba(0, 0, 0, 0.65);
+  ${props => (props.imgDesc ? "grid-column: 1 / 4" : "grid-column: 1 / 3")};
+  background-color: rgba(0, 0, 0, 0.75);
   max-height: 0;
   &.open {
     max-height: 100%;
@@ -63,9 +65,9 @@ const GalleryDescStyles = styled.div`
     margin: 7px 13px;
     font-size: 13px;
     line-height: 1.65rem;
-    font-weight: 400;
+    font-weight: 300;
     font-style: italic;
-    color: white;
+    color: white !important;
     text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
   }
 `;
@@ -73,14 +75,21 @@ const GalleryDescStyles = styled.div`
 const GalleryUtils = props => {
   const [galleryDescToggle, setGalleryDescToggle] = useState(false);
   const descClass = useRef("");
+  const descToggleClass = useRef("");
 
   useEffect(() => {
     if (galleryDescToggle) {
       descClass.current.classList.add("open");
+      if (props.imgDesc) {
+        descToggleClass.current.classList.add("open");
+      }
     } else {
       descClass.current.classList.remove("open");
+      if (props.imgDesc) {
+        descToggleClass.current.classList.remove("open");
+      }
     }
-  }, [galleryDescToggle]);
+  }, [galleryDescToggle, props.imgDesc]);
 
   const GalleryTestimonialBtn = () => {
     if (props.imgDesc) {
@@ -93,6 +102,7 @@ const GalleryUtils = props => {
       };
       return (
         <GalleryUtilBtnStyles
+          ref={descToggleClass}
           onClick={() => {
             setGalleryDescToggle(!galleryDescToggle);
           }}
@@ -107,7 +117,7 @@ const GalleryUtils = props => {
   const GalleryDesc = () => {
     if (props.imgDesc) {
       return (
-        <GalleryDescStyles ref={descClass}>
+        <GalleryDescStyles ref={descClass} imgDesc={props.imgDesc}>
           <p>{props.imgDesc}</p>
         </GalleryDescStyles>
       );
