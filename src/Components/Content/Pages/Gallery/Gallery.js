@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import GalleryLightbox from "./GalleryLightbox";
+import GalleryUtils from "./GalleryUtils";
 import { Helmet } from "react-helmet";
 import { PageTitle } from "../../../GlobalTheme/globalStyles";
 import { Image, Transformation } from "cloudinary-react";
 import styled from "styled-components/macro";
-import { globalColors } from "../../../GlobalTheme/globalStyles";
-import { FaSearchPlus } from "react-icons/fa";
 import contentfulClient from "../../../../contentfulSetup";
 
 const Gallery = props => {
@@ -44,71 +43,20 @@ const Gallery = props => {
   const GalleryImgStyles = styled.div`
     position: relative;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    overflow-y: hidden;
     img {
       width: 100%;
       display: block;
     }
   `;
 
-  const GalleryImgUtilStyles = styled.div`
-    position: absolute;
-    bottom: 0;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-gap: 4px;
-    width: 100%;
-  `;
-
-  const GalleryNameStyles = styled.h2`
-    padding: 7px 13px;
-    background-color: rgba(0, 0, 0, 0.65);
-    text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
-    font-size: 20px;
-    font-weight: 300;
-    margin: 0;
-    color: white;
-  `;
-
-  const GalleryLbBtnStyles = styled.button`
-    color: ${globalColors.yellow};
-    text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.75);
-    background-color: rgba(0, 0, 0, 0.65);
-    transition: 0.5s;
-    font-size: 20px;
-    &,
-    &:hover,
-    &:focus {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: none;
-      padding: 0 10px;
-    }
-    &:hover,
-    &:focus {
-      color: ${globalColors.yellowLT};
-      text-shadow: 0px 0.25px 2px rgba(0, 0, 0, 0.75);
-      background-color: rgba(0, 0, 0, 0.75);
-      font-size: 23px;
-    }
-    &:active {
-      text-shadow: 0px 0.1px 1px rgba(0, 0, 0, 0.75);
-    }
-  `;
-
-  /*
-  const GalleryDescStyles = styled.div`
-    font-size: 13px;
-    font-weight: 400;
-    font-style: italic;
-    margin-top: 10px;
-  `;
-  */
+  // use props to have cond styling bet 1 & 2 buttons
 
   const galleryList = imgArr.map(img => {
     const imgSlug = img.fields.image[0].public_id;
     const imgName = img.fields.name;
-    // const imgTest = img.fields.testimonial;
+    const imgDesc = img.fields.testimonial;
+
     return (
       <li key={imgSlug}>
         <GalleryImgStyles>
@@ -120,18 +68,13 @@ const Gallery = props => {
               width="600"
             />
           </Image>
-          <GalleryImgUtilStyles>
-            <GalleryNameStyles>{imgName}</GalleryNameStyles>
-            <GalleryLbBtnStyles
-              onClick={() => {
-                setGalleryLbToggle(true);
-                setCurImgName(imgName);
-                setCurImgSlug(imgSlug);
-              }}
-            >
-              <FaSearchPlus />
-            </GalleryLbBtnStyles>
-          </GalleryImgUtilStyles>
+          <GalleryUtils
+            setGalleryLbToggle={setGalleryLbToggle}
+            setCurImgName={setCurImgName}
+            setCurImgSlug={setCurImgSlug}
+            imgName={imgName}
+            imgDesc={imgDesc}
+          />
         </GalleryImgStyles>
       </li>
     );
