@@ -87,13 +87,6 @@ const Gallery = props => {
     );
   });
 
-  // const imgUrl =
-  //   "https://res.cloudinary.com/aschoen/image/upload/v1579560178/sample.jpg";
-  // const static_public_id = imgUrl.substring(
-  //   imgUrl.lastIndexOf("/") + 1,
-  //   imgUrl.lastIndexOf(".")
-  // );
-
   return (
     <>
       <Helmet>
@@ -102,15 +95,6 @@ const Gallery = props => {
       </Helmet>
       <PageTitle>UI/UX Gallery</PageTitle>
       <SectionIntro>{sectionIntro}</SectionIntro>
-      {/* <Image cloudName="aschoen" publicId={static_public_id} />
-      <Image cloudName="aschoen" publicId={static_public_id}>
-        <Transformation
-          fetchFormat="auto"
-          quality="70"
-          crop="scale"
-          width="30"
-        />
-      </Image> */}
       <GalleryContainer>{galleryList}</GalleryContainer>
       <GalleryLightbox
         galleryLbToggle={galleryLbToggle}
