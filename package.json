@@ -58,7 +58,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "css-loader": "^3.4.0",
     "lodash": "^4.17.15",
-    "mathjs": "^6.2.5",
+    "mathjs": "^7.5.1",
     "node-sass": "^4.13.0",
     "nodemailer": "^6.4.2",
     "react-headroom": "^3.0.0",
