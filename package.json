@@ -16,7 +16,7 @@
     "jimp": "^0.9.3",
     "lightgallery.js": "^1.1.3",
     "lodash.throttle": "^4.1.1",
-    "marked": "^0.8.0",
+    "marked": "^4.0.10",
     "quill": "^1.3.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
